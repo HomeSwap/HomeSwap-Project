@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>HomeSwap - Registration</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/modern-business.css" rel="stylesheet">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+
+#regForm {
+  background-color: #ffffff;
+  /*margin: 100px auto;*/
+  padding: 40px;
+  width: 100%;
+  min-width: 300px;
+}
+
+
+#regForm input {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  border: 1px solid #aaaaaa;
+}
+
+/* Mark input boxes that gets an error on validation: */
+#regForm input.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+#regForm button {
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  cursor: pointer;
+  width:50%;
+}
+
+#regForm button:hover {
+  opacity: 0.8;
+}
+
+#prevBtn {
+  background-color: #bbbbbb;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 30px;
+  width: 30px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;  
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4CAF50;
+}
+</style>
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Home Swap</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">Services</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Portfolio
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                <a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Blog
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
+                <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
+                <a class="dropdown-item" href="blog-post.html">Blog Post</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Other Pages
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                <a class="dropdown-item" href="full-width.html">Full Width Page</a>
+                <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
+                <a class="dropdown-item" href="faq.html">FAQ</a>
+                <a class="dropdown-item" href="404.html">404</a>
+                <a class="dropdown-item" href="pricing.html">Pricing Table</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">Registration
+        <small>New user</small>
+      </h1>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="index.html">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Registration</li>
+      </ol>
+
+    <div style="text-align:center;margin-top:40px;">
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+    </div>
+
+      <form name="sentMessage" id="regForm"  novalidate action="PHP/insertRegistration.php" method="POST">
+<!--       id="contactForm"  
+ -->      <div class="tab">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+                 
+            <div class="control-group form-group">
+              <div class="controls">
+                <label>First Name:</label>
+                <input type="text" class="form-control" id="Fname" name="Fname" required data-validation-required-message="Please enter your first name.">
+                <p class="help-block"></p>
+              </div>
+            </div>
+            <div class="control-group form-group">
+              <div class="controls">
+                <label>Last Name:</label>
+                <input type="text" class="form-control" id="Lname" name="Lname" required data-validation-required-message="Please enter your last name.">
+                <p class="help-block"></p>
+              </div>
+            </div>            
+            <div class="control-group form-group">
+              <div class="controls">
+                <label>ID / Passport No.:</label>
+                <input type="text" class="form-control" id="userID" name="userID" required data-validation-required-message="Please enter your ID / Passport No.">
+                <p class="help-block"></p>
+              </div>
+            </div>  
+                <div class="control-group form-group">
+              <div class="controls">
+                <label>Email Address:</label>
+                <input type="email" class="form-control" id="email" name="email" required data-validation-required-message="Please enter your email address.">
+              </div>
+            </div> 
+                <div class="control-group form-group">
+              <div class="controls">
+                <label>Enter a password:</label>
+                <input type="password" class="form-control" id="password" name="password" required data-validation-required-message="Please enter a password.">
+              </div>
+              </div>
+              <div class="control-group form-group">
+              <div class="controls">
+                <label>Phone Number:</label>
+                <input type="tel" class="form-control" id="phone" name="phone" required data-validation-required-message="Please enter your phone number.">
+              </div>
+            </div>
+          </div>
+            <div class="col-lg-4 mb-4">
+            <div class="control-group form-group">
+              <div class="controls">
+                <label>Country:</label>
+                <input type="tel" class="form-control" id="country" name="country">
+              </div>
+            </div>
+                <div class="control-group form-group">
+              <div class="controls">
+                <label>City:</label>
+                <input type="tel" class="form-control" id="city" name="city">
+              </div>
+            </div>
+             <div class="control-group form-group">
+              <div class="controls">
+                <label>Street:</label>
+                <input type="tel" class="form-control" id="street" name="street">
+              </div>
+            </div>
+            <div class="control-group form-group">
+              <div class="controls">
+                <label>Apartment No.:</label>
+                <input type="tel" class="form-control" id="aptNum" name="aptNum">
+              </div>
+            </div>
+              <div class="control-group form-group">
+              <div class="controls">
+                <label>Zip Code:</label>
+                <input type="tel" class="form-control" id="zipCode" name="zipCode">
+              </div>
+              </div>
+              </div>
+            <div id="success"></div>
+            <!-- For success/fail messages -->
+            <div class="row" id="btn">
+<!--               <div class="col-lg-6 mb-5">
+            <button type="submit" class="btn btn-primary btn-lg btn-block " id="sendMessageButton">Next Step</button></div> -->
+          </div>
+          
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
+
+    <div class="tab">
+      <div class="row">
+        <div class="col-lg-12 mb-4">
+          <p><strong>Note: </strong>The following features are optional, but will surely help you in the search apartment process.</p>
+          <h6>Choose your favorite trip type:</h6>
+
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="seaView" name="seaView" value="option1">
+        <label class="form-check-label" for="seaView">Sea view<br><img src="css/pics/seaView.jpg" height=180 width=180></label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="urban" name="urban" value="option2">
+        <label class="form-check-label" for="urban">Urban<br><img src="css/pics/urban.jpg" height=180 width=180></label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="countryHouse" name="countryHouse" value="option3">
+        <label class="form-check-label" for="countryHouse">Country house<br><img src="css/pics/countryHouse.jpg" height=180 width=180></label>
+      </div>
+        <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="openSpace" name="openSpace" value="option3">
+        <label class="form-check-label" for="openSpace">Open space<br><img src="css/pics/openSpace.jpg" height=180 width=180></label>
+      </div>
+        <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="forFamilies" name="forFamilies" value="option3">
+        <label class="form-check-label" for="forFamilies">For families<br><img src="css/pics/forFamilies.jpg" height=180 width=180></label>
+      </div>
+      <br><br>
+
+      <h6>Choose the necessary amenities for you:</h6>
+      <div class="col-lg-6 mb-4">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="WIFI" name="WIFI">
+        <label class="form-check-label" for="WIFI">WIFI</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="parking" name="parking">
+        <label class="form-check-label" for="parking">Parking</label>
+      </div>
+       <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="balcony" name="balcony">
+        <label class="form-check-label" for="balcony">Balcony</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="pool" name="pool">
+        <label class="form-check-label" for="pool">Pool</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="hot_tub" name="hot_tub">
+        <label class="form-check-label" for="hot_tub">Hot-Tub</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="safe" name="safe">
+        <label class="form-check-label" for="safe">Safe</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="kitchen" name="kitchen">
+        <label class="form-check-label" for="kitchen">Kitchen</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="workspace" name="workspace">
+        <label class="form-check-label" for="workspace">Workspace</label>
+      </div>
+           
+        <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="TV" name="TV">
+        <label class="form-check-label" for="TV">TV</label>
+      </div>
+        <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="iron" name="iron">
+        <label class="form-check-label" for="iron">Iron</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="gym" name="gym">
+        <label class="form-check-label" for="gym">Gym</label>
+      </div>
+<!--     </div>
+ --><!--     <div class="col-lg-6 mb-4">
+ -->        <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="fire_place" name="fire_place">
+        <label class="form-check-label" for="fire_place">Fire Place</label>
+      </div>
+        <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="washing_machine" name="washing_machine">
+        <label class="form-check-label" for="washing_machine">Washing Machine</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="air_conditioner" name="air_conditioner">
+        <label class="form-check-label" for="air_conditioner">Air Conditioner</label>
+      </div>
+      <br><br>
+</div>
+      <h6>Select your special requests:</h6>
+
+              <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="smoking_allowed" name="smoking_allowed" value="option1">
+        <label class="form-check-label" for="smoking_allowed">Smoking allowed<br><img src="css/pics/smoking.jpg" height=180 width=180></label>
+      </div>
+
+        <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="pets_allowed" name="pets_allowed" value="option1">
+        <label class="form-check-label" for="pets_allowed">Pets allowed<br><img src="css/pics/pets.jpg" height=180 width=180></label>
+      </div>
+              <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="suitable_for_events" name="suitable_for_events" value="option1">
+        <label class="form-check-label" for="suitable_for_events">Suitable for events<br><img src="css/pics/events.jpg" height=180 width=180></label>
+      </div>
+      <br><br>
+
+        <h6>Do you have any accessibility needs?</h6>
+
+        <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="wide_corridor" name="wide_corridor" value="option1">
+        <label class="form-check-label" for="wide_corridor">Wide corridor</label>
+      </div>
+        <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="staircase_free" name="staircase_free" value="option1">
+        <label class="form-check-label" for="staircase_free">Staircase free</label>
+      </div>
+            <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="elivator" name="elivator" value="option1">
+        <label class="form-check-label" for="elivator">Elivator</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="accesible_parking" name="accesible_parking" value="option1">
+        <label class="form-check-label" for="accesible_parking">Accesible parking</label>
+      </div>
+</div>
+</div>
+</div>
+<div class="col-lg-6 mb-5">
+  <div style="overflow:auto;">
+      <button class="btn btn-primary btn-lg btn-block" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+      <button class="btn btn-primary btn-lg btn-block" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+  </div>
+</div>
+
+
+</form>
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white"> &copy; Your HomeSwap 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+<!--     <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+
+    <!-- Contact form JavaScript -->
+    <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+<!--     <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script> -->
+
+<script>
+var currentTab = 0; // Current tab is set to be the first tab (0)
+showTab(currentTab); // Display the crurrent tab
+
+function showTab(n) {
+  // This function will display the specified tab of the form...
+  var x = document.getElementsByClassName("tab");
+  x[n].style.display = "block";
+  //... and fix the Previous/Next buttons:
+  if (n == 0) {
+    document.getElementById("prevBtn").style.display = "none";
+  } else {
+    document.getElementById("prevBtn").style.display = "inline";
+  }
+  if (n == (x.length - 1)) {
+    document.getElementById("nextBtn").innerHTML = "Submit";
+  } else {
+    document.getElementById("nextBtn").innerHTML = "Next";
+  }
+  //... and run a function that will display the correct step indicator:
+  fixStepIndicator(n)
+}
+
+function nextPrev(n) {
+  // This function will figure out which tab to display
+  var x = document.getElementsByClassName("tab");
+  // Exit the function if any field in the current tab is invalid:
+  if (n == 1 && !validateForm()) return false;
+  // Hide the current tab:
+  x[currentTab].style.display = "none";
+  // Increase or decrease the current tab by 1:
+  currentTab = currentTab + n;
+  // if you have reached the end of the form...
+  if (currentTab >= x.length) {
+    // ... the form gets submitted:
+    document.getElementById("regForm").submit();
+    return false;
+  }
+  // Otherwise, display the correct tab:
+  showTab(currentTab);
+}
+
+function validateForm() {
+  // This function deals with validation of the form fields
+  var x, y, i, valid = true;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("input");
+  // A loop that checks every input field in the current tab:
+  for (i = 0; i < y.length; i++) {
+    // If a field is empty...
+    if (y[i].value == "") {
+      // add an "invalid" class to the field:
+      y[i].className += " invalid";
+      // and set the current valid status to false
+      valid = false;
+    }
+  }
+  // If the valid status is true, mark the step as finished and valid:
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+  return valid; // return the valid status
+}
+
+function fixStepIndicator(n) {
+  // This function removes the "active" class of all steps...
+  var i, x = document.getElementsByClassName("step");
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+  //... and adds the "active" class on the current step:
+  x[n].className += " active";
+}
+</script>
+
+
+  </body>
+
+</html>
