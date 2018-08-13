@@ -40,23 +40,28 @@ VALUES ('$country', '$city', '$street', '$aptNum', '$zipCode','$title', '$descri
 
 if ($conn->query($sql) === TRUE) {
 	echo "New record created successfully";
+	$aptID = $conn->insert_id;
 } else {
 	echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
+//dates availabillity
+$StartDate=$_POST['sd'];
+$EndDate=$_POST['ed'];
 
-$sDate=$_POST['sd'];
-$eDate=$_POST['ed'];
 
-$sqlDate = "INSERT INTO apartment_availability (StartDate, EndDate) VALUES ('$sDate', '$eDate')";
+$sqlDate = "INSERT INTO apt_availability (StartDate, EndDate, AptID) VALUES (DATE '$StartDate',DATE '$EndDate', $aptID)";
 
 if ($conn->query($sqlDate) === TRUE) {
-	echo "New date inserted successfully";
+	echo "<br>New date inserted successfully";
 } else {
 	echo "Error: " . $sqlDate . "<br>" . $conn->error;
 }
 
 //upload photos
+
+
+
 // for($i=0; $i<count($_FILES["apartPhotos"]["name"]); $i++)
 // {
 // 	$filetmp = $_FILES["apartPhotos"]["tmp_name"][$i];

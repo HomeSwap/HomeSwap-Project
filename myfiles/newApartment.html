@@ -449,22 +449,18 @@
          data-multiple-dates-separator=" - "
          data-language="en"
          class="datepicker-here" autocomplete="off"/>
-
-         <input id="sdateRange" name="sdateRange" type="text"
-         data-range="true"
-         data-multiple-dates-separator=" - "
-         data-language="en"
-         class="datepicker-here" autocomplete="off"/>
-
-        <button type="button" onclick="convertRangeToDates()">now</button>
-         <p id="sd" name="sd" hidden></p>
-         <p id="ed" name="ed" hidden></p>
-
+        
        </div>
 
      </div>
 
-     <mark>add function that adds new calender on click with new name for the input field</mark>
+        <button type="button" onclick="convertRangeToDates()">Insert date range</button>
+
+        <input id="sd" name="sd" hidden />
+        <input id="ed" name="ed" hidden/>  
+
+     <mark>add function that adds new calender on click with new name for the input field</mark><br>
+     <mark>find a way to delete 'Insert date range button?'</mark>     
      <!-- <button type="button" onclick="addAvailability()"> Add date range:  </button>   -->
 
 
@@ -607,11 +603,27 @@ function fixStepIndicator(n) {
 
  function convertRangeToDates() {
   var range = document.getElementById("fdateRange").value;
+  //separate the range to two dates (string)
   var startDate = range.substring(0,10);
   var endDate = range.substring(13,23);
 
-    document.getElementById("sd").innerHTML = startDate;
-    document.getElementById("ed").innerHTML = endDate;
+//var newSdate = startDate.split("/").reverse().join("-");
+//var newEdate = endDate.split("/").reverse().join("-");
+
+//convert the dates to the SQL format YYYY-MM-DD (string)
+var newSdate = startDate.replace(/(..).(..).(....)/, "$3-$1-$2");
+var newEdate = endDate.replace(/(..).(..).(....)/, "$3-$1-$2");
+
+  //document.getElementById("sd").value = newSdate;
+  //document.getElementById("ed").value = newEdate;
+
+//convert to ISO date object
+  //var sdformat = new Date(newSdate);
+ // var edformat = new Date(newEdate);
+
+ //insert the dates into input fieds in order to post them to db
+  document.getElementById("sd").value = newSdate;
+  document.getElementById("ed").value = newEdate;
  }
 
 </script>

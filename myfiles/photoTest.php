@@ -27,7 +27,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-// $query1 = 'Insert into apartment_photos values("",1,"two","three","four")';
+// $query1 = 'Insert into apt_photos values("",1,"two","three","four")';
 // mysql_query($query1);
 // 
 
@@ -67,25 +67,26 @@ if(isset($_FILES['files'])){
         //  echo $imageData[$i];            
         //}
         $imgDt = implode("|", $imageData);
-         $query="INSERT into apartment_photos (`FILE_NAME`) VALUES('$imgDt'); ";
+        //$query="INSERT into apt_photos (`photoName`) VALUES('$imgDt'); ";
         // mysql_query($query); 
+        $query="INSERT into apt_photos (`photoName`) VALUES('$file_name'); ";
     }
 }
-$query1 = "SELECT  `FILE_NAME` 
-FROM  `apartment_photos` 
-WHERE id =29";
-$result = mysql_query($query1);
-//print_r(mysql_fetch_row($result));
-//
-$row = mysql_fetch_row($result);
-echo $row[0];
-echo "<br/>";
-echo "<br/>";
-//print_r(explode("|", $row[0]));
-$source = explode("|", $row[0]);
-//echo count($source);
-for($i = 0; $i < count($source); $i++){
-    echo "$source[$i]";
-    echo "<img height='20%' width='20%' src='user_data/$source[$i]'/>";
-}
+// $query1 = "SELECT  `FILE_NAME` 
+// FROM  `apt_photos` 
+// WHERE id =29";
+// $result = mysql_query($query1);
+// //print_r(mysql_fetch_row($result));
+// //
+// $row = mysql_fetch_row($result);
+// echo $row[0];
+// echo "<br/>";
+// echo "<br/>";
+// //print_r(explode("|", $row[0]));
+// $source = explode("|", $row[0]);
+// //echo count($source);
+// for($i = 0; $i < count($source); $i++){
+//     echo "$source[$i]";
+//     echo "<img height='20%' width='20%' src='user_data/$source[$i]'/>";
+// }
 ?>
