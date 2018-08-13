@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta charset="utf-8">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <title>HomeSwap - Search Apartment</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/modern-business.css" rel="stylesheet">
+
+<style>
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+#custom-search-input {
+    margin:0 auto;
+    margin-top: 10px;
+    padding: 0;
+    width: 70%;
+}
+ 
+#custom-search-input .search-query {
+    width:100%;
+    padding-right: 3px;
+    padding-left: 15px;
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 0;
+}
+ 
+#custom-search-input button {
+    border: 0;
+    background: none;
+    padding: 2px 5px;
+    margin-top: 2px;
+    position: absolute;
+    right:0;
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color:#D9230F;
+    cursor: unset;
+    z-index: 2;
+}
+ 
+.search-query:focus{
+    z-index: 0; }
+
+    #dropdownMenuButton {
+      margin: 6px;
+    }
+
+</style>
+</head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">HomeSwap</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="Registration.html">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Portfolio
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                <a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
+                <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Blog
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
+                <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
+                <a class="dropdown-item" href="blog-post.html">Blog Post</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Other Pages
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                <a class="dropdown-item" href="full-width.html">Full Width Page</a>
+                <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
+                <a class="dropdown-item" href="faq.html">FAQ</a>
+                <a class="dropdown-item" href="404.html">404</a>
+                <a class="dropdown-item" href="pricing.html">Pricing Table</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="container">
+<!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">Search Apartment</h1>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="index.html">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Search</li>
+      </ol>
+
+    <!-- Search box -->
+  <div class="row">
+      <div class="col-12">
+          <div id="custom-search-input">
+                <div class="input-group">
+                    <input type="text" class="search-query form-control" placeholder="Where to?" />
+                    <span class="input-group-btn">
+                        <button type="button" disabled>
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+  </div>
+    <br> 
+
+    <!-- Search buttons -->
+  <div class="row">
+  <div class="col-lg-3 col-sm-6">
+  <div class="dropdown">
+
+    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dates
+        </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <div class="form-group">
+     <label ><b>Start date</b></label>
+     <input type="date" name="StartDate" max="3000-12-31" 
+            min="1000-01-01" class="form-control"> <br>
+     <label ><b>End date</b></label>
+     <input type="date" name="EndDate" min="1000-01-01"
+            max="3000-12-31" class="form-control">
+        </div>
+       </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-sm-6">
+      <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Guests
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="form-group">
+          <div class="radio">
+          <label><input type="radio" id="1guest" name="1guest">1</label>
+          </div>
+          <div class="radio">
+          <label><input type="radio" id="2guests" name="2guests">2</label>
+          </div>
+          <div class="radio">
+          <label><input type="radio" id="3guests" name="3guests" >3</label>
+          </div>
+          <div class="radio">
+          <label><input type="radio" id="4guests" name="4guests" >4</label>
+          </div>
+          <div class="radio">
+          <label><input type="radio" id="5guests" name="5guests"" >5</label>
+          </div>
+          <div class="radio">
+          <label><input type="radio" id="6guests" name="6guests" >6</label>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+    <div class="col-lg-3 col-sm-6">
+      <div class="dropdown">
+        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Home Type
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="form-group">
+          <div class="radio">
+          <label><input type="radio" id="villa" name="villa">Villa</label>
+          </div>
+          <div class="radio">
+          <label><input type="radio" id="apartment" name="apartment">Apartment</label>
+          </div>
+          <div class="radio">
+          <label><input type="radio" id="condominium" name="condominium" >Condominium</label>
+          </div>
+          <div class="radio">
+          <label><input type="radio" id="loft" name="loft" >Loft</label>
+          </div>        
+        </div>
+    </div>
+  </div>
+  </div>
+     
+    <div class="col-lg-3 col-sm-6">
+      <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Trip Type
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="seaView" name="seaView" value="option1">
+        <label class="form-check-label" for="seaView">Sea view<br></label>
+        </div>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="urban" name="urban" value="option2">
+        <label class="form-check-label" for="urban">Urban<br></label>
+        </div>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="countryHouse" name="countryHouse" value="option3">
+        <label class="form-check-label" for="countryHouse">Country house<br></label>
+        </div>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="openSpace" name="openSpace" value="option3">
+        <label class="form-check-label" for="openSpace">Open space<br></label>
+      </div>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="forFamilies" name="forFamilies" value="option3">
+        <label class="form-check-label" for="forFamilies">For families<br></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-sm-6">
+    <div class="dropdown">
+    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Amenities
+    </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="card-body">
+            <div class="input-group">
+             <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="WIFI" name="WIFI">
+              <label class="form-check-label" for="WIFI">WIFI</label>
+              </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="parking" name="parking">
+              <label class="form-check-label" for="parking">Parking</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="balcony" name="balcony">
+              <label class="form-check-label" for="balcony">Balcony</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="pool" name="pool">
+              <label class="form-check-label" for="pool">Pool</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="hot_tub" name="hot_tub">
+              <label class="form-check-label" for="hot_tub">Hot-Tub</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="safe" name="safe">
+              <label class="form-check-label" for="safe">Safe</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="kitchen" name="kitchen">
+              <label class="form-check-label" for="kitchen">Kitchen</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="workspace" name="workspace">
+              <label class="form-check-label" for="workspace">Workspace</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="TV" name="TV">
+              <label class="form-check-label" for="TV">TV</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="iron" name="iron">
+              <label class="form-check-label" for="iron">Iron</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="gym" name="gym">
+              <label class="form-check-label" for="gym">Gym</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="fire_place" name="fire_place">
+              <label class="form-check-label" for="fire_place">Fire Place</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="washing_machine" name="washing_machine">
+              <label class="form-check-label" for="washing_machine">Washing Machine</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="air_conditioner" name="air_conditioner">
+              <label class="form-check-label" for="air_conditioner">Air Conditioner</label>
+            </div>
+          </div>
+        </div>
+        </div>
+  </div>
+</div>
+
+    <div class="col-lg-3 col-sm-6">
+      <div class="dropdown">
+      <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Accessibility
+      </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="form-check">
+           <input class="form-check-input" type="checkbox" id="wide_corridor" name="wide_corridor" value="option1">
+           <label class="form-check-label" for="wide_corridor">Wide corridor</label>
+          </div>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="staircase_free" name="staircase_free" value="option1">
+        <label class="form-check-label" for="staircase_free">Staircase free</label>
+        </div>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="elivator" name="elivator" value="option1">
+        <label class="form-check-label" for="elivator">Elivator</label>
+        </div>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="accesible_parking" name="accesible_parking" value="option1">
+        <label class="form-check-label" for="accesible_parking">Accesible parking</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-sm-6">
+    <div class="dropdown">
+    <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Special Requests
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="smoking_allowed" name="smoking_allowed" value="option1">
+          <label class="form-check-label" for="smoking_allowed">Smoking allowed<br></label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="pets_allowed" name="pets_allowed" value="option1">
+          <label class="form-check-label" for="pets_allowed">Pets allowed<br></label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="suitable_for_events" name="suitable_for_events" value="option1">
+          <label class="form-check-label" for="suitable_for_events">Suitable for events<br></label>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- /row -->
+      <br>
+      <h2>Explore available apartments</h2>
+      <br>
+<div class="row">
+  <div class="col-lg-4 col-sm-6 portfolio-item">
+    <div class="card h-100">
+      <a href="#"><img class="card-img-top" src="css/pics/apt01.jpg" height=300 width=700 alt=""></a>
+      <div class="card-body">
+      <h4 class="card-title">
+      <a href="#">Project One</a></h4>
+      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+      </div>
+    </div>
+  </div>
+    <div class="col-lg-4 col-sm-6 portfolio-item">
+      <div class="card h-100">
+        <a href="#"><img class="card-img-top" src="css/pics/apt02.jpg" height=300 width=700 alt=""></a>
+        <div class="card-body">
+        <h4 class="card-title">
+        <a href="#">Project Two</a></h4>
+        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-sm-6 portfolio-item">
+      <div class="card h-100">
+        <a href="#"><img class="card-img-top" src="css/pics/apt06.jpg" height=300 width=700 alt=""></a>
+        <div class="card-body">
+        <h4 class="card-title">
+        <a href="#">Project Three</a></h4>
+        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
+        </div>
+      </div>
+    </div>
+  <div class="col-lg-4 col-sm-6 portfolio-item">
+    <div class="card h-100">
+     <a href="#"><img class="card-img-top" src="css/pics/apt04.jpg" height=300 width=700 alt=""></a>
+      <div class="card-body">
+      <h4 class="card-title">
+      <a href="#">Project Four</a></h4>
+      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-sm-6 portfolio-item">
+    <div class="card h-100">
+      <a href="#"><img class="card-img-top" src="css/pics/apt05.jpg" height=300 width=700 alt=""></a>
+      <div class="card-body">
+      <h4 class="card-title">
+      <a href="#">Project Five</a></h4>
+      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-sm-6 portfolio-item">
+    <div class="card h-100">
+      <a href="#"><img class="card-img-top" src="css/pics/apt07.jpg" height=300 width=700 alt=""></a>
+      <div class="card-body">
+      <h4 class="card-title">
+      <a href="#">Project Six</a></h4>
+      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /row -->
+<br><br>
+</div>
+    <!-- Footer -->
+  <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white"> &copy; HomeSwap 2018</p>
+      </div>
+      <!-- /.container -->
+  </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>
