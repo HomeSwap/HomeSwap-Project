@@ -99,27 +99,36 @@
   <body>
 
     <!-- Navigation -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">Home Swap</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="services.html">Services</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="Registration.html">Register</a>
-            </li>
-          </ul>
-        </div>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">HomeSwap</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="Registration.html">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Login.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="newApartment.html">New apartment</a>
+          </li>          
+          <li class="nav-item">
+            <a class="nav-link" href="Search.html">search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="SearchResults.html">search Results</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="BookApartment.html">book Apartment</a>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
     <!-- Page Content -->
     <div class="container">
@@ -165,7 +174,7 @@
             <div class="control-group form-group">
               <div class="controls">
                 <label>ID / Passport No.:</label>
-                <input type="text" class="form-control" id="userID" name="userID" required data-validation-required-message="Please enter your ID / Passport No.">
+                <input type="number" class="form-control" id="userID" name="userID" required data-validation-required-message="Please enter your ID / Passport No.">
                 <p class="help-block"></p>
               </div>
             </div>  
@@ -178,7 +187,7 @@
             <div class="control-group form-group">
               <div class="controls">
                 <label>Country:</label>
-                <input type="tel" class="form-control" id="country" name="country">
+                <input type="text" class="form-control" id="country" name="country">
               </div>
             </div>
           </div>
@@ -186,25 +195,25 @@
                 <div class="control-group form-group">
               <div class="controls">
                 <label>City:</label>
-                <input type="tel" class="form-control" id="city" name="city">
+                <input type="text" class="form-control" id="city" name="city">
               </div>
             </div>
              <div class="control-group form-group">
               <div class="controls">
                 <label>Street:</label>
-                <input type="tel" class="form-control" id="street" name="street">
+                <input type="text" class="form-control" id="street" name="street">
               </div>
             </div>
             <div class="control-group form-group">
               <div class="controls">
                 <label>Apartment No.:</label>
-                <input type="tel" class="form-control" id="aptNum" name="aptNum">
+                <input type="number" class="form-control" id="aptNum" name="aptNum">
               </div>
             </div>
               <div class="control-group form-group">
               <div class="controls">
                 <label>Zip Code:</label>
-                <input type="tel" class="form-control" id="zipCode" name="zipCode">
+                <input type="number" class="form-control" id="zipCode" name="zipCode">
               </div>
               </div>
               </div>
@@ -233,24 +242,24 @@
               <div class="card-body">
                 <div class="input-group">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="seaView" name="seaView">
-                    <label class="form-check-label" for="seaView">Sea view<br><img src="css/pics/seaView.jpg" height=165 width=165></label>
+                    <input class="form-check-input" type="checkbox" value="seaView" name="tripType[]" id="seaView">
+                    <label class="form-check-label" for="seaView" >Sea view<br><img src="css/pics/seaView.jpg" height=165 width=165></label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="urban" name="urban" value="option2">
-                    <label class="form-check-label" for="urban">Urban<br><img src="css/pics/urban.jpg" height=165 width=165></label>
+                    <input class="form-check-input" type="checkbox" value="urban" name="tripType[]" id="urban">
+                    <label class="form-check-label" for="urban" >Urban<br><img src="css/pics/urban.jpg" height=165 width=165></label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="countryHouse" name="countryHouse" value="option3">
+                    <input class="form-check-input" type="checkbox" value="countryHouse" name="tripType[]" id="countryHouse">
                     <label class="form-check-label" for="countryHouse">Country house<br><img src="css/pics/countryHouse.jpg" height=165 width=165></label>
                   </div>
                     <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="openSpace" name="openSpace" value="option3">
-                    <label class="form-check-label" for="openSpace">Open space<br><img src="css/pics/openSpace.jpg" height=165 width=165></label>
+                    <input class="form-check-input" type="checkbox" value="openSpace" name="tripType[]" id="openSpace">
+                    <label class="form-check-label" for="openSpace" >Open space<br><img src="css/pics/openSpace.jpg" height=165 width=165></label>
                   </div>
                     <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="forFamilies" name="forFamilies" value="option3">
-                    <label class="form-check-label" for="forFamilies">For families<br><img src="css/pics/forFamilies.jpg" height=165 width=165></label>
+                    <input class="form-check-input" type="checkbox" value="forFamilies" name="tripType[]" id="forFamilies">
+                    <label class="form-check-label" for="forFamilies" >For families<br><img src="css/pics/forFamilies.jpg" height=165 width=165></label>
                   </div>
            </div>
         </div>
@@ -267,63 +276,63 @@
                 <div class="input-group">
                   <div class="col-lg-2 mb-4">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="WIFI" name="WIFI">
-                    <label class="form-check-label" for="WIFI"><i class="fas fa-wifi"></i> WIFI</label>
+                    <input class="form-check-input" type="checkbox" value="WIFI" name="amenities[]" id="WIFI">
+                    <label class="form-check-label" for="WIFI" ><i class="fas fa-wifi"></i> WIFI</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="parking" name="parking">
-                    <label class="form-check-label" for="parking"><i class="fas fa-parking"></i> Parking</label>
+                    <input class="form-check-input" type="checkbox" value="parking" name="amenities[]" id="parking">
+                    <label class="form-check-label" for="parking" ><i class="fas fa-parking"></i> Parking</label>
                   </div>
                    <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="balcony" name="balcony">
-                    <label class="form-check-label" for="balcony"><i class="fas fa-chess-rook"></i> Balcony</label>
+                    <input class="form-check-input" type="checkbox" value="balcony" name="amenities[]" id="balcony">
+                    <label class="form-check-label" for="balcony" ><i class="fas fa-chess-rook"></i> Balcony</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="pool" name="pool">
-                    <label class="form-check-label" for="pool"><i class="fas fa-swimming-pool"></i> Pool</label>
+                    <input class="form-check-input" type="checkbox" value="pool" name="amenities[]" id="pool">
+                    <label class="form-check-label" for="pool" ><i class="fas fa-swimming-pool"></i> Pool</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="hot_tub" name="hot_tub">
-                    <label class="form-check-label" for="hot_tub"><i class="fas fa-hot-tub"></i> Hot-Tub</label>
+                    <input class="form-check-input" type="checkbox" value="hot_tub" name="amenities[]" id="hot_tub">
+                    <label class="form-check-label" for="hot_tub" ><i class="fas fa-hot-tub"></i> Hot-Tub</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="safe" name="safe">
-                    <label class="form-check-label" for="safe"><i class="fas fa-key"></i> Safe</label>
+                    <input class="form-check-input" type="checkbox" value="safe" name="amenities[]" id="safe">
+                    <label class="form-check-label" for="safe" ><i class="fas fa-key"></i> Safe</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="kitchen" name="kitchen">
-                    <label class="form-check-label" for="kitchen"><i class="fas fa-utensils"></i> Kitchen</label>
+                    <input class="form-check-input" type="checkbox" value="kitchen" name="amenities[]" id="kitchen">
+                    <label class="form-check-label" for="kitchen" ><i class="fas fa-utensils"></i> Kitchen</label>
                   </div>
 
                 </div>
                   <div class="col-lg-3 mb-4">
 
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="workspace" name="workspace">
-                    <label class="form-check-label" for="workspace"><i class="fas fa-briefcase"></i> Workspace</label>
+                    <input class="form-check-input" type="checkbox" value="workspace" name="amenities[]" id="workspace">
+                    <label class="form-check-label" for="workspace" ><i class="fas fa-briefcase"></i> Workspace</label>
                   </div>  
                     <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="TV" name="TV">
+                    <input class="form-check-input" type="checkbox" value="TV" name="amenities[]" id="TV">
                     <label class="form-check-label" for="TV"><i class="fas fa-tv"></i> TV</label>
                   </div>
                     <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="iron" name="iron">
-                    <label class="form-check-label" for="iron"><i class="fas fa-tshirt"></i> Iron</label>
+                    <input class="form-check-input" type="checkbox" value="iron" name="amenities[]" id="iron">
+                    <label class="form-check-label" for="iron" ><i class="fas fa-tshirt"></i> Iron</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="gym" name="gym">
+                    <input class="form-check-input" type="checkbox" value="gym" name="amenities[]" id="gym">
                     <label class="form-check-label" for="gym"><i class="fas fa-dumbbell"></i> Gym</label>
                   </div>
                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="fire_place" name="fire_place">
-                    <label class="form-check-label" for="fire_place"><i class="fas fa-fire"></i> Fire Place</label>
+                    <input class="form-check-input" type="checkbox" value="fire_place" name="amenities[]" id="fire_place">
+                    <label class="form-check-label" for="fire_place" ><i class="fas fa-fire"></i> Fire Place</label>
                   </div>
                     <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="washing_machine" name="washing_machine">
+                    <input class="form-check-input" type="checkbox" value="washing_machine" name="amenities[]" id="washing_machine">
                     <label class="form-check-label" for="washing_machine"><i class="fas fa-tint"></i> Washing Machine</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="air_conditioner" name="air_conditioner">
+                    <input class="form-check-input" type="checkbox" value="air_conditioner" name="amenities[]" id="air_conditioner">
                     <label class="form-check-label" for="air_conditioner"><i class="fas fa-snowflake"></i> Air Conditioner</label>
                   </div>
                 </div>
@@ -340,16 +349,16 @@
               <div class="card-body">
                 <div class="input-group">
                 <div class="form-check form-check-inline">
-                <input style="margin-right: 15px;" class="form-check-input" type="checkbox" id="smoking_allowed" name="smoking_allowed" value="option1">
+                <input style="margin-right: 15px;" class="form-check-input" type="checkbox" value="smoking_allowed" name="requests[]" id="smoking_allowed">
                 <label class="form-check-label" for="smoking_allowed">Smoking allowed<br><img src="css/pics/smoking.jpg" height=180 width=180></label>
               </div>
 
                 <div class="form-check form-check-inline">
-                <input style="margin-right: 15px;" class="form-check-input" type="checkbox" id="pets_allowed" name="pets_allowed" value="option1">
+                <input style="margin-right: 15px;" class="form-check-input" type="checkbox" value="pets_allowed" name="requests[]" id="pets_allowed">
                 <label class="form-check-label" for="pets_allowed">Pets allowed<br><img src="css/pics/pets.jpg" height=180 width=180></label>
               </div>
               <div class="form-check form-check-inline">
-                <input style="margin-right: 15px;" class="form-check-input" type="checkbox" id="suitable_for_events" name="suitable_for_events" value="option1">
+                <input style="margin-right: 15px;" class="form-check-input" type="checkbox" value="suitable_for_events" name="requests[]" id="suitable_for_events">
                 <label class="form-check-label" for="suitable_for_events">Suitable for events<br><img src="css/pics/events.jpg" height=180 width=180></label>
               </div>
             </div>
@@ -365,19 +374,19 @@
               <div class="card-body">
                 <div class="input-group">
                 <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="wide_corridor" name="wide_corridor" value="option1">
+                <input class="form-check-input" type="checkbox" value="wide_corridor" name="accessibilityNeeds[]" id="wide_corridor">
                 <label class="form-check-label" for="wide_corridor">Wide corridor</label>
               </div>
                 <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="staircase_free" name="staircase_free" value="option1">
-                <label class="form-check-label" for="staircase_free">Staircase free</label>
+                <input class="form-check-input" type="checkbox" value="staircase_free" name="accessibilityNeeds[]" id="staircase_free">
+                <label class="form-check-label" for="staircase_free" >Staircase free</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="elivator" name="elivator" value="option1">
+                <input class="form-check-input" type="checkbox" value="elivator" name="accessibilityNeeds[]" id="elivator">
                 <label class="form-check-label" for="elivator">Elivator</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="accesible_parking" name="accesible_parking" value="option1">
+                <input class="form-check-input" type="checkbox" value="accesible_parking" name="accessibilityNeeds[]" id="accesible_parking">
                 <label class="form-check-label" for="accesible_parking">Accesible parking</label>
               </div>
               </div>
