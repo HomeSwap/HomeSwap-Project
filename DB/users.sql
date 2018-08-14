@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 14, 2018 at 11:32 AM
+-- Generation Time: Aug 14, 2018 at 03:09 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -42,11 +42,17 @@ CREATE TABLE `users` (
   `zipCode` int(10) NOT NULL,
   `tripType` varchar(200) COLLATE utf8_bin NOT NULL,
   `amenities` varchar(200) COLLATE utf8_bin NOT NULL,
-  `accesabilityNeeds` varchar(200) COLLATE utf8_bin NOT NULL,
+  `accessibilityNeeds` varchar(200) COLLATE utf8_bin NOT NULL,
   `requests` varchar(200) COLLATE utf8_bin NOT NULL,
-  `avgRate` float NOT NULL,
-  `AptID` int(11) NOT NULL
+  `avgRate` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`userID`, `Fname`, `Lname`, `email`, `password`, `phone`, `country`, `city`, `street`, `aptNum`, `zipCode`, `tripType`, `amenities`, `accessibilityNeeds`, `requests`, `avgRate`) VALUES
+(3, '3', '3', '3', '3', 3, '3', '3', '3', 3, 3, 'seaView', 'pool', 'elivator', 'smoking_allowed', 0);
 
 --
 -- Indexes for dumped tables
@@ -56,18 +62,7 @@ CREATE TABLE `users` (
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`userID`),
-  ADD KEY `AptID` (`AptID`);
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`AptID`) REFERENCES `apartments` (`AptID`);
+  ADD PRIMARY KEY (`userID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
