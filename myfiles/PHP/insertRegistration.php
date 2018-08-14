@@ -29,7 +29,7 @@ $sql = "INSERT INTO users (userID, Fname, Lname, email, password, phone, country
 VALUES ('$userID', '$Fname', '$Lname' , '$email', '$pass', '$phone', '$country', '$city', '$street', '$aptNum', '$zipCode')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    header("Location:..\sendPage.html");
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
