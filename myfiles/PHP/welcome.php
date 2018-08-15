@@ -1,3 +1,61 @@
+<?php
+
+	$email=$_POST['email'];
+	$pass=$_POST['password'];
+
+	$error = "";
+	$success = "";
+	$msg = "";	
+  $msgHome="";
+
+
+$servername="localhost";
+$username="root";
+$password="";
+$dbname="database";
+
+$sql = "SELECT * from users where email = '$email'";	
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+// $conn = mysqli_connect($servername, $username, $password);
+// if(!$conn){
+// 	$error = "Error connecting database...";
+// }
+
+//mysqli_select_db($conn,$dbname);
+
+$result = mysqli_query($conn,$sql);
+$rows = mysqli_fetch_array($result);
+
+
+if ($rows){
+	if($rows["password"] == $pass){
+		$error = "";
+		$success = "Welcome ".$rows["Fname"]."!";
+		$msgHome = "Logout";	
+	}
+	else{
+		$error = "Invalid Password!";
+		$success = "";
+		$msg = "Try Again";	
+	}
+
+}
+else{
+	$error = "Invalid Email!";
+	$success = "";
+	$msg = "Try Again";	
+}
+
+
+$conn->close();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,10 +69,10 @@
     <title>HomeSwap - Login</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/modern-business.css" rel="stylesheet">
+    <link href="../css/modern-business.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <style>
 /*---------------------------------------------*/
@@ -149,7 +207,7 @@ iframe {
 /*------------------------------------------------------------------
 [  ]*/
 .login100-pic {
-  width: 300px;
+  width: 250px;
 }
 
 .login100-pic img {
@@ -419,7 +477,7 @@ iframe {
     filter: alpha(opacity=100) !important;
   }
   .or-text-row:before {
-    top: 14px;
+    top: 18px;
     bottom: 0;
     position: absolute;
     content: " ";
@@ -470,22 +528,22 @@ iframe {
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="Registration.html">Register</a>
+            <a class="nav-link" href="../Registration.html">Register</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="Login.html">Login</a>
+            <a class="nav-link" href="../Login.html">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="newApartment.html">New apartment</a>
+            <a class="nav-link" href="../newApartment.html">New apartment</a>
           </li>          
           <li class="nav-item">
-            <a class="nav-link" href="Search.html">search</a>
+            <a class="nav-link" href="../Search.html">search</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="SearchResults.html">search Results</a>
+            <a class="nav-link" href="../SearchResults.html">search Results</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="BookApartment.html">book Apartment</a>
+            <a class="nav-link" href="../BookApartment.html">book Apartment</a>
           </li>
         </ul>
       </div>
@@ -493,79 +551,26 @@ iframe {
   </nav>
 
 
+
 <div class="limiter">
     <div class="container-login100">
       <div class="wrap-login100">
         <div class="login100-pic js-tilt" data-tilt>
-          <img src="css/pics/img-01.png" alt="IMG">
+          <img src="../css/pics/img-01.png" alt="IMG">
         </div>
+			<!-- validate login masseges -->
 
-        <form class="login100-form validate-form" action="PHP/welcome.php" method="POST">
-          <span class="login100-form-title">
-            <h2>Member Login</h2>
-          </span>
-
-          <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-            <input class="input100" type="text" id="email" name="email" placeholder="Email">
-            <span class="focus-input100"></span>
-            <span class="symbol-input100">
-              <i class="fa fa-envelope"></i>
+          <div>
+			<h3 class="error"><?php echo $error; ?></h3>
+			<h3 class="success"><?php echo $success; ?></h3>
+			<a href="../login.html"><?php echo $msg; ?></a>
+      <a href="../index.html"><?php echo $msgHome; ?></a>
+      
             </span>
           </div>
 
-          <div class="wrap-input100 validate-input" data-validate = "Password is required">
-            <input class="input100" type="password" name="password" placeholder="Password">
-            <span class="focus-input100"></span>
-            <span class="symbol-input100">
-              <i class="fa fa-lock" aria-hidden="true"></i>
-            </span>
-          </div>
-
-          <div id="panel1"><i class="fas fa-exclamation-circle"></i> Email address already exist! </div>
-          
-          <div class="container-login100-form-btn">
-            <button class="login100-form-btn">
-              Login
-            </button>
-          </div>
 
 
-          <div class="text-center p-t-12">
-            <span class="txt1">
-              Forgot
-            </span>
-            <a class="txt2" href="#">
-              Username / Password?
-            </a>
-          </div>
-<br><br>
-            <div class="or-text">
-          <div class="or-text-row">
-            <div class="or-text-line">
-              <button type="button" class="btn btn-default btn-circle" disabled="disabled">or</button>
-            </div>
-          </div>
-        </div>
-        <div class="row"> 
-          <div class="col-sm-6">
-            <div class="btn-group">
-              <button type="button" class="btn btn-primary"><i class="fab fa-facebook"></i> Login with Facebook</button>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="btn-group">
-              <button type="button" class="btn btn-danger"><i class="fab fa-google"></i> Login with Google</button>
-            </div>
-          </div>
-        </div>  
-
-          <div class="text-center p-t-136">
-            <a class="txt2" href="Registration.html">
-              Create your Account
-              <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-            </a>
-          </div>
-        </form>
       </div>
     </div>
   </div>
@@ -582,15 +587,16 @@ iframe {
       <!-- /.container -->
     </footer>
 
+    
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!--     <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 
     <!-- Contact form JavaScript -->
     <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-    <script src="js/jqBootstrapValidation.js"></script>
+<!--     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/contact_me.js"></script>
-
+	 -->
   </body>
 
 </html>
