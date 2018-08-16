@@ -249,15 +249,17 @@
 
 <div class="tab">
   <div class="row">
-    <div class="col-lg-8 mb-4 col-centered">
-
+    <div class="col-lg-12 mb-4 col-centered">
+       <div class="row">
+    <div class="col-lg-6 mb-4 col-centered d-inline-block">
       <div class="control-group form-group">
         <div class="controls">
-         <h6>Max guests:</h6>        
+         <h6 style="padding:5px;">Max guests:</h6>        
          <input type="number" class="form-control" id="guestNum" name="guestNum">
        </div>
      </div>      
-
+  </div>
+  <div class="col-lg-6 mb-4 col-centered d-inline-block">
      <div class="control-group form-group">
       <div class="controls">
         <label for="sel1"><h6>What is your property type?</h6></label>
@@ -269,7 +271,8 @@
         </select>
       </div>
     </div>
-
+</div>
+</div>
     <div class="control-group form-group">
       <div class="controls">
         <div class="card mb-4">
@@ -277,23 +280,23 @@
           <div class="card-body">
             <div class="input-group">
              <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" value="seaView" name="propertyStyle[]">
+              <input class="form-check-input" type="checkbox" value="seaView" id="seaView" name="propertyStyle[]">
               <label class="form-check-label" for="seaView">Sea view</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" value="urban" name="propertyStyle[]">
+              <input class="form-check-input" id="urban" type="checkbox" value="urban" name="propertyStyle[]">
               <label class="form-check-label" for="urban">Urban</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" value="countryHouse" name="propertyStyle[]">
+              <input class="form-check-input" type="checkbox" value="countryHouse" id="countryHouse" name="propertyStyle[]">
               <label class="form-check-label" for="countryHouse">Country house</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" value="openSpace" name="propertyStyle[]">
+              <input class="form-check-input" type="checkbox" value="openSpace" id="openSpace" name="propertyStyle[]">
               <label class="form-check-label" for="openSpace">Open space</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" value="forFamilies" name="propertyStyle[]">
+              <input class="form-check-input" type="checkbox" value="forFamilies" id="forFamilies" name="propertyStyle[]">
               <label class="form-check-label" for="forFamilies">For families</label>
             </div>
           </div>
@@ -313,31 +316,31 @@
           <div class="col-lg-3 mb-4">
 
            <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="WIFI" name="amenities[]">
+            <input class="form-check-input" type="checkbox" id="WIFI" value="WIFI" name="amenities[]">
             <label class="form-check-label" for="WIFI"><i class="fas fa-wifi"></i> WIFI</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="parking" name="amenities[]">
+            <input class="form-check-input" type="checkbox" value="parking" id="parking" name="amenities[]">
             <label class="form-check-label" for="parking"><i class="fas fa-parking"></i> Parking</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="balcony" name="amenities[]">
+            <input class="form-check-input" type="checkbox" value="balcony" id="balcony" name="amenities[]">
             <label class="form-check-label" for="balcony"><i class="fas fa-chess-rook"></i> Balcony</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="pool" name="amenities[]">
+            <input class="form-check-input" type="checkbox" id="pool" value="pool" name="amenities[]">
             <label class="form-check-label" for="pool"><i class="fas fa-swimming-pool"></i>  Pool</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="hot_tub" name="amenities[]">
+            <input class="form-check-input" type="checkbox" value="hot_tub" id="hot_tub" name="amenities[]">
             <label class="form-check-label" for="hot_tub"><i class="fas fa-hot-tub"></i> Hot-Tub</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="safe" name="amenities[]">
+            <input class="form-check-input" type="checkbox" id="safe" value="safe" name="amenities[]">
             <label class="form-check-label" for="safe"><i class="fas fa-key"></i> Safe</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="kitchen" name="amenities[]">
+            <input class="form-check-input" type="checkbox" id="kitchen" value="kitchen" name="amenities[]">
             <label class="form-check-label" for="kitchen"><i class="fas fa-utensils"></i> Kitchen</label>
           </div>
 
@@ -346,32 +349,32 @@
       <div class="col-lg-4 mb-4">
 
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="workspace" name="amenities[]">
+            <input class="form-check-input" type="checkbox" value="workspace" id="workspace" name="amenities[]">
             <label class="form-check-label" for="workspace"><i class="fas fa-briefcase"></i> Workspace</label>
           </div>
 
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="TV" name="amenities[]">
+            <input class="form-check-input" type="checkbox" id="TV" value="TV" name="amenities[]">
             <label class="form-check-label" for="TV"><i class="fas fa-tv"></i> TV</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="iron" name="amenities[]">
+            <input class="form-check-input" id="iron" type="checkbox" value="iron" name="amenities[]">
             <label class="form-check-label" for="iron"><i class="fas fa-tshirt"></i> Iron</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="gym" name="amenities[]">
+            <input class="form-check-input" id="gym" type="checkbox" value="gym" name="amenities[]">
             <label class="form-check-label" for="gym"><i class="fas fa-dumbbell"></i>  Gym</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="fire_place" name="amenities[]">
+            <input class="form-check-input" id="fire_place" type="checkbox" value="fire_place" name="amenities[]">
             <label class="form-check-label" for="fire_place"><i class="fas fa-fire"></i> Fire Place</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="washing_machine" name="amenities[]">
+            <input class="form-check-input" id="washing_machine" type="checkbox" value="washing_machine" name="amenities[]">
             <label class="form-check-label" for="washing_machine"><i class="fas fa-tint"></i> Washing Machine</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="air_conditioner" name="amenities[]">
+            <input class="form-check-input" type="checkbox" value="air_conditioner" id="air_conditioner" name="amenities[]">
             <label class="form-check-label" for="air_conditioner"><i class="fas fa-snowflake"></i>  Air Conditioner</label>
           </div>
         </div>
@@ -388,16 +391,16 @@
     <div class="input-group">
 
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" name="rules[]" value="smoking_allowed">
+        <input class="form-check-input" type="checkbox" id="smoking_allowed" name="rules[]" value="smoking_allowed">
         <label class="form-check-label" for="smoking_allowed"><i class="fas fa-smoking"></i> Smoking allowed<br></label>
       </div>
 
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" name="rules[]" value="pets_allowed">
+        <input class="form-check-input" type="checkbox" id="pets_allowed" name="rules[]" value="pets_allowed">
         <label class="form-check-label" for="pets_allowed"><i class="fas fa-paw"></i> Pets allowed<br></label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" name="rules[]" value="suitable_for_events">
+        <input class="form-check-input" type="checkbox" id="suitable_for_events" name="rules[]" value="suitable_for_events">
         <label class="form-check-label" for="suitable_for_events"><i class="fas fa-cocktail"></i> Suitable for events<br></label>
       </div>
 
@@ -411,19 +414,19 @@
     <div class="input-group">
 
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" name="accessibility[]" value="wide_corridor">
+        <input class="form-check-input" type="checkbox" id="wide_corridor" name="accessibility[]" value="wide_corridor">
         <label class="form-check-label" for="wide_corridor">Wide corridor</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" value="staircase_free" name="accessibility[]">
+        <input class="form-check-input" type="checkbox" value="staircase_free" id="staircase_free" name="accessibility[]">
         <label class="form-check-label" for="staircase_free">Staircase free</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" value="elivator" name="accessibility[]">
+        <input class="form-check-input" type="checkbox" id="elivator" value="elivator" name="accessibility[]">
         <label class="form-check-label" for="elivator">Elivator</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" value="accesible_parking" name="accessibility[]" >
+        <input class="form-check-input" type="checkbox" id="accesible_parking" value="accesible_parking" name="accessibility[]" >
         <label class="form-check-label" for="accesible_parking">Accesible parking</label>
       </div>
     </div>
