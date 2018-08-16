@@ -39,7 +39,6 @@ $sql = "INSERT INTO apartments (country, city, street, aptNum, zipCode, title, d
 VALUES ('$country', '$city', '$street', '$aptNum', '$zipCode','$title', '$description', '$guestNum', '$propertyType', '$aptAmenities', '$aptAccessibility', '$aptRules', '$aptStyle')";
 
 if ($conn->query($sql) === TRUE) {
-	echo "New record created successfully";
 	$aptID = $conn->insert_id;
 } else {
 	echo "Error: " . $sql . "<br>" . $conn->error;
@@ -53,7 +52,8 @@ $EndDate=$_POST['ed'];
 $sqlDate = "INSERT INTO apt_availability (StartDate, EndDate, AptID) VALUES (DATE '$StartDate',DATE '$EndDate', $aptID)";
 
 if ($conn->query($sqlDate) === TRUE) {
-	echo "<br>New date inserted successfully";
+	    header("Location:..\sendPage2.html");
+
 } else {
 	echo "Error: " . $sqlDate . "<br>" . $conn->error;
 }

@@ -43,15 +43,8 @@ $sql = "INSERT INTO users (userID, Fname, Lname, email, password, phone, country
 VALUES ('$userID', '$Fname', '$Lname' , '$email', '$pass', '$phone', '$country', '$city', '$street', '$aptNum', '$zipCode', '$userTripType', '$userAmeni', '$userReq' , '$userAcces')";
 
 if ($conn->query($sql) === TRUE) {
-		//login details
-		$sqlLogin = "INSERT INTO login (email, password, userID) VALUES ('$email', '$pass', $userID)";
-
-		if ($conn->query($sqlLogin) === TRUE) {
-		    header("Location:..\sendPage.html");
-		} else {
-			echo "Error: " . $sqlLogin . "<br>" . $conn->error;
-		}
-
+	    header("Location:..\sendPage.html");
+		
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
