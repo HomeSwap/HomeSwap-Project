@@ -166,7 +166,7 @@
     <span class="step"></span>
     </div>
 
-      <form name="sentMessage" id="regForm"  novalidate action="PHP/insertRegistration.php" method="POST">
+      <form name="sentMessage" id="regForm" action="PHP/insertRegistration.php" method="POST">
 <!--       id="contactForm"  
  -->  <div class="tab">
       <div class="row">
@@ -417,7 +417,7 @@
     <div class="tab">
       <div class="col-lg-6 mb-4 col-centered">
       <h3 style="text-align:center">Login Info</h3>
-    <p><input class="mandatory" required data-validation-required-message="Please enter your email address." style="padding:10px; width:100%" placeholder="Email address..." oninput="this.className = ''" name="email"></p>
+    <p><input type="email" class="mandatory" required data-validation-required-message="Please enter your email address."style="padding:10px; width:100%" placeholder="Email address..." oninput="this.className = ''" name="email"></p>
     <p><input class="mandatory" required data-validation-required-message="Please enter your password." style="padding:10px; width:100%" placeholder="Password..." name="password" id="pass1" type="password"></p>
         <div id="panel1"><i class="fas fa-exclamation-circle"></i> Password must contain at least 6 characters</div> 
     <p><input class="mandatory" required data-validation-required-message="Please enter your password." style="padding:10px; width:100%" placeholder="Verify password..." name="repeatpassword" id="pass2" type="password">
@@ -457,22 +457,29 @@ $(document).ready(function(){
     });
   });
 
-$('#pass1, #pass2').on('keyup', function () {
+$('#pass2').on('keyup', function () {
   if ($('#pass1').val() == $('#pass2').val()) {
     $('#message').html('<i class="fas fa-check"></i> Matching').css('color', 'green');
   } else 
     $('#message').html('<i class="fas fa-times"></i> Not Matching ').css('color', 'red');
 });
 
+$('#pass1').on('keyup', function () {
+  if (this.value.length>=6) {
+    $('#panel1').html('<i class="fas fa-check"></i> Password contains 6 characters').css('color', 'green');
+  } else 
+    // $('#panel1').html('<i class="fas fa-times"></i> Not Matching ').css('color', 'red');
+    return false;
+});
 
 
-$(document).ready(function(){
-    $("#pass1").blur(function(){
-        if(this.value.length < 6){ // checks the password value length
-       alert('You have entered less than 6 characters for password')
-     };
-    });
-  });
+// $(document).ready(function(){
+//     $("#pass1").blur(function(){
+//         if(this.value.length < 6){ // checks the password value length
+//        alert('You have entered less than 6 characters for password')
+//      };
+//     });
+//   });
 
 
 
