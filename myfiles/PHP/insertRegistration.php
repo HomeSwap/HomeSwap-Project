@@ -38,18 +38,27 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
+$sql1 = "SELECT * from users where email = '$email'";	
+$result = mysqli_query($conn,$sql1);
+$rows = mysqli_fetch_array($result);
 
-$sql = "INSERT INTO users (userID, Fname, Lname, email, password, phone, country, city, street, aptNum, zipCode, tripType, amenities, requests, accessibilityNeeds)
-VALUES ('$userID', '$Fname', '$Lname' , '$email', '$pass', '$phone', '$country', '$city', '$street', '$aptNum', '$zipCode', '$userTripType', '$userAmeni', '$userReq' , '$userAcces')";
 
-if ($conn->query($sql) === TRUE) {
-	    header("Location:..\sendPage.html");
-		
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+if ($rows){
+	echo "Sorry...email address already exists!";
 }
+else
+{
+	$sql = "INSERT INTO users (userID, Fname, Lname, email, password, phone, country, city, street, aptNum, zipCode, tripType, amenities, requests, accessibilityNeeds)
+	VALUES ('$userID', '$Fname', '$Lname' , '$email', '$pass', '$phone', '$country', '$city', '$street', '$aptNum', '$zipCode', '$userTripType', '$userAmeni', '$userReq' , '$userAcces')";
 
+	if ($conn->query($sql) === TRUE) {
+		    header("Location:..\sendPage.html");
+			
+	} else {
+	    echo "Error: " . $sql . "<br>" . $conn->error;
+	}
 
+}
 
 $conn->close();
 ?>

@@ -521,29 +521,29 @@ iframe {
     <!-- Navigation -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">HomeSwap</a>
+      <a class="navbar-brand" href="..\indexUser.html">HomeSwap</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto">       
           <li class="nav-item">
-            <a class="nav-link" href="../Registration.html">Register</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="../Login.html">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../newApartment.html">New apartment</a>
+            <a class="nav-link" href="newApartment.html">New apartment</a>
           </li>          
           <li class="nav-item">
-            <a class="nav-link" href="../Search.html">search</a>
+            <a class="nav-link" href="Search.html">search</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../SearchResults.html">search Results</a>
+            <a class="nav-link" href="SearchResults.html">search Results</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../BookApartment.html">book Apartment</a>
+            <a class="nav-link" href="BookApartment.html">book Apartment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Orders.html">My Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="..\GoogleLogin/Logout.php">Logout</a>
           </li>
         </ul>
       </div>
@@ -563,8 +563,8 @@ iframe {
           <div>
 			<h3 class="error"><?php echo $error; ?></h3>
 			<h3 class="success"><?php echo $success; ?></h3>
-			<a href="../login.html"><?php echo $msg; ?></a>
-      <a href="../index.html"><?php echo $msgHome; ?></a>
+			<a href="../GoogleLogin/Login.php"><?php echo $msg; ?></a>
+      <a href="../indexUser.html"><?php echo $msgHome; ?></a>
       
             </span>
           </div>
