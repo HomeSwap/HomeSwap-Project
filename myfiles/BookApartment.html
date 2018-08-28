@@ -4,10 +4,9 @@
   <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta charset="utf-8">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -33,6 +32,14 @@
   <style>
     * {
     box-sizing: border-box;
+  }
+
+  a{
+    text-decoration: none !important
+  }
+
+  .searchBtnGoogle{
+    color: gray;
   }
 
   .carousel-inner img {
@@ -94,7 +101,72 @@
     }
 }
 
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .controls {
+        background-color: #fff;
+        border-radius: 2px;
+        border: 1px solid transparent;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        box-sizing: border-box;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        height: 29px;
+        margin-left: 17px;
+        margin-top: 10px;
+        outline: none;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+      }
+
+      .controls:focus {
+        border-color: #4d90fe;
+      }
+      .title {
+        font-weight: bold;
+      }
+      #infowindow-content {
+        display: none;
+      }
+      #map #infowindow-content {
+        display: inline;
+      }
+
   </style>
+
+ <script type="text/javascript">
+    function getUrlFacebook()
+    {
+      var link ="https://www.facebook.com/search/str/";
+      var firstName = "ziv"; //first name of user
+      var lastName = "cohen" //last name of user
+      var newLink = link+firstName+"+"+lastName+"/keywords_search";
+      return newLink;
+      // this code open in new link but the current page shows an error:
+      // window.open(newLink, '_blank'); 
+    }
+    function getUrlGoogle()
+    {
+      var link ="http://www.google.com/search?q=";
+      var firstName = "ziv"; //first name of user
+      var lastName = "cohen" //last name of user
+      var newLink = link+firstName+"+"+lastName;
+      return newLink;
+      // this code open in new link but the current page shows an error:
+      // window.open(newLink, '_blank'); 
+    }
+
+</script>
+
   </head>
 
   <body>
@@ -172,9 +244,36 @@
             </div>
 
         <div class="col-lg-6 col-sm-12 portfolio-item">
-            <a href="#">
+          <!--<a href="#">
             <img class="img-fluid rounded mb-3 mb-md-0" src="css/pics/mapPreview.jpg" alt="Location">
-          </a>
+          </a> -->
+
+          <!-- ******Google Maps API ********* -->
+          <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0fBrP7YMy80tJRSNNhESchun13NgFZ80&callback=initMap">
+          </script>
+
+          <script>
+            function initMap() {
+              var map = new google.maps.Map(document.getElementById('map'), {zoom: 14});
+              var geocoder = new google.maps.Geocoder;
+              geocoder.geocode({'address': 'Thai House Tel Aviv'}, function(results, status) {
+                if (status === 'OK') {
+                  map.setCenter(results[0].geometry.location);
+                  new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                  });
+                } else {
+                  window.alert('Geocode was not successful for the following reason: ' +
+                      status);
+                }
+              });
+            }
+          </script>
+
+          <div id="map"></div>
+          <!-- ******End of Google Maps API ********* -->          
         </div>
   </div>
       <!-- /Row -->
@@ -326,9 +425,15 @@
                     </div>
                   </div>
                   <br><br>
-                  <button type="button" class="btn btn-outline-primary">Find on Facebook</button>
-                  <button type="button" class="btn btn-outline-secondary">Find on Google</button> <br><br>
-                  <button type="button" class="btn btn-outline-success btn-block">Send an Email</button>   
+                  <button type="button" class="btn btn-outline-primary"> <a href="javascript:document.location.href=getUrlFacebook();">Find on Facebook</a></button>
+
+                  <button type="button" class="btn btn-outline-secondary"> <a href="javascript:document.location.href=getUrlGoogle();"><span class ="searchBtnGoogle">Find on Google</span></a></button><br><br>
+
+                  <!-- search bar google -->
+                  <!-- <gcse:searchbox-only></gcse:searchbox-only>  -->
+                  <!-- end of search bar google -->
+
+                  <button type="button" class="btn btn-outline-success btn-block">Send an Email</button>
                 </div>          
             </div>
     </div>
