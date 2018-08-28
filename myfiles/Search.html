@@ -68,6 +68,9 @@
     padding: 0 8px 0 10px;
     border-left: solid 1px #ccc;
 }
+button{
+	background-color: #ffffff;
+}
  
 .search-query:focus{
     z-index: 0; }
@@ -79,6 +82,12 @@
  	display: inline;
  }
 
+ #amen { 
+ 	overflow: auto;
+    width: 110px;
+    height: 150px;
+ }
+
 </style>
 </head>
 
@@ -86,22 +95,20 @@
     <!-- Navigation -->
  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">HomeSwap</a>
+      <a class="navbar-brand" href="indexUser.html">HomeSwap</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="Registration.html">Register</a>
-          </li>
+          </li> -->
+          
           <li class="nav-item">
-            <a class="nav-link" href="GoogleLogin/Login.php">Login</a>
-          </li>
-<!--           <li class="nav-item">
             <a class="nav-link" href="newApartment.html">New apartment</a>
-          </li>  -->         
-          <li class="nav-item active">
+          </li>          
+          <li class="nav-item">
             <a class="nav-link" href="Search.html">search</a>
           </li>
           <li class="nav-item">
@@ -110,13 +117,19 @@
           <li class="nav-item">
             <a class="nav-link" href="BookApartment.html">book Apartment</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Orders.html">My Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="GoogleLogin/Logout.php">Logout</a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
 
-    <div class="container">
+<div class="container">
 <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">Search Apartment</h1>
 
@@ -127,12 +140,14 @@
         <li class="breadcrumb-item active">Search</li>
       </ol>
 
+
+<form action="PHP/searchRes.php" method="POST">
     <!-- Search box -->
   <div class="row">
       <div class="col-12">
           <div id="custom-search-input">
                 <div class="input-group col-md-12">
-                    <input type="text" class="search-query form-control input-lg" placeholder="Where do you want to go?"/>
+                    <input type="text" class="search-query form-control input-lg"  name="dest" placeholder="Where do you want to go?"/>
                     <span class="input-group-btn">
                         <button class="btn btn-info btn-lg" type="button" type="button">
                             <span class="fa fa-search"></span>
@@ -142,201 +157,113 @@
             </div>
         </div>
   </div>
-    <br> 
+<br> 
 
     <!-- Search buttons -->
-  <div class="row">
+  <div class="row" align="center">
 	  <div class="col-lg-12 col-sm-6">
-		  <div class="dropdown">
-		    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dates</button>
-			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				 <div class="form-group">
-				 <label ><b>Start date</b></label>
-				 <input type="date" name="StartDate" max="3000-12-31" min="1000-01-01" class="form-control"> <br>
-				 <label ><b>End date</b></label>
-				 <input type="date" name="EndDate" min="1000-01-01" max="3000-12-31" class="form-control">
-				 </div>
-			</div>
-		</div>
 
-		  <div class="dropdown">
- 			<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Guests</button>
-	      	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		        <div class="form-group">
-                                    <button class="btn btn-dark btn-sm" id="minus-btn"><i class="fa fa-minus"></i></button>
-                                </div>
-                                <input type="number" id="qty_input" class="form-control form-control-sm" value="1" min="1">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-dark btn-sm" id="plus-btn"><i class="fa fa-plus"></i></button>
-		        </div>
-		    </div>
-		</div>
+	  	<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      <i class="glyphicon glyphicon-plus-sign"></i> <span class="caret">Dates</span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <li> <label ><b>Start date</b></label><input type="date" name="StartDate" max="3000-12-31" min="1000-01-01" class="form-control"></li>
+      <li><label ><b>End date</b></label><input type="date" name="EndDate" min="1000-01-01" max="3000-12-31" class="form-control"></li>
+    </ul>
+  </div>
 
-		  <div class="dropdown">
-	        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	          Home Type</button>
-	        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		        <div class="form-group">
-		          <div class="radio">
-		          <label><input type="radio" id="villa" name="villa">Villa</label>
-		          </div>
-		          <div class="radio">
-		          <label><input type="radio" id="apartment" name="apartment">Apartment</label>
-		          </div>
-		          <div class="radio">
-		          <label><input type="radio" id="condominium" name="condominium" >Condominium</label>
-		          </div>
-		          <div class="radio">
-		          <label><input type="radio" id="loft" name="loft" >Loft</label>
-		          </div>        
-		        </div>
-	    	</div>
-	    </div>
-     
-     		<div class="dropdown">
-		     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		      Trip Type</button>
-		     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		        <div class="form-check">
-		        <input class="form-check-input" type="checkbox" id="seaView" name="seaView" value="option1">
-		        <label class="form-check-label" for="seaView">Sea view<br></label>
-		        </div>
-		        <div class="form-check">
-		        <input class="form-check-input" type="checkbox" id="urban" name="urban" value="option2">
-		        <label class="form-check-label" for="urban">Urban<br></label>
-		        </div>
-		        <div class="form-check">
-		        <input class="form-check-input" type="checkbox" id="countryHouse" name="countryHouse" value="option3">
-		        <label class="form-check-label" for="countryHouse">Country house<br></label>
-		        </div>
-		        <div class="form-check">
-		        <input class="form-check-input" type="checkbox" id="openSpace" name="openSpace" value="option3">
-		        <label class="form-check-label" for="openSpace">Open space<br></label>
-		      	</div>
-		        <div class="form-check">
-		        <input class="form-check-input" type="checkbox" id="forFamilies" name="forFamilies" value="option3">
-		        <label class="form-check-label" for="forFamilies">For families<br></label>
-		        </div>
-		      </div>
-		  </div>
+   <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      <i class="glyphicon glyphicon-plus-sign"></i> <span class="caret">Guests</span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <li> <input type="number" id="qty_input" name="qty_input" class="form-control form-control-sm" value="2" min="1"></li>  
+    </ul>
+  </div>
 
-		  <div class="dropdown">
-			  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			      Amenities</button>
-		      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		          <div class="card-body">
-		           <div class="input-group">
-		            <div class="form-check form-check-inline">
-		            <input class="form-check-input" type="checkbox" id="WIFI" name="WIFI">
-		            <label class="form-check-label" for="WIFI">WIFI</label>
-		           	<div class="form-check form-check-inline">
-		            <input class="form-check-input" type="checkbox" id="hot_tub" name="hot_tub">
-		            <label class="form-check-label" for="hot_tub">Hot-Tub</label>
-		            </div>
-			        <div class="form-check form-check-inline">
-			        <input class="form-check-input" type="checkbox" id="parking" name="parking">
-			        <label class="form-check-label" for="parking">Parking</label>
-			        </div>
-		            <div class="form-check form-check-inline">
-		            <input class="form-check-input" type="checkbox" id="balcony" name="balcony">
-		            <label class="form-check-label" for="balcony">Balcony</label>
-		            </div>
-		            <div class="form-check form-check-inline">
-		            <input class="form-check-input" type="checkbox" id="pool" name="pool">
-		            <label class="form-check-label" for="pool">Pool</label>
-		            </div>
-		            <div class="form-check form-check-inline">
+    <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      <i class="glyphicon glyphicon-plus-sign"></i> <span class="caret">Home type</span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <li><label><input type="radio" id="apartment" value="Apartment" name="propertyType">Apartment</label></li>
+      <li><label><input type="radio" id="villa" value="Villa" name="propertyType">Villa</label></li>      
+      <li><label><input type="radio" id="condominium" value="Condominium" name="propertyType" >Condominium</label></li>
+      <li><label><input type="radio" id="loft" value="Loft" name="propertyType" >Loft</label></li>      
+    </ul>
+  </div>
 
-		            <input class="form-check-input" type="checkbox" id="hot_tub" name="hot_tub">
-		            <label class="form-check-label" for="hot_tub">Hot-Tub</label>
 
-		            <input class="form-check-input" type="checkbox" id="WIFI" name="WIFI">
-		            <label class="form-check-label" for="WIFI">WIFI</label>
-		            </div>
-		            <div class="form-check form-check-inline">
-		            <input class="form-check-input" type="checkbox" id="safe" name="safe">
-		            <label class="form-check-label" for="safe">Safe</label>
-		            </div>
-		            <div class="form-check form-check-inline">
-		            <input class="form-check-input" type="checkbox" id="kitchen" name="kitchen">
-		            <label class="form-check-label" for="kitchen">Kitchen</label>
-		            </div>
-		            <div class="form-check form-check-inline">
-		            <input class="form-check-input" type="checkbox" id="workspace" name="workspace">
-		            <label class="form-check-label" for="workspace">Workspace</label>
-		            </div>
-		            <div class="form-check form-check-inline">
-		            <input class="form-check-input" type="checkbox" id="TV" name="TV">
-		            <label class="form-check-label" for="TV">TV</label>
-		            </div>
-		            <div class="form-check form-check-inline">
-		            <input class="form-check-input" type="checkbox" id="iron" name="iron">
-		            <label class="form-check-label" for="iron">Iron</label>
-		            </div>
-		            <div class="form-check form-check-inline">
-		            <input class="form-check-input" type="checkbox" id="gym" name="gym">
-		            <label class="form-check-label" for="gym">Gym</label>
-		            </div>
-		            <div class="form-check form-check-inline">
-		            <input class="form-check-input" type="checkbox" id="fire_place" name="fire_place">
-		            <label class="form-check-label" for="fire_place">Fire Place</label>
-		            </div>
-		            <div class="form-check form-check-inline">
-		            <input class="form-check-input" type="checkbox" id="washing_machine" name="washing_machine">
-		            <label class="form-check-label" for="washing_machine">Washing Machine</label>
-		            </div>
-		            <div class="form-check form-check-inline">
-		            <input class="form-check-input" type="checkbox" id="air_conditioner" name="air_conditioner">
-		            <label class="form-check-label" for="air_conditioner">Air Conditioner</label>
-		            </div>
-		          </div>
-		        </div>
-		       </div>
-		   </div>
+      <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      <i class="glyphicon glyphicon-plus-sign"></i> <span class="caret">Trip type</span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="propertyStyle[]" value="seaView" id="seaView"><label class="form-check-label" for="sea_view">Sea view</label></div></li>
+        <li><div class="form-check"><input class="form-check-input" type="checkbox" name="propertyStyle[]" value="urban" id="urban"><label class="form-check-label" for="urban">Urban</label></div></li>
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="propertyStyle[]" value="countryHouse" id="countryHouse"><label class="form-check-label" for="country_house">Country house</label></div></li>
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="propertyStyle[]"value="openSpace" id="openSpace"><label class="form-check-label" for="open_space">Open space</label></div></li>     
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="propertyStyle[]" value="forFamilies" id="forFamilies"><label class="form-check-label" for="for_families">For families</label></div></li>                   
+    </ul>
+  </div>
 
-		  <div class="dropdown">
-		      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		      Accessibility</button>
-		      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		        <div class="form-check">
-		        <input class="form-check-input" type="checkbox" id="wide_corridor" name="wide_corridor" value="option1">
-		        <label class="form-check-label" for="wide_corridor">Wide corridor</label>
-		        </div>
-		        <div class="form-check">
-		        <input class="form-check-input" type="checkbox" id="staircase_free" name="staircase_free" value="option1">
-		        <label class="form-check-label" for="staircase_free">Staircase free</label>
-		        </div>
-		        <div class="form-check">
-		        <input class="form-check-input" type="checkbox" id="elivator" name="elivator" value="option1">
-		        <label class="form-check-label" for="elivator">Elivator</label>
-		        </div>
-		        <div class="form-check">
-		        <input class="form-check-input" type="checkbox" id="accesible_parking" name="accesible_parking" value="option1">
-		        <label class="form-check-label" for="accesible_parking">Accesible parking</label>
-		        </div>
-		      </div>
-		  </div>
+      <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      <i class="glyphicon glyphicon-plus-sign"></i> <span class="caret">Amenities</span>
+    </button>
+    <ul class="dropdown-menu" role="menu" id="amen">
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="amenities[]" id="WIFI" value="WIFI" ><label class="form-check-label" for="WIFI">WIFI</label></div></li> 
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="amenities[]" value="hot_tub" id="hot_tub"><label class="form-check-label" for="hot_tub">Hot-tub</label></div></li>
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="amenities[]" value="parking" id="parking"><label class="form-check-label" for="parking">Parking</label></div></li>
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="amenities[]" value="balcony" id="balcony"><label class="form-check-label" for="balcony">Balcony</label></div></li>
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="amenities[]" value="pool" id="pool"><label class="form-check-label" for="pool">Pool</label></div></li>
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="amenities[]" value="safe" id="safe"><label class="form-check-label" for="safe">Safe</label></div></li>
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="amenities[]" value="kitchen" id="kitchen"><label class="form-check-label" for="kitchen">Kitchen</label></div></li>
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="amenities[]" value="workspace" id="workspace"><label class="form-check-label" for="workspace">Workspace</label></div></li>
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="amenities[]" value="TV" id="TV"><label class="form-check-label" for="TV">TV</label></div></li>    
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="amenities[]" value="iron" id="iron"><label class="form-check-label" for="iron">Iron</label></div></li>
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="amenities[]" value="gym" id="gym"><label class="form-check-label" for="gym">Gym</label></div></li>  
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="amenities[]" value="fire_place" id="fire_place"><label class="form-check-label" for="fire_place">Fire place</label></div></li>      
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="amenities[]" value="washing_machine" id="washing_machine"><label class="form-check-label" for="washing_machine">Washing Machine</label></div></li>     
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="amenities[]" value="air_conditioner" id="air_conditioner"><label class="form-check-label" for="air_conditioner">Air Conditioner</label></div></li>                         
+    </ul>
+  </div>
 
-		  <div class="dropdown">
-			  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Special Requests</button>
-			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			   <div class="form-check">
-			   <input class="form-check-input" type="checkbox" id="smoking_allowed" name="smoking_allowed" value="option1">
-			   <label class="form-check-label" for="smoking_allowed">Smoking allowed<br></label>
-			   </div>
-			   <div class="form-check">
-			   <input class="form-check-input" type="checkbox" id="pets_allowed" name="pets_allowed" value="option1">
-			   <label class="form-check-label" for="pets_allowed">Pets allowed<br></label>
-			   </div>
-			   <div class="form-check">
-			   <input class="form-check-input" type="checkbox" id="suitable_for_events" name="suitable_for_events" value="option1">
-			   <label class="form-check-label" for="suitable_for_events">Suitable for events<br></label>
-			   </div>
-			  </div>
-			</div>
-			</div>
+       <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      <i class="glyphicon glyphicon-plus-sign"></i> <span class="caret">Accessibility</span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="accessibility[]" value="wide_corridor" id="wide_corridor"><label class="form-check-label" for="wide_corridor">Wide corridor</label></div></li>
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="accessibility[]" value="staircase_free" id="staircase_free"><label class="form-check-label" for="staircase_free">Staircase free</label></div></li>      
+       <li><div class="form-check"><input class="form-check-input" type="checkbox" name="accessibility[]" value="elivator" id="elivator"><label class="form-check-label" for="elivator">Elivator</label></div></li>      
+       <li><div class="form-check"><input class="form-check-input" type="checkbox" name="accessibility[]" value="accesible_parking" id="accesible_parking"><label class="form-check-label" for="accesible_parking">Accesible parking</label></div></li>                       
+    </ul>
+  </div> 
+
+
+       <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      <i class="glyphicon glyphicon-plus-sign"></i> <span class="caret">Special Requests</span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <li><div class="form-check"><input class="form-check-input" type="checkbox" name="rules[]" value="smoking_allowed" id="smoking_allowed"><label class="form-check-label" for="smoking_allowed">Smoking allowed</label></div></li>
+       <li><div class="form-check"><input class="form-check-input" type="checkbox" name="rules[]" value="pets_allowed" id="pets_allowed"><label class="form-check-label" for="pets_allowed">Pets allowed</label></div></li>    
+       <li><div class="form-check"><input class="form-check-input" type="checkbox" name="rules[]" value="suitable_for_events" id="suitable_for_events"><label class="form-check-label" for="suitable_for_events">Suitable for events</label></div></li>          
+                      
+    </ul>
+  </div>
+
+  <div><button class="btn-default btn-lg">Search</button></div>
+
+
+
+
 		</div>
 <!-- /row -->
+      <br>
+      <br>
       <br>
 
 
@@ -409,8 +336,9 @@
 <!-- /row -->
 <br><br>
 </div>
-</div>
 
+</form>
+</div>
     <!-- Footer -->
   <footer class="py-5 bg-dark">
       <div class="container">
@@ -422,20 +350,8 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script>
-		$(document).ready(function(){
-    $('#qty_input').prop('disabled', true);
-    $('#plus-btn').click(function(){
-    	$('#qty_input').val(parseInt($('#qty_input').val()) + 1 );
-    	    });
-        $('#minus-btn').click(function(){
-    	$('#qty_input').val(parseInt($('#qty_input').val()) - 1 );
-    	if ($('#qty_input').val() == 0) {
-			$('#qty_input').val(1);
-		}
-
-    	    });
- });
+<script type="text/javascript">
+  
 </script>
   </body>
 

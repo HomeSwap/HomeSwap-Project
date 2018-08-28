@@ -108,6 +108,14 @@
       background-color: #4CAF50;
     }
 
+    .wrapper{
+  display:none;
+}
+.btnAddDates{
+    display:none;
+
+}
+
 
 /*input[type="file"] {
     display: none;
@@ -252,7 +260,7 @@
       <div class="control-group form-group">
         <div class="controls">
          <h6 style="padding:5px;">Max guests:</h6>        
-         <input type="number" class="form-control" id="guestNum" name="guestNum">
+         <input type="number" class="form-control mandatory" min="1" id="guestNum" name="guestNum">
        </div>
      </div>      
   </div>
@@ -439,25 +447,60 @@
     <div class="col-lg-8 mb-4 col-centered">
       <h6>Update your apartment availibility:</h6> 
 
+  <!-- <div id="wrapper">  -->
       <div class="control-group form-group">
         <div class="controls">
          <input id="fdateRange" style="width:50%; height:40px" name="fdateRange" type="text"
          data-range="true"
          data-multiple-dates-separator=" - "
          data-language="en"
-         class="datepicker-here" autocomplete="off"/><button style="width:30%; font-size:12px; margin:3px;" type="button" onclick="convertRangeToDates()">Insert date range</button>
-        
+         class="datepicker-here mandatory" autocomplete="off"/>
+
+         <input id="btnAdd" type="button" onclick="addAvailability()" value="+" />
+         <div id=dp"></div>
+         <input id="box1" class="wrapper datepicker-here" type="text"
+        data-range="true"
+        data-multiple-dates-separator=" - "
+        data-language="en"
+        style="width:50%; height:40px"
+        autocomplete="off"/>
+        <input id="box2" class="wrapper datepicker-here" type="text"
+        data-range="true"
+        data-multiple-dates-separator=" - "
+        data-language="en"
+        style="width:50%; height:40px"
+        autocomplete="off"/>
+        <input id="box3"class="wrapper datepicker-here" type="text"
+        data-range="true"
+        data-multiple-dates-separator=" - "
+        data-language="en"
+        style="width:50%; height:40px"
+        autocomplete="off"/>
+        <input id="box4" class="wrapper datepicker-here" type="text"
+        data-range="true"
+        data-multiple-dates-separator=" - "
+        data-language="en"
+        style="width:50%; height:40px"
+        autocomplete="off"/>
+         </div>    
        </div>
+     <!-- </div> -->
+         
+         <!-- <button style="width:30%; font-size:12px; margin:3px;" type="button" onclick="convertRangeToDates()">Insert date range</button> -->
 
-     </div>
-
-        
 
         <input id="sd" name="sd" hidden />
-        <input id="ed" name="ed" hidden/>  
+        <input id="ed" name="ed" hidden/> 
+        <input id="sd1" name="sd1" hidden />
+        <input id="ed1" name="ed1" hidden/> 
+        <input id="sd2" name="sd2" hidden />
+        <input id="ed2" name="ed2" hidden/>  
+        <input id="sd3" name="sd3" hidden />
+        <input id="ed3" name="ed3" hidden/> 
+        <input id="sd4" name="sd4" hidden />
+        <input id="ed4" name="ed4" hidden/> 
 
-     <mark>add function that adds new calender on click with new name for the input field</mark><br>
-     <mark>find a way to delete 'Insert date range button?'</mark>     
+  
      <!-- <button type="button" onclick="addAvailability()"> Add date range:  </button>   -->
 
 
@@ -500,17 +543,7 @@
   <script src="js/contact_me.js"></script> -->
 
   <script>
-/*    var gId = '1'
-    var gName = '1'
-     function nextIdxAndName() {
-      debugger
-      var id = parseInt(gId);
-      id++
-      gId = id;
-      var name = parseInt(gName);
-      name++;
-      gName = name;
-    }*/
+
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the crurrent tab
 
@@ -584,44 +617,137 @@ function fixStepIndicator(n) {
   x[n].className += " active";
 }
 
-/*function addAvailability() { 
-  var date = document.getElementById("1");
-  var cln = date.cloneNode(true);  
-  nextIdxAndName();
-  cln.name = gName + '';
-  cln.id = gId + '';
-  cln.value = '';
 
-  var form = document.getElementById("newApartForm");
-    form.appendChild(cln);
-  }*/
 
  //upload photos and validate
 
- function convertRangeToDates() {
+//  function convertRangeToDates() {
+//   var range = document.getElementById("fdateRange").value;
+//   //separate the range to two dates (string)
+//   var startDate = range.substring(0,10);
+//   var endDate = range.substring(13,23);
+
+// //var newSdate = startDate.split("/").reverse().join("-");
+// //var newEdate = endDate.split("/").reverse().join("-");
+
+// //convert the dates to the SQL format YYYY-MM-DD (string)
+// var newSdate = startDate.replace(/(..).(..).(....)/, "$3-$1-$2");
+// var newEdate = endDate.replace(/(..).(..).(....)/, "$3-$1-$2");
+
+//   //document.getElementById("sd").value = newSdate;
+//   //document.getElementById("ed").value = newEdate;
+
+// //convert to ISO date object
+//   //var sdformat = new Date(newSdate);
+//  // var edformat = new Date(newEdate);
+
+//  //insert the dates into input fieds in order to post them to db
+//   document.getElementById("sd").value = newSdate;
+//   document.getElementById("ed").value = newEdate;
+//  }
+
+
+//   var counter = 0;
+//  function add_fields() {
+//     counter++;
+//     document.getElementById('wrapper').innerHTML += '<div class="control-group form-group"><div class="controls"><input id="fdateRange"+counter style="width:50%; height:40px" name="fdateRange" type="text" data-range="true" data-multiple-dates-separator=" - " data-language="en" class="datepicker-here" autocomplete="off"/></div></div></div>';
+
+// }
+
+
+
+
+  var counter = 0;
+  var gId = '';
+  var gName = '';
+     function nextIdxAndName() {
+      var id = "fdateRange"+parseInt(counter);
+      gId = id;
+      var name = "fdateRange"+parseInt(counter);
+      counter++;
+      gName = name;
+    }
+
+
+function addAvailability() { 
+
+  $('.wrapper').show();
+  var myDatepicker = $('.wrapper').datepicker().data('datepicker');
+  myDatepicker.show();
+  $('#btnAdd').hide();
+
+
+  }
+  var arr;
+
+
+
+
+
+  $('.datepicker-here ').blur(function convertRangeToDates() {
   var range = document.getElementById("fdateRange").value;
   //separate the range to two dates (string)
   var startDate = range.substring(0,10);
   var endDate = range.substring(13,23);
 
-//var newSdate = startDate.split("/").reverse().join("-");
-//var newEdate = endDate.split("/").reverse().join("-");
-
-//convert the dates to the SQL format YYYY-MM-DD (string)
 var newSdate = startDate.replace(/(..).(..).(....)/, "$3-$1-$2");
 var newEdate = endDate.replace(/(..).(..).(....)/, "$3-$1-$2");
 
-  //document.getElementById("sd").value = newSdate;
-  //document.getElementById("ed").value = newEdate;
 
-//convert to ISO date object
-  //var sdformat = new Date(newSdate);
- // var edformat = new Date(newEdate);
-
- //insert the dates into input fieds in order to post them to db
   document.getElementById("sd").value = newSdate;
   document.getElementById("ed").value = newEdate;
- }
+
+
+    var range1 = document.getElementById("box1").value;
+  //separate the range to two dates (string)
+  var startDate1 = range1.substring(0,10);
+  var endDate1 = range1.substring(13,23);
+
+var newSdate1 = startDate1.replace(/(..).(..).(....)/, "$3-$1-$2");
+var newEdate1 = endDate1.replace(/(..).(..).(....)/, "$3-$1-$2");
+
+
+  document.getElementById("sd1").value = newSdate1;
+  document.getElementById("ed1").value = newEdate1;
+  
+
+  var range2 = document.getElementById("box2").value;
+  //separate the range to two dates (string)
+  var startDate2 = range2.substring(0,10);
+  var endDate2 = range2.substring(13,23);
+
+var newSdate2 = startDate2.replace(/(..).(..).(....)/, "$3-$1-$2");
+var newEdate2 = endDate2.replace(/(..).(..).(....)/, "$3-$1-$2");
+
+
+  document.getElementById("sd2").value = newSdate2;
+  document.getElementById("ed2").value = newEdate2;
+
+
+    var range3 = document.getElementById("box3").value;
+  //separate the range to two dates (string)
+  var startDate3 = range3.substring(0,10);
+  var endDate3 = range3.substring(13,23);
+
+var newSdate3 = startDate3.replace(/(..).(..).(....)/, "$3-$1-$2");
+var newEdate3 = endDate3.replace(/(..).(..).(....)/, "$3-$1-$2");
+
+
+  document.getElementById("sd3").value = newSdate3;
+  document.getElementById("ed3").value = newEdate3;
+
+    var range4 = document.getElementById("box4").value;
+  //separate the range to two dates (string)
+  var startDate4 = range4.substring(0,10);
+  var endDate4 = range4.substring(13,23);
+
+var newSdate4 = startDate4.replace(/(..).(..).(....)/, "$3-$1-$2");
+var newEdate4 = endDate4.replace(/(..).(..).(....)/, "$3-$1-$2");
+
+
+  document.getElementById("sd4").value = newSdate4;
+  document.getElementById("ed4").value = newEdate4;
+  });
 
 </script>
 
