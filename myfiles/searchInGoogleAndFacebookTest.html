@@ -167,19 +167,6 @@
 
 </script>
 
-<!-- google search bar
-<script>
-  (function() {
-    var cx = '001582140301477180547:4e91huo55qk';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-  })();
-</script> -->
-
   </head>
 
   <body>
@@ -262,70 +249,31 @@
           </a> -->
 
           <!-- ******Google Maps API ********* -->
-          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0fBrP7YMy80tJRSNNhESchun13NgFZ80&libraries=places&callback=initMap"
-          async defer></script>
+          <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0fBrP7YMy80tJRSNNhESchun13NgFZ80&callback=initMap">
+          </script>
 
           <script>
-          function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-              center: {lat: 32.073070, lng: 34.842420},
-              zoom: 13
-            });
-
-            var input = document.getElementById('pac-input');
-
-            var autocomplete = new google.maps.places.Autocomplete(input);
-            autocomplete.bindTo('bounds', map);
-
-            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-            var infowindow = new google.maps.InfoWindow();
-            var infowindowContent = document.getElementById('infowindow-content');
-            infowindow.setContent(infowindowContent);
-            var marker = new google.maps.Marker({
-              map: map
-            });
-            marker.addListener('click', function() {
-              infowindow.open(map, marker);
-            });
-
-            autocomplete.addListener('place_changed', function() {
-              infowindow.close();
-              var place = autocomplete.getPlace();
-              if (!place.geometry) {
-                return;
-              }
-
-              if (place.geometry.viewport) {
-                map.fitBounds(place.geometry.viewport);
-              } else {
-                map.setCenter(place.geometry.location);
-                map.setZoom(17);
-              }
-
-              marker.setPlace({
-                placeId: place.place_id,
-                location: place.geometry.location
+            function initMap() {
+              var map = new google.maps.Map(document.getElementById('map'), {zoom: 14});
+              var geocoder = new google.maps.Geocoder;
+              geocoder.geocode({'address': 'Thai House Tel Aviv'}, function(results, status) {
+                if (status === 'OK') {
+                  map.setCenter(results[0].geometry.location);
+                  new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                  });
+                } else {
+                  window.alert('Geocode was not successful for the following reason: ' +
+                      status);
+                }
               });
-              marker.setVisible(true);
+            }
+          </script>
 
-              infowindowContent.children['place-name'].textContent = place.name;
-              infowindowContent.children['place-id'].textContent = place.place_id;
-              infowindowContent.children['place-address'].textContent =
-                  place.formatted_address;
-              infowindow.open(map, marker);
-            });
-          }
-        </script>
-
-          <input id="pac-input" class="controls" type="text"placeholder="Enter a location">
           <div id="map"></div>
-          <div id="infowindow-content">
-            <span id="place-name"  class="title"></span><br>
-            Place ID <span id="place-id"></span><br>
-            <span id="place-address"></span>
-          </div>
-          <!-- ******end of Google Maps API ********* -->          
+          <!-- ******End of Google Maps API ********* -->          
         </div>
   </div>
       <!-- /Row -->
