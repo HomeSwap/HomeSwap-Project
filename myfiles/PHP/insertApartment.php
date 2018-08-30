@@ -23,6 +23,8 @@ $aptRules=implode(",",$rulArr); //add comma ,
 $styleArr=$_POST['propertyStyle'];
 $aptStyle=implode(",",$styleArr);
 
+$userID=$_POST['userID'];
+
 //server details
 $servername="localhost";
 $username="root";
@@ -35,8 +37,8 @@ if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "INSERT INTO apartments (country, city, street, aptNum, zipCode, title, description, guestNum, propertyType, amenities, accessibility, rules, propertyStyle)
-VALUES ('$country', '$city', '$street', '$aptNum', '$zipCode','$title', '$description', '$guestNum', '$propertyType', '$aptAmenities', '$aptAccessibility', '$aptRules', '$aptStyle')";
+$sql = "INSERT INTO apartments (country, city, street, aptNum, zipCode, title, description, guestNum, propertyType, amenities, accessibility, rules, propertyStyle, userID)
+VALUES ('$country', '$city', '$street', '$aptNum', '$zipCode','$title', '$description', '$guestNum', '$propertyType', '$aptAmenities', '$aptAccessibility', '$aptRules', '$aptStyle', '$userID')";
 
 if ($conn->query($sql) === TRUE) {
 	$aptID = $conn->insert_id;
@@ -94,9 +96,71 @@ if(($StartDate4 != NULL)AND($EndDate4 != NULL)){
 	}
 }
 
-if ($bool){
- header("Location:..\sendPage2.html");
+//PHOTOS
+
+$imageData = array();
+if(isset($_FILES['apartPhotos'])){
+    $errors= array();
+    foreach($_FILES['apartPhotos']['tmp_name'] as $key => $tmp_name ){
+        $file_name = $_FILES['apartPhotos']['name'][$key];
+        $file_tmp =$_FILES['apartPhotos']['tmp_name'][$key];
+        if($file_size > 2097152){
+            $errors[]='File size must be less than 2 MB';
+        }
+        
+        array_push($imageData, $file_name);
+       
+        $desired_dir="user_data";
+        if(empty($errors)==true){
+            if(is_dir($desired_dir)==false){
+                mkdir("$desired_dir", 0700);        // Create directory if it does not exist
+            }
+            if(is_dir("$desired_dir/".$file_name)==false){
+                move_uploaded_file($file_tmp,"user_data/".$file_name);
+            }else{                                  //rename the file if another one exist
+                $new_dir="user_data/".$file_name.time();
+                 rename($file_tmp,$new_dir) ;               
+            }
+                    
+        }else{
+                print_r($errors);
+        }
+        $query="INSERT into apt_photos (photoName, AptID) VALUES('$file_name', '$aptID'); ";
+        ($conn->query($query));
+    }
+
+    // if(empty($error)){
+    //     //echo "Success";
+    //     //print_r($imageData);
+    //     //echo sizeof($imageData);
+    //     //for($i=0;$i<sizeof($imageData);$i++){
+    //     //  echo $imageData[$i];            
+    //     //}
+    //     $imgDt = implode("|", $imageData);
+    //     //$query="INSERT into apt_photos (`photoName`) VALUES('$imgDt'); ";
+    //     // mysql_query($query); 
+    //     $query="INSERT into apt_photos (photoName, AptID) VALUES('$file_name', '$aptID'); ";
+    // }
 }
+
+if ($bool){
+	echo "hi";
+	// header("Location:..\sendPage2.html");
+} else {
+	echo "Error: " . $sql . "<br>" . $conn->error;
+	echo "Error: " . $query . "<br>" . $conn->error;
+}
+
+
+///
+
+
+
+
+
+// if ($bool){
+//  header("Location:..\sendPage2.html");
+// }
 
 // if (($conn->query($sqlDate) === TRUE)OR($conn->query($sqlDate1))OR($conn->query($sqlDate2))OR($conn->query($sqlDate3))OR($conn->query($sqlDate4))) {
 // 	    header("Location:..\sendPage2.html");

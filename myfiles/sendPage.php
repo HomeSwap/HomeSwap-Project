@@ -1,3 +1,21 @@
+<?php
+
+  $servername="localhost";
+  $username="root";
+  $password="";
+  $dbname="database";
+
+  $conn=new mysqli($servername,$username,$password,$dbname);
+  if ($conn->connect_error)
+  {
+    die("connection failed: ".$conn->connect_error);
+  }
+
+  $userID = $_REQUEST["userID"];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,7 +83,7 @@ body{
   <h1>Thank you for registering on our website.</h1>
   <h4>You are just one step away from start your jurney! </h4>
   <br><br>
-  <a href="newApartment.html" class="btn btn-primary btn-lg">Click to add your apartment</a>
+  <a href="newApartment.php?userID=<?php echo $userID ?>" class="btn btn-primary btn-lg">Click to add your apartment</a>
   
 
 </div>

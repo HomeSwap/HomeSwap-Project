@@ -215,20 +215,19 @@ button{
 	}
 
 	if($StartDate==NULL){
-		$StartDate="";
-	}
-	else{
-		$StartDate=$_POST['StartDate'];
+	   $StartDate=1;
+	 }
+	 else{
+	 	$StartDate=$_POST['StartDate'];
 
-	}
-	if($EndDate==NULL){
-		// $EndDate=DATE('9999-99-99');
-		$EndDate="";
+	 }
+	 if($EndDate==NULL){
+		$EndDate=1;
 
-	}
-	else{
-		$EndDate=$_POST['EndDate'];
-	}
+	 }
+	 else{
+		  $EndDate=$_POST['EndDate'];
+	 }
 
 
 	$conn=new mysqli($servername,$username,$password,$dbname);
@@ -237,8 +236,9 @@ button{
 		die("connection failed: ".$conn->connect_error);
 	}
 	
-	$sql="SELECT DISTINCT title,description FROM apartments 
+	$sql="SELECT DISTINCT apt_photos.photoName, apartments.title, apartments.description, apartments.AptID FROM apartments 
 	INNER JOIN apt_availability ON apartments.AptID=apt_availability.AptID
+  INNER JOIN apt_photos ON apartments.AptID=apt_photos.AptID
 	WHERE 
 	(LOWER(country) LIKE LOWER('%$dest%') OR LOWER(city) LIKE LOWER('%$dest%'))
 	AND (guestNum='$qty_input')
@@ -247,25 +247,14 @@ button{
 	AND (accessibility LIKE '%$accessibility%')
 	AND (rules LIKE '%$rules%')
 	AND (LOWER(propertyType) LIKE LOWER('%$propertyType%'))
-	AND (((DATE(apt_availability.StartDate))LIKE (DATE('$StartDate'))) OR  ((DATE(apt_availability.EndDate))LIKE (DATE('$EndDate'))))
+  AND ((($StartDate=1) AND ($EndDate=1))
+OR (((DATE(apt_availability.StartDate)) LIKE (DATE('$StartDate'))) AND ('$EndDate'=1))
+OR (((DATE(apt_availability.EndDate)) LIKE (DATE('$EndDate'))) AND ('$StartDate'=1))
+OR (((DATE(apt_availability.StartDate)) LIKE (DATE('$StartDate'))) AND ((DATE(apt_availability.EndDate)) LIKE (DATE('$EndDate')))))
+GROUP BY apartments.AptID
 	";
 
 
-// AND (DATE(apt_availability.EndDate)<=DATE('$EndDate'))
-
-// 	$result = mysqli_query($conn,$sql);
-// 	$rows = mysqli_fetch_array($result);
-
-// 	if ($rows) 
-// 	{
-// 		$title=$rows["title"];
-// 		$description=$rows["description"];
-// 		$country=$rows["country"];
-// 		$city=$rows["city"];
-// }
-// 	else {
-//     echo  "<br><br>Unfortunately, there are no results found.";
-// 	}
 
 	$result=$conn->query($sql);
 
@@ -278,8 +267,10 @@ button{
 			
 		echo '<div class="row" style="padding:20px;">';
         echo '<div class="col-md-4">';
-        echo '<a href="#"">';
-        echo '<img class="img-fluid rounded mb-3 mb-md-0" src="..\css/pics/apt02.jpg" alt="">';
+        $id=$row['AptID'];
+        echo "<a href='..\BookApartment.php?AptID=$id'>";
+        $photo=$row['photoName'];
+        echo "<img class='img-fluid rounded mb-3 mb-md-0' src='..\user_data/$photo'/>";
         echo '</a>';
         echo '</div>';
         echo '<div class="col-md-4">';
@@ -287,8 +278,8 @@ button{
         echo '<p>'.$row["description"].'</p>';
         echo '</div>';
         echo '<div class="col-md-4">';
-        echo '<a class="btn btn-primary" href="#">View Project
-          <span class="glyphicon glyphicon-chevron-right">';
+        echo "<a class='btn btn-primary' href='..\BookApartment.php?AptID=$id'>View Project
+          <span class='glyphicon glyphicon-chevron-right'>";
         echo '</span>';
         echo '</a>';
         echo '</div>';

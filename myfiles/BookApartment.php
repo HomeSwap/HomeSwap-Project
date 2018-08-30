@@ -1,3 +1,5 @@
+
+
   <!DOCTYPE html>
   <html lang="en">
 
@@ -18,6 +20,7 @@
       <script ף src="datepicker/dist/js/datepicker.min.js"></script>    
       <script src="datepicker/dist/js/i18n/datepicker.en.js"></script> 
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 
       <!-- Bootstrap core CSS -->
@@ -173,7 +176,8 @@
 
     </head>
 
-    <body>
+    <body onload="processUser()">
+
       <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
@@ -209,48 +213,236 @@
       <!-- Page Content -->
       <div class="container">
         <!-- Page Heading/Breadcrumbs -->
-        <h1 class="mt-4 mb-3">Book An Apartment </h1>
+        <h1 class="mt-4 mb-3">Book an Apartment </h1>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a href="index.html">Home</a>
           </li>
-          <li class="breadcrumb-item active">Book An Apartment</li>
+          <li class="breadcrumb-item active">Book an Apartment</li>
         </ol>
-        <!-- Content Row -->
-      <div class="row">
-          <div class="col-lg-6 col-sm-12 portfolio-item">
-              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img class="d-block w-100" src="css/pics/apt01.jpg" alt="Picture 1">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="css/pics/apt02.jpg" alt="Picture 2">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="css/pics/apt03.jpg" alt="Picture 3">
-                  </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </div>
-            </div>
+
+        <hr>
+
+  <?php
+    // ini_set('display_errors',0);
+  $servername="localhost";
+  $username="root";
+  $password="";
+  $dbname="database";
+
+  $conn=new mysqli($servername,$username,$password,$dbname);
+  if ($conn->connect_error)
+  {
+    die("connection failed: ".$conn->connect_error);
+  }
+
+  $id = $_REQUEST["AptID"];
+
+  $sql = "SELECT apartments.AptID, apartments.country,apartments.city,apartments.street, apartments.title, apartments.description,apartments.guestNum, apartments.propertyType,apartments.propertyStyle ,apartments.amenities, apartments.accessibility ,apartments.rules, apt_photos.photoName FROM apartments
+  INNER JOIN apt_photos ON apartments.AptID=apt_photos.AptID
+  WHERE apartments.AptID='$id';
+";
+  
+  $result=$conn->query($sql);
+  $arrPhoto=array();
+  $arrAptStyle=array();
+  $arrAmenities=array();
+  $arrAptRules=array();
+  $arrAccess=array();
+  $i=0;
+  if($result->num_rows>0){
+    while ($row=$result->fetch_assoc())
+    {
+      $photo=$row['photoName'];
+      $arrPhoto[$i]=$photo;
+      $i++;
+
+
+
+      // echo "<img class='img-fluid rounded mb-3 mb-md-0' src='user_data/$photo'/>";
+      $title=($row['title']);
+      $country=($row['country']);
+      $city=($row['city']);
+      $street=($row['street']);
+      $description=($row['description']);
+      $guestNum=$row['guestNum'];
+      $propertyType=$row['propertyType'];
+      $propertyStyle=$row['propertyStyle'];
+      $accessibility=$row['accessibility'];
+      $amenities = $row['amenities'];
+      $rules = $row['rules'];
+
+
+
+    }
+ 
+
+  }
+  $arrAptStyle= explode(',', $propertyStyle);
+  foreach ($arrAptStyle as $key=>$styleItem) {
+    if ($styleItem == 'urban'){
+      $arrAptStyle[$key]='Urban';
+    }
+    if ($styleItem == 'openSpace'){
+      $arrAptStyle[$key]='Open-Space';
+    }
+    if ($styleItem == 'seaView'){
+      $arrAptStyle[$key]='Sea-View';
+    }
+    if ($styleItem == 'countryHouse'){
+      $arrAptStyle[$key]='Country-House';
+    }
+    if ($styleItem == 'forFamilies'){
+     $arrAptStyle[$key]='For-Families';
+    }
+  }
+  
+    $arrAptRules= explode(',', $rules);
+  foreach ($arrAptRules as $key=>$rule) {
+    if ($rule == 'smoking_allowed'){
+      $arrAptRules[$key]='Smoking Allowed';
+    }
+    if ($rule == 'pets_allowed'){
+      $arrAptRules[$key]='Pets Allowed';
+    }
+    if ($rule == 'suitable_for_events'){
+      $arrAptRules[$key]='Suitable For Events';
+    }
+  }
+
+      $arrAccess= explode(',', $accessibility);
+  foreach ($arrAccess as $key=>$accessItem) {
+    if ($accessItem == 'accesible_parking'){
+      $arrAccess[$key]='Accesible Parking';
+    }
+    if ($accessItem == 'wide_corridor'){
+      $arrAccess[$key]='Wide Corridor';
+    }
+    if ($accessItem == 'staircase_free'){
+      $arrAccess[$key]='Staircase Free';
+    }
+        if ($accessItem == 'elivator'){
+      $arrAccess[$key]='Elivator';
+    }
+  }
+
+  $arrAmenities =explode(',', $amenities);
+    foreach ($arrAmenities as $key=>$amenItem) {
+    if ($amenItem == 'WIFI'){
+      $arrAmenities[$key]="<i class='fas fa-wifi'></i> WIFI";
+    }
+    if ($amenItem == 'parking'){
+      $arrAmenities[$key]="<i class='fas fa-parking'></i> Parking";
+    }
+    if ($amenItem == 'balcony'){
+      $arrAmenities[$key]="<i class='fas fa-chess-rook'></i> Balcony";
+    }
+        if ($amenItem == 'pool'){
+      $arrAmenities[$key]="<i class='fas fa-swimming-pool'></i> Pool";
+    }
+    if ($amenItem == 'hot_tub'){
+      $arrAmenities[$key]="<i class='fas fa-hot-tub'></i> Hot-Tub";
+    }
+    if ($amenItem == 'safe'){
+      $arrAmenities[$key]="<i class='fas fa-key'></i> Safe";
+    }
+    if ($amenItem == 'kitchen'){
+      $arrAmenities[$key]="|<i class='fas fa-utensils'></i> Kitchen";
+    }
+        if ($amenItem == 'workspace'){
+      $arrAmenities[$key]="<i class='fas fa-briefcase'></i> Work-space";
+    }
+        if ($amenItem == 'TV'){
+      $arrAmenities[$key]="<i class='fas fa-tv'></i> TV";
+    }
+    if ($amenItem == 'iron'){
+      $arrAmenities[$key]="<i class='fas fa-tshirt'></i> Iron";
+    }
+    if ($amenItem == 'gym'){
+      $arrAmenities[$key]="<i class='fas fa-dumbbell'></i> Gym";
+    }
+        if ($amenItem == 'fire_place'){
+      $arrAmenities[$key]="<i class='fas fa-fire'></i> Fire-Place";
+    }
+    if ($amenItem == 'washing_machine'){
+      $arrAmenities[$key]="<i class='fas fa-tint'></i> Washing-Machine";
+    }
+        if ($amenItem == 'air_conditioner'){
+      $arrAmenities[$key]="<i class='fas fa-snowflake'></i> Air-Conditioner";
+    }
+
+  }
+
+
+
+  $address= $country.' '.$city.' '.$street.' ' ;
+
+  $photo1=$arrPhoto[0];
+  // $photo2=$arrPhoto[1];
+  // $photo3=$arrPhoto[2];
+
+          echo "<div class='row'>";
+         echo  "<div class='col-lg-6 col-sm-12 portfolio-item'>";
+        echo  "<div id='carouselExampleIndicators' class='carousel slide' data-ride='carousel'>";
+        echo "<ol class='carousel-indicators'>";
+         foreach ($arrPhoto as $key=>$item){
+          if ($key==0){
+        echo "<li data-target='#carouselExampleIndicators' data-slide-to='$key' class='active'>";
+        echo "</li>";
+      }
+      else{
+        echo "<li data-target='#carouselExampleIndicators' data-slide-to='$key'>";
+        echo "</li>";
+      }
+      }
+        echo "</ol>";
+        echo "<div class='carousel-inner'>";
+        
+        foreach ($arrPhoto as $key=>$item){
+          if ($key==0){
+            echo "<div class='carousel-item active'>";
+        echo "<img class='d-block w-100' src='user_data/$item' alt='Picture 1'>";
+        echo "</div>";
+
+          }
+          else{
+            echo "<div class='carousel-item'>";
+        echo "<img class='d-block w-100' src='user_data/$item' alt='Picture 2'>";
+        echo "</div>";
+          }
+        
+      }
+        // echo "<div class='carousel-item'>";
+        //   echo "<img class='d-block w-100' src='user_data/$photo2' alt='Picture 3'>";
+        //   echo "</div>";
+          echo "</div>";
+            echo "</div>";
+            echo "</div>";
+      // echo ($title);
+      // echo ($country);
+      // echo ($row['city']);
+
+        // print_r($arrAptStyle);
+
+
+   
+
+
+  ?>
+<form id='frmsbmt' method='post' action='#'>
+        <input type=hidden id="id" name="id">
+
+ </form>
+ <!--         <div id="id"></div>
+
+
+
+ -->        <!-- Content Row -->
+<!--       <div class="row">-->          
+
 
           <div class="col-lg-6 col-sm-12 portfolio-item">
-            <!--<a href="#">
-              <img class="img-fluid rounded mb-3 mb-md-0" src="css/pics/mapPreview.jpg" alt="Location">
-            </a> -->
+            
 
             <!-- ******Google Maps API ********* -->
             <script async defer
@@ -261,7 +453,7 @@
               function initMap() {
                 var map = new google.maps.Map(document.getElementById('map'), {zoom: 14});
                 var geocoder = new google.maps.Geocoder;
-                geocoder.geocode({'address': 'Thai House Tel Aviv'}, function(results, status) {
+                geocoder.geocode({'address': '<?php echo $address ?>'}, function(results, status) {
                   if (status === 'OK') {
                     map.setCenter(results[0].geometry.location);
                     new google.maps.Marker({
@@ -286,18 +478,64 @@
             <div class="col-lg-4 col-sm-12 portfolio-item">
                 <div class="card">
                     <div class="bg-light text-dark">
-                      <h4> Name of apartment</h4>
-                      <h5>Berlin, Germany</h5>
-                      <h6> description description description description description description description description description description description description description description description description description description description description description description description description</h6>
+                      <h4><?php echo $title ?></h4>
+                      <h5><?php echo $city?>, <?php echo $country ?></h5>
+                      <h6> <?php echo $description ?></h6>
                     </div>
                   </div>          
             </div>
           <div class="col-lg-4 col-sm-12 portfolio-item">
                 <div class="card">
                     <div class="bg-light text-dark">
-                    <h6><img src="css/pics/Guests.png" height=30 width=30>&nbsp; 5 Guests </h6>
-                    <h6><img src="css/pics/Villa.jpg" height=30 width=30>&nbsp; Villa </h6>
-                    <h6><img src="css/pics/Dog.png" height=30 width=30>&nbsp; Pets allowed</h6>
+                    <h6><i class="fas fa-users"></i> <?php echo $guestNum ?> Guests </h6>
+                    <h6><i class="fas fa-home"></i> <?php echo $propertyType ?> </h6>
+                      <?php 
+                      if(!empty($arrAptStyle[0])){
+
+                        echo"<h6> <i class='fas fa-umbrella-beach'></i> ";
+                      
+                        foreach ($arrAptStyle as $style){
+                          echo $style;
+                          if (next($arrAptStyle)!=null){
+                          echo ', '; 
+                        } 
+                      }
+                      echo "</h6>";
+                    }
+                      
+                        ?>
+                        
+                     <?php 
+                      if(!empty($arrAptRules[0])){
+                          echo "<h6> <i class='fas fa-ban></i> ";
+
+                      foreach ($arrAptRules as $ruleItem){
+                        echo $ruleItem;
+                        if (next($arrAptRules)!=null){
+                        echo ', '; 
+                      } 
+                    }
+                    
+                    echo "</h6>";
+                  }
+                  ?>
+
+                  <?php
+                      if(!empty($arrAccess[0])){
+                    echo "<h6> <i class='fas fa-wheelchair'></i> " ;
+                      foreach ($arrAccess as $accessItem){
+                        echo $accessItem;
+                        if (next($arrAccess)!=null){
+                        echo ', '; 
+                      } 
+                      }
+                      echo "</h6>";
+                    }
+                    ?>
+                        
+
+
+
                     </div>
                 </div>
           </div>
@@ -305,9 +543,18 @@
           <div class="col-lg-4 col-sm-12 portfolio-item">
               <div class="card">
                   <div class="bg-light text-dark"><h5>Amenities</h5>
-                  <h6><img src="css/pics/WIFI.png" height=25 width=25>&nbsp; WIFI</h6>
-                  <h6><img src="css/pics/TV.png" height=25 width=25>&nbsp; T.V</h6>
-                  <h6><img src="css/pics/Parking.png" height=25 width=25>&nbsp; Parking</h6>
+                  <?php
+                      if(!empty($arrAmenities[0])){
+                    // echo "<h6> <i class='fas fa-wheelchair'></i>" ;
+                      foreach ($arrAmenities as $ameniItem){
+                        echo $ameniItem;
+                        if (next($arrAmenities)!=null){
+                        echo '<br>'; 
+                      } 
+                      }
+                      echo "</h6>";
+                    }
+                    ?>
                   </div>
                 </div>
           </div>
@@ -317,8 +564,68 @@
         <div class="row">
           <div class="col-lg-4 col-sm-12 portfolio-item">
               <div class="card">
+
                   <div class="bg-light text-dark">
                     <h4>Apartment Reviews</h4>
+
+                   <hr style="border:3px solid #f1f1f1">
+                    <div class="row">
+                      <div class="side">
+                        <div>Location</div>
+                      </div>
+                      <div class="middle">
+                        <div class="bar-container">
+                          <div class="bar-5"></div>
+                        </div>
+                      </div>
+                      <div class="side right">
+                        <div>150</div>
+                      </div>
+                      <div class="side">
+                        <div>Cleanliness</div>
+                      </div>
+                      <div class="middle">
+                        <div class="bar-container">
+                          <div class="bar-4"></div>
+                        </div>
+                      </div>
+                      <div class="side right">
+                        <div>63</div>
+                      </div>
+                      <div class="side">
+                        <div>Facilities</div>
+                      </div>
+                      <div class="middle">
+                        <div class="bar-container">
+                          <div class="bar-3"></div>
+                        </div>
+                      </div>
+                      <div class="side right">
+                        <div>15</div>
+                      </div>
+                      <div class="side">
+                        <div>Value for money</div>
+                      </div>
+                      <div class="middle">
+                        <div class="bar-container">
+                          <div class="bar-2"></div>
+                        </div>
+                      </div>
+                      <div class="side right">
+                        <div>6</div>
+                      </div>
+                      <div class="side">
+                        <div>Comfort</div>
+                      </div>
+                      <div class="middle">
+                        <div class="bar-container">
+                          <div class="bar-1"></div>
+                        </div>
+                      </div>
+                      <div class="side right">
+                        <div>20</div>
+                      </div>
+                    </div>
                     <h6> John Lewis 
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
@@ -373,7 +680,7 @@
                     <hr style="border:3px solid #f1f1f1">
                     <div class="row">
                       <div class="side">
-                        <div>5 star</div>
+                        <div>Location</div>
                       </div>
                       <div class="middle">
                         <div class="bar-container">
@@ -384,7 +691,7 @@
                         <div>150</div>
                       </div>
                       <div class="side">
-                        <div>4 star</div>
+                        <div>Cleanliness</div>
                       </div>
                       <div class="middle">
                         <div class="bar-container">
@@ -395,7 +702,7 @@
                         <div>63</div>
                       </div>
                       <div class="side">
-                        <div>3 star</div>
+                        <div>Facilities</div>
                       </div>
                       <div class="middle">
                         <div class="bar-container">
@@ -406,7 +713,7 @@
                         <div>15</div>
                       </div>
                       <div class="side">
-                        <div>2 star</div>
+                        <div>Value for money</div>
                       </div>
                       <div class="middle">
                         <div class="bar-container">
@@ -417,7 +724,7 @@
                         <div>6</div>
                       </div>
                       <div class="side">
-                        <div>1 star</div>
+                        <div>Comfort</div>
                       </div>
                       <div class="middle">
                         <div class="bar-container">
@@ -462,6 +769,18 @@
       <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
       <script src="js/jqBootstrapValidation.js"></script>
       <script src="js/contact_me.js"></script>
+      <script type="text/javascript">
+        function processUser()
+        {
+          var parameters = location.search.substring(1).split("&");
+          var temp = parameters[0].split("=");
+          id = unescape(temp[1]);
+      
+          document.getElementById("id").value = id;
+          
+        }
+
+      </script>
 
     </body>
 

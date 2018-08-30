@@ -176,7 +176,7 @@
       <span class="step"></span>
     </div>
 
-    <form name="sentMessage" id="newApartForm"  novalidate action="PHP/insertApartment.php" method="POST" >
+    <form name="sentMessage" id="newApartForm" enctype="multipart/form-data" novalidate action="PHP/insertApartment.php" method="POST" >
 <!--       id="contactForm"  
 --> <div class="tab">
   <div class="row">
@@ -487,7 +487,8 @@
      <!-- </div> -->
          
          <!-- <button style="width:30%; font-size:12px; margin:3px;" type="button" onclick="convertRangeToDates()">Insert date range</button> -->
-
+<?php 
+      $userID=$_REQUEST['userID']; ?>
 
         <input id="sd" name="sd" hidden />
         <input id="ed" name="ed" hidden/> 
@@ -500,6 +501,9 @@
         <input id="sd4" name="sd4" hidden />
         <input id="ed4" name="ed4" hidden/> 
 
+        <input id="userID" name="userID" value='<?php echo $userID ?>'hidden/>
+    
+      
   
      <!-- <button type="button" onclick="addAvailability()"> Add date range:  </button>   -->
 

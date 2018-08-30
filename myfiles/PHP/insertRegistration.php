@@ -52,7 +52,7 @@ else
 	VALUES ('$userID', '$Fname', '$Lname' , '$email', '$pass', '$phone', '$country', '$city', '$street', '$aptNum', '$zipCode', '$userTripType', '$userAmeni', '$userReq' , '$userAcces')";
 
 	if ($conn->query($sql) === TRUE) {
-		    header("Location:..\sendPage.html");
+		    header("Location:..\sendPage.php?userID=$userID");
 			
 	} else {
 	    echo "Error: " . $sql . "<br>" . $conn->error;

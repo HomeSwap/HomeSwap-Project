@@ -35,7 +35,7 @@ $imageData = array();
 if(isset($_FILES['files'])){
     $errors= array();
     foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
-        $file_name = $key.$_FILES['files']['name'][$key];
+        $file_name = $_FILES['files']['name'][$key];
         $file_tmp =$_FILES['files']['tmp_name'][$key];
         if($file_size > 2097152){
             $errors[]='File size must be less than 2 MB';
@@ -58,20 +58,79 @@ if(isset($_FILES['files'])){
         }else{
                 print_r($errors);
         }
+        $AptId =76;
+        $query="INSERT into apt_photos (photoName, AptID) VALUES('$file_name', '$AptId'); ";
+
+    ($conn->query($query)); 
     }
-    if(empty($error)){
-        //echo "Success";
-        //print_r($imageData);
-        //echo sizeof($imageData);
-        //for($i=0;$i<sizeof($imageData);$i++){
-        //  echo $imageData[$i];            
-        //}
-        $imgDt = implode("|", $imageData);
-        //$query="INSERT into apt_photos (`photoName`) VALUES('$imgDt'); ";
-        // mysql_query($query); 
-        $query="INSERT into apt_photos (`photoName`) VALUES('$file_name'); ";
-    }
+    // if(empty($error)){
+    //     //echo "Success";
+    //     //print_r($imageData);
+    //     //echo sizeof($imageData);
+    //     //for($i=0;$i<sizeof($imageData);$i++){
+    //     //  echo $imageData[$i];            
+    //     //}
+    //     $imgDt = implode("|", $imageData);
+    //     //$query="INSERT into apt_photos (`photoName`) VALUES('$imgDt'); ";
+    //     // mysql_query($query); 
+    //     $AptId =77;
+    //     $query="INSERT into apt_photos (photoName, AptID) VALUES('$file_name', '$AptId'); ";
+    // }
 }
+
+
+// if ($conn->query($query) === TRUE) {
+//     echo ("good!");
+//     //$photoID = $conn->insert_id;
+
+// } else {
+//     echo "Error: " . $query . "<br>" . $conn->error;
+// }
+
+
+
+
+$query1="SELECT * FROM apt_photos";
+
+if ($conn->query($query1) === TRUE) {
+    echo ("good2!");
+} else {
+    echo "Error: " . $query1 . "<br>" . $conn->error;
+}
+
+
+
+$count=0;
+$source=array();
+$j=0;
+$result = mysqli_query($conn, $query1);
+// print_r(mysqli_fetch_row($result));
+$row = mysqli_fetch_row($result);
+// echo ("row:");
+// echo $row[0];
+echo "<br/>";
+echo "<br/>";
+//print_r(explode("|", $row[0]));
+while ($row=$result->fetch_assoc()){
+    $source[$j] = $row['photoName'];
+    // $source  $row['photoName']);
+    // echo $row['photoName'];
+    $count++;
+    $j++;
+}
+
+//print_r($source);
+
+//echo("count: ");
+//echo ($count);
+//echo count($source);
+for($i = 0; $i < $count; $i++){
+  // echo ("source[i]:");
+   //echo $source[$i];
+   echo "<img height='20%' width='20%' src='user_data/$source[$i]'/>";
+   echo "<br>";
+}
+
 // $query1 = "SELECT  `FILE_NAME` 
 // FROM  `apt_photos` 
 // WHERE id =29";
