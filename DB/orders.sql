@@ -2,10 +2,10 @@
 -- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 14, 2018 at 11:32 AM
+-- Host: localhost
+-- Generation Time: Sep 06, 2018 at 08:57 AM
 -- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.7
+-- PHP Version: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,7 +34,9 @@ CREATE TABLE `orders` (
   `EndDate` date NOT NULL,
   `status` enum('Approved','Waiting','Rejected','') COLLATE utf8_bin NOT NULL,
   `AptID` int(11) NOT NULL,
-  `userID` int(11) NOT NULL
+  `userID` int(11) NOT NULL,
+  `RequesterID` int(11) NOT NULL,
+  `RequesterAptID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -57,7 +59,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `orderID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Constraints for dumped tables

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2018 at 02:13 PM
+-- Generation Time: Aug 14, 2018 at 03:09 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -30,19 +30,29 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `users` (
   `userID` int(10) NOT NULL,
-  `Fname` varchar(20) NOT NULL,
-  `Lname` varchar(20) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `Fname` varchar(20) COLLATE utf8_bin NOT NULL,
+  `Lname` varchar(20) COLLATE utf8_bin NOT NULL,
+  `email` varchar(50) COLLATE utf8_bin NOT NULL,
+  `password` varchar(20) COLLATE utf8_bin NOT NULL,
   `phone` int(20) NOT NULL,
-  `counrty` varchar(30) NOT NULL,
-  `city` varchar(30) NOT NULL,
-  `street` varchar(30) NOT NULL,
+  `country` varchar(30) COLLATE utf8_bin NOT NULL,
+  `city` varchar(30) COLLATE utf8_bin NOT NULL,
+  `street` varchar(30) COLLATE utf8_bin NOT NULL,
   `aptNum` int(5) NOT NULL,
   `zipCode` int(10) NOT NULL,
-  `tripType` set('Sea view','Urban','Country house','Open space','For families') NOT NULL,
+  `tripType` varchar(200) COLLATE utf8_bin NOT NULL,
+  `amenities` varchar(200) COLLATE utf8_bin NOT NULL,
+  `accessibilityNeeds` varchar(200) COLLATE utf8_bin NOT NULL,
+  `requests` varchar(200) COLLATE utf8_bin NOT NULL,
   `avgRate` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`userID`, `Fname`, `Lname`, `email`, `password`, `phone`, `country`, `city`, `street`, `aptNum`, `zipCode`, `tripType`, `amenities`, `accessibilityNeeds`, `requests`, `avgRate`) VALUES
+(3, '3', '3', '3', '3', 3, '3', '3', '3', 3, 3, 'seaView', 'pool', 'elivator', 'smoking_allowed', 0);
 
 --
 -- Indexes for dumped tables

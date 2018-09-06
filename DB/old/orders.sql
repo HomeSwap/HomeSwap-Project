@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2018 at 02:13 PM
+-- Generation Time: Aug 14, 2018 at 11:32 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -30,11 +30,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `orders` (
   `orderID` int(10) NOT NULL,
-  `userID` int(10) NOT NULL,
   `StartDate` date NOT NULL,
   `EndDate` date NOT NULL,
-  `Status` enum('Approved','Waiting','Rejected','') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` enum('Approved','Waiting','Rejected','') COLLATE utf8_bin NOT NULL,
+  `AptID` int(11) NOT NULL,
+  `userID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Indexes for dumped tables
@@ -44,7 +45,9 @@ CREATE TABLE `orders` (
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`orderID`);
+  ADD PRIMARY KEY (`orderID`),
+  ADD KEY `AptID` (`AptID`),
+  ADD KEY `userID` (`userID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -55,6 +58,17 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `orders`
   MODIFY `orderID` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`AptID`) REFERENCES `apartments` (`AptID`),
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -2,10 +2,10 @@
 -- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 14, 2018 at 11:31 AM
+-- Host: localhost
+-- Generation Time: Sep 06, 2018 at 08:57 AM
 -- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.7
+-- PHP Version: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -40,10 +40,21 @@ CREATE TABLE `apt_availability` (
 --
 
 INSERT INTO `apt_availability` (`dateID`, `StartDate`, `EndDate`, `AptID`) VALUES
-(5, '2018-12-23', '2018-12-29', 41),
-(6, '2018-08-26', '2018-08-31', 42),
-(7, '2018-08-19', '2018-08-25', 43),
-(8, '2019-01-20', '2019-01-26', 44);
+(90, '2018-08-12', '2018-08-17', 100),
+(151, '2018-09-16', '2018-09-22', 102),
+(153, '2018-09-16', '2018-09-22', 102),
+(154, '2018-09-16', '2018-09-22', 103),
+(156, '2018-09-17', '2018-09-21', 105),
+(157, '2018-10-21', '2018-10-27', 105),
+(158, '2018-09-23', '2018-09-25', 105),
+(163, '2018-09-16', '2018-09-22', 101),
+(164, '2018-09-16', '2018-09-22', 104),
+(165, '2018-09-16', '2018-09-22', 101),
+(166, '2018-09-16', '2018-09-22', 104),
+(167, '2018-09-16', '2018-09-19', 101),
+(168, '2018-09-16', '2018-09-19', 102),
+(169, '2018-09-16', '2018-09-19', 101),
+(170, '2018-09-16', '2018-09-19', 102);
 
 --
 -- Indexes for dumped tables
@@ -64,7 +75,7 @@ ALTER TABLE `apt_availability`
 -- AUTO_INCREMENT for table `apt_availability`
 --
 ALTER TABLE `apt_availability`
-  MODIFY `dateID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `dateID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
 
 --
 -- Constraints for dumped tables

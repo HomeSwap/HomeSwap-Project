@@ -2,10 +2,10 @@
 -- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 14, 2018 at 11:31 AM
+-- Host: localhost
+-- Generation Time: Sep 06, 2018 at 08:56 AM
 -- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.7
+-- PHP Version: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -35,42 +35,29 @@ CREATE TABLE `apartments` (
   `street` varchar(30) COLLATE utf8_bin NOT NULL,
   `aptNum` int(5) NOT NULL,
   `zipCode` int(10) NOT NULL,
-  `title` varchar(30) COLLATE utf8_bin NOT NULL,
-  `description` varchar(200) COLLATE utf8_bin NOT NULL,
+  `title` varchar(100) COLLATE utf8_bin NOT NULL,
+  `description` varchar(400) COLLATE utf8_bin NOT NULL,
   `guestNum` int(11) NOT NULL,
   `propertyType` enum('Villa','Apartment','Condominium','Loft') COLLATE utf8_bin NOT NULL,
   `propertyStyle` varchar(200) COLLATE utf8_bin NOT NULL,
   `amenities` varchar(200) COLLATE utf8_bin NOT NULL,
   `accessibility` varchar(200) COLLATE utf8_bin NOT NULL,
   `rules` varchar(200) COLLATE utf8_bin NOT NULL,
-  `avgRate` float NOT NULL
+  `avgRate` float NOT NULL,
+  `userID` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `apartments`
 --
 
-INSERT INTO `apartments` (`AptID`, `country`, `city`, `street`, `aptNum`, `zipCode`, `title`, `description`, `guestNum`, `propertyType`, `propertyStyle`, `amenities`, `accessibility`, `rules`, `avgRate`) VALUES
-(1, 'Spain', 'madrid', 'kohones 9', 99, 0, 'titelos', 'doscriptionos', 6, 'Villa', '', '', '', '', 0),
-(2, 'kukaracha', 'chacha', 'kuku', 2, 12, '121212', '343434', 6, 'Loft', '', '', '', '', 0),
-(12, 'france', 'paris', 'shanz elize', 34, 1234, 'ohhh', 'shanz elize', 55, 'Loft', '', 'WIFI,hot_tub,workspace,fire_place,washing_machine', '', '', 0),
-(13, 's', 's', 's', 3, 3, 'd', 'd', 3, 'Condominium', '', 'WIFI,pool', 'wide_corridor,elivator', 'smoking_allowed,suitable_for_events', 0),
-(14, 'Israel', 'Rosh-pina', 'pina 3', 45, 345, 'koteret', 'tiur', 3, 'Villa', '', 'WIFI,safe', 'wide_corridor', 'smoking_allowed', 0),
-(15, 'bomba', 'bumbum', 'bumi', 3, 3, 't', 'd', 4, 'Villa', '', '', 'accesible_parking', 'pets_allowed', 0),
-(17, 'hello', 'byebye', 'shalom', 3, 3, 't', 'd', 4, 'Villa', '', 'WIFI', 'wide_corridor', 'smoking_allowed', 0),
-(23, 'Israel', 'rosh aayin', '23 dragot st.', 2, 48580, '', '', 2, 'Villa', '', '', '', '', 0),
-(31, 'bella', 'chaw', 'bella', 3, 3, '', '', 3, 'Villa', 'seaView', 'washing_machine,air_conditioner', 'wide_corridor', 'suitable_for_events', 0),
-(34, 'spain', 'barcellona', 'd', 3, 3, '3', '3', 3, 'Villa', 'seaView', 'kitchen', 'wide_corridor', 'suitable_for_events', 0),
-(35, 'russia', 'moscow', '23 dragot st.', 12, 48580, '', '', 3, 'Villa', 'countryHouse', 'kitchen', '', 'suitable_for_events', 0),
-(36, 'russia', 'moscow', '23 dragot st.', 12, 48580, '', '', 3, 'Villa', 'countryHouse', 'kitchen', '', 'suitable_for_events', 0),
-(37, 'israel', '3', '3', 3, 3, '', '', 3, 'Villa', 'seaView,countryHouse', '', '', '', 0),
-(38, 'r', 'r', 'r', 4, 4, '', '', 3, 'Villa', '', '', '', '', 0),
-(39, 'r', 'r', 'r', 4, 4, '', '', 3, 'Villa', '', '', '', '', 0),
-(40, 'r', 'r', 'r', 4, 4, '', '', 3, 'Villa', '', '', '', '', 0),
-(41, 'r', 'r', 'r', 4, 4, '', '', 3, 'Villa', '', '', '', '', 0),
-(42, 'jim', 'Eldad', 'corem', 2, 2, '', '', 2, 'Villa', 'countryHouse', '', '', '', 0),
-(43, 'rr', '4fr', '4', 4, 4, '', '', 3, 'Villa', 'seaView,countryHouse', 'WIFI,pool', 'wide_corridor', 'smoking_allowed', 0),
-(44, 'rr', '4fr', '4', 4, 4, '', '', 3, 'Villa', 'seaView,countryHouse', 'WIFI,pool', 'wide_corridor', 'smoking_allowed', 0);
+INSERT INTO `apartments` (`AptID`, `country`, `city`, `street`, `aptNum`, `zipCode`, `title`, `description`, `guestNum`, `propertyType`, `propertyStyle`, `amenities`, `accessibility`, `rules`, `avgRate`, `userID`) VALUES
+(100, 'ffgg', 'vgtgt', 'tgt', 66, 0, 'Great apartment in city center', 'hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello', 3, 'Villa', 'urban,openSpace,seaView', 'balcony,washing_machine, safe, iron, TV, WIFI', 'elivator,accesible_parking', 'smoking_allowed, suitable_for_events', 0, 8888880),
+(101, 'Brazil', 'Rio-de jenero', 'kopa kabana 3', 24, 12345, 'Most amazing place in the middle of kopa kabana! come to stay and enjoy the sun and lovely beaches!!', 'The most amazing place, fitted for accommodation. equipped to all needs. pretty and comfortable place. come and stay at my place :-) your more than welcome to coma and stay here. The most amazing place, fitted for accommodation. equipped to all needs. pretty and comfortable place. come and stay at my place :-) your more than welcome to coma and stay here. see you soon in kopa kabana!!!!!!!!!!!!!!', 2, 'Apartment', 'seaView,countryHouse,forFamilies', 'WIFI,balcony,pool,hot_tub,safe,kitchen,workspace,TV,gym,fire_place,air_conditioner', 'staircase_free,accesible_parking', 'pets_allowed,suitable_for_events', 0, 549547642),
+(102, 'Israel', 'Tel aviv', 'Bugrashov 20', 3, 0, 'Amazing apartment near the beach!!!', 'ziv!!!!! :-)', 2, 'Loft', 'countryHouse', 'pool,hot_tub,workspace,iron', 'staircase_free', 'smoking_allowed', 0, 987656789),
+(103, 'Israel', 'Rosh-haayin', 'Dragot 23', 4, 0, 'The most regular place you could ever visit', 'I dont recommend to come visit my place. Rosh-haayin is a boring city.', 2, 'Apartment', 'urban,openSpace', 'balcony,pool,hot_tub,safe,iron', 'staircase_free,accesible_parking', 'smoking_allowed', 0, 305641276),
+(104, 'Israel', 'Tel aviv', 'aliyat hanoar', 17, 0, 'Very nice place - come visit!', 'In the middle of tel-aviv (givatayim) - lies little piece of urban heaven!', 2, 'Villa', 'urban', 'hot_tub', 'wide_corridor', 'smoking_allowed', 0, 203018791),
+(105, 'Israel', 'ramat-hasharon', 'Rotchild', 3, 0, 'Very snob place in ramat hasharon', 'come and stay in our pretty place', 2, 'Villa', 'urban,forFamilies', 'gym,fire_place,washing_machine,air_conditioner', 'accesible_parking', 'pets_allowed', 0, 6666666);
 
 --
 -- Indexes for dumped tables
@@ -80,7 +67,8 @@ INSERT INTO `apartments` (`AptID`, `country`, `city`, `street`, `aptNum`, `zipCo
 -- Indexes for table `apartments`
 --
 ALTER TABLE `apartments`
-  ADD PRIMARY KEY (`AptID`);
+  ADD PRIMARY KEY (`AptID`),
+  ADD KEY `userID` (`userID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -90,7 +78,17 @@ ALTER TABLE `apartments`
 -- AUTO_INCREMENT for table `apartments`
 --
 ALTER TABLE `apartments`
-  MODIFY `AptID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `AptID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `apartments`
+--
+ALTER TABLE `apartments`
+  ADD CONSTRAINT `apartments_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
