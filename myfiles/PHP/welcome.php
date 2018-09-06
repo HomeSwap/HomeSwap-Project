@@ -1,5 +1,7 @@
 <?php
 
+// $userID=$_REQUEST['userID'];
+
 	$email=$_POST['email'];
 	$pass=$_POST['password'];
 
@@ -33,9 +35,11 @@ $rows = mysqli_fetch_array($result);
 
 
 if ($rows){
+
 	if($rows["password"] == $pass){
+    $userID=$rows["userID"];
 		$error = "";
-		$success = "Welcome ".$rows["Fname"]."!";
+		$success = "Welcome, ".$rows["Fname"]."";
 		$msgHome = "Logout";	
 	}
 	else{
@@ -521,30 +525,33 @@ iframe {
     <!-- Navigation -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="..\indexUser.html">HomeSwap</a>
+      <a class="navbar-brand" href="..\indexUser.php?userID=<?php echo $userID ?>">HomeSwap</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">       
-          <li class="nav-item">
+<!--           <li class="nav-item">
             <a class="nav-link" href="newApartment.html">New apartment</a>
-          </li>          
+          </li>       -->    
           <li class="nav-item">
-            <a class="nav-link" href="Search.html">search</a>
+            <a class="nav-link" href="..\Search.php?userID=<?php echo $userID ?>">Search</a>
           </li>
-          <li class="nav-item">
+<!--           <li class="nav-item">
             <a class="nav-link" href="SearchResults.html">search Results</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="BookApartment.html">book Apartment</a>
-          </li>
+          </li> -->
+<!--           <li class="nav-item">
+            <a class="nav-link" href="BookApartment.html">Book Apartment</a>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="Orders.html">My Orders</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="..\GoogleLogin/Logout.php">Logout</a>
           </li>
+            <li class="nav-item active">
+            <a href="#" class="nav-link" style="color:#6ed7e6;">&nbsp;&nbsp;<?php echo $success; ?> </a>
+            </li>
         </ul>
       </div>
     </div>

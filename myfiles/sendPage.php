@@ -46,37 +46,40 @@ body{
 
   <body>
 
-    <!-- Navigation -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">HomeSwap</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-         <li class="nav-item">
+  <!-- Navigation -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+       <a class="navbar-brand" href="index.php"><img src="css/pics/HomeSwapLogo.png" height=39px; width=39px;> &nbsp;HomeSwap</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
             <a class="nav-link" href="Registration.html">Register</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="GoogleLogin/Login.php">Login</a>
           </li>
+                      <li class="nav-item active">
+            <a href="#" class="nav-link" style="color:#B39CD0;">&nbsp;&nbsp;Welcome, Guest!</a>
+            </li>
 <!--           <li class="nav-item">
             <a class="nav-link" href="newApartment.html">New apartment</a>
           </li>      -->     
-          <li class="nav-item">
+<!--           <li class="nav-item">
             <a class="nav-link" href="Search.html">search</a>
-          </li>
-          <li class="nav-item">
+          </li> -->
+<!--           <li class="nav-item">
             <a class="nav-link" href="SearchResults.html">search Results</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="BookApartment.html">book Apartment</a>
-          </li>
-          </ul>
-        </div>
+          </li> -->
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
 
 <div class="container center" style="padding:128px 16px">

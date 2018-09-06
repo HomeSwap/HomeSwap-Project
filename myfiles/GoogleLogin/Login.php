@@ -1,8 +1,11 @@
 <?php
+
+// $userID=$_REQUEST['userID'];
+
     require_once "config.php";
 
   if (isset($_SESSION['access_token'])) {
-    header('Location: ../indexUser.html');
+    header('Location: ../indexUser.php');
     exit();
   }
 
@@ -489,7 +492,7 @@ iframe {
     <!-- Navigation -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="..\index.html">HomeSwap</a>
+      <a class="navbar-brand" href="..\indexUser.php?userID=<?php echo $userID?>"><img src="css/pics/HomeSwapLogo.png" height=39px; width=39px;> &nbsp; HomeSwap</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

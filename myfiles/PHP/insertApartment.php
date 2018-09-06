@@ -110,15 +110,15 @@ if(isset($_FILES['apartPhotos'])){
         
         array_push($imageData, $file_name);
        
-        $desired_dir="user_data";
+        $desired_dir="../user_data";
         if(empty($errors)==true){
             if(is_dir($desired_dir)==false){
                 mkdir("$desired_dir", 0700);        // Create directory if it does not exist
             }
             if(is_dir("$desired_dir/".$file_name)==false){
-                move_uploaded_file($file_tmp,"user_data/".$file_name);
+                move_uploaded_file($file_tmp,"../user_data/".$file_name);
             }else{                                  //rename the file if another one exist
-                $new_dir="user_data/".$file_name.time();
+                $new_dir="../user_data/".$file_name.time();
                  rename($file_tmp,$new_dir) ;               
             }
                     
@@ -144,8 +144,7 @@ if(isset($_FILES['apartPhotos'])){
 }
 
 if ($bool){
-	echo "hi";
-	// header("Location:..\sendPage2.html");
+	header("Location:..\GoogleLogin/Login.php");
 } else {
 	echo "Error: " . $sql . "<br>" . $conn->error;
 	echo "Error: " . $query . "<br>" . $conn->error;

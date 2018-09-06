@@ -1,4 +1,38 @@
+<?php
 
+$userID=$_REQUEST['userID'];
+
+
+$servername="localhost";
+$username="root";
+$password="";
+$dbname="database";
+
+$sql = "SELECT Fname from users where userID = '$userID'";  
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+// $conn = mysqli_connect($servername, $username, $password);
+// if(!$conn){
+//  $error = "Error connecting database...";
+// }
+
+//mysqli_select_db($conn,$dbname);
+
+$result = mysqli_query($conn,$sql);
+$rows = mysqli_fetch_array($result);
+
+
+if ($rows){
+  $fname=$rows['Fname'];
+}
+
+$conn->close();
+
+?>
 
   <!DOCTYPE html>
   <html lang="en">
@@ -76,7 +110,7 @@
       float: left;
       width: 15%;
       margin-top:10px;
-      padding-left: 12px;
+      padding-left: 8px;
   }
   .middle {
       margin-top:10px;
@@ -85,6 +119,7 @@
   }
   .right {
       text-align: right;
+      padding-left:10%;
   }
   .row:after {
       content: "";
@@ -92,17 +127,20 @@
       clear: both;
   }
   .bar-container {
-      width: 80%;
+      width: 100%;
       background-color: #f1f1f1;
       text-align: center;
       color: white;
   }
+  #btnFacebook{
+    color:#ffffff !important;
+  }
 
-  .bar-5 {width: 60%; height: 18px; background-color: #4CAF50;}
-  .bar-4 {width: 30%; height: 18px; background-color: #2196F3;}
-  .bar-3 {width: 10%; height: 18px; background-color: #00bcd4;}
-  .bar-2 {width: 4%; height: 18px; background-color: #ff9800;}
-  .bar-1 {width: 15%; height: 18px; background-color: #f44336;}
+  .bar-5 {width: 80%; height: 18px; background-color: #4CAF50;}
+  .bar-4 {width: 40%; height: 18px; background-color: #2196F3;}
+  .bar-3 {width: 15%; height: 18px; background-color: #00bcd4;}
+  .bar-2 {width: 7%; height: 18px; background-color: #ff9800;}
+  .bar-1 {width: 30%; height: 18px; background-color: #f44336;}
 
         #map {
           height: 100%;
@@ -147,68 +185,155 @@
           display: none;
       }
   }
+  a{
+    text-decoration: none;
+  }
+
+  .progress {
+height: 20px;
+margin-bottom: 20px;
+overflow: hidden;
+background-color: #f5f5f5;
+border-radius: 4px;
+-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+.progress {
+background-image: -webkit-gradient(linear,left 0,left 100%,from(#ebebeb),to(#f5f5f5));
+background-image: -webkit-linear-gradient(top,#ebebeb 0,#f5f5f5 100%);
+background-image: -moz-linear-gradient(top,#ebebeb 0,#f5f5f5 100%);
+background-image: linear-gradient(to bottom,#ebebeb 0,#f5f5f5 100%);
+background-repeat: repeat-x;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffebebeb',endColorstr='#fff5f5f5',GradientType=0);
+}
+.progress {
+height: 12px;
+background-color: #ebeef1;
+background-image: none;
+box-shadow: none;
+}
+.progress-bar {
+float: left;
+width: 0;
+height: 100%;
+font-size: 12px;
+line-height: 20px;
+color: #fff;
+text-align: center;
+background-color: #428bca;
+-webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
+box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
+-webkit-transition: width .6s ease;
+transition: width .6s ease;
+}
+.progress-bar {
+background-image: -webkit-gradient(linear,left 0,left 100%,from(#428bca),to(#3071a9));
+background-image: -webkit-linear-gradient(top,#428bca 0,#3071a9 100%);
+background-image: -moz-linear-gradient(top,#428bca 0,#3071a9 100%);
+background-image: linear-gradient(to bottom,#428bca 0,#3071a9 100%);
+background-repeat: repeat-x;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca',endColorstr='#ff3071a9',GradientType=0);
+}
+.progress-bar {
+box-shadow: none;
+border-radius: 3px;
+background-color: #0090D9;
+background-image: none;
+-webkit-transition: all 1000ms cubic-bezier(0.785, 0.135, 0.150, 0.860);
+-moz-transition: all 1000ms cubic-bezier(0.785, 0.135, 0.150, 0.860);
+-ms-transition: all 1000ms cubic-bezier(0.785, 0.135, 0.150, 0.860);
+-o-transition: all 1000ms cubic-bezier(0.785, 0.135, 0.150, 0.860);
+transition: all 1000ms cubic-bezier(0.785, 0.135, 0.150, 0.860);
+-webkit-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+-moz-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+-ms-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+-o-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+}
+.progress-bar-success {
+background-image: -webkit-gradient(linear,left 0,left 100%,from(#5cb85c),to(#449d44));
+background-image: -webkit-linear-gradient(top,#5cb85c 0,#449d44 100%);
+background-image: -moz-linear-gradient(top,#5cb85c 0,#449d44 100%);
+background-image: linear-gradient(to bottom,#5cb85c 0,#449d44 100%);
+background-repeat: repeat-x;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c',endColorstr='#ff449d44',GradientType=0);
+}
+.progress-bar-success {
+background-color: #0AA699;
+background-image: none;
+}
+.progress-bar-info {
+background-image: -webkit-gradient(linear,left 0,left 100%,from(#5bc0de),to(#31b0d5));
+background-image: -webkit-linear-gradient(top,#5bc0de 0,#31b0d5 100%);
+background-image: -moz-linear-gradient(top,#5bc0de 0,#31b0d5 100%);
+background-image: linear-gradient(to bottom,#5bc0de 0,#31b0d5 100%);
+background-repeat: repeat-x;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de',endColorstr='#ff31b0d5',GradientType=0);
+}
+.progress-bar-info {
+background-color: #0090D9;
+background-image: none;
+}
+.progress-bar-warning {
+background-image: -webkit-gradient(linear,left 0,left 100%,from(#f0ad4e),to(#ec971f));
+background-image: -webkit-linear-gradient(top,#f0ad4e 0,#ec971f 100%);
+background-image: -moz-linear-gradient(top,#f0ad4e 0,#ec971f 100%);
+background-image: linear-gradient(to bottom,#f0ad4e 0,#ec971f 100%);
+background-repeat: repeat-x;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff0ad4e',endColorstr='#ffec971f',GradientType=0);
+}
+.progress-bar-warning {
+background-color: #FDD01C;
+background-image: none;
+}
+.progress-bar-danger {
+background-image: -webkit-gradient(linear,left 0,left 100%,from(#d9534f),to(#c9302c));
+background-image: -webkit-linear-gradient(top,#d9534f 0,#c9302c 100%);
+background-image: -moz-linear-gradient(top,#d9534f 0,#c9302c 100%);
+background-image: linear-gradient(to bottom,#d9534f 0,#c9302c 100%);
+background-repeat: repeat-x;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9534f',endColorstr='#ffc9302c',GradientType=0);
+}
+.progress-bar-danger {
+background-color: #F35958;
+background-image: none;
+}
 
     </style>
 
-   <script type="text/javascript">
-      function getUrlFacebook()
-      {
-        var link ="https://www.facebook.com/search/str/";
-        var firstName = "ziv"; //first name of user
-        var lastName = "cohen" //last name of user
-        var newLink = link+firstName+"+"+lastName+"/keywords_search";
-        return newLink;
-        // this code open in new link but the current page shows an error:
-        // window.open(newLink, '_blank'); 
-      }
-      function getUrlGoogle()
-      {
-        var link ="http://www.google.com/search?q=";
-        var firstName = "ziv"; //first name of user
-        var lastName = "cohen" //last name of user
-        var newLink = link+firstName+"+"+lastName;
-        return newLink;
-        // this code open in new link but the current page shows an error:
-        // window.open(newLink, '_blank'); 
-      }
 
-  </script>
 
     </head>
 
     <body onload="processUser()">
 
-      <!-- Navigation -->
+  <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">HomeSwap</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="Registration.html">Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="Login.html">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="newApartment.html">New apartment</a>
-            </li>          
-            <li class="nav-item">
-              <a class="nav-link" href="Search.html">search</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="SearchResults.html">search Results</a>
-            </li>
+    <div class="container">
+      <a class="navbar-brand" href="indexUser.php?userID=<?php echo $userID ?>"><img src="css/pics/HomeSwapLogo.png" height=39px; width=39px;> &nbsp; HomeSwap</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+      
+          <li class="nav-item">
+            <a class="nav-link" href="Search.php?userID=<?php echo $userID ?>">Search For Apartment</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href='Orders.php?userID=<?php echo $userID?>'>My Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="GoogleLogin/Logout.php">Logout</a>
+          </li>
             <li class="nav-item active">
-              <a class="nav-link" href="BookApartment.html">book Apartment</a>
+            <a href="#" class="nav-link" style="color:#B39CD0;">&nbsp;&nbsp;Welcome, <?php echo $fname; ?> </a>
             </li>
-          </ul>
-        </div>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
       <!-- Page Content -->
       <div class="container">
@@ -236,11 +361,16 @@
     die("connection failed: ".$conn->connect_error);
   }
 
-  $id = $_REQUEST["AptID"];
+  $AptID = $_REQUEST["AptID"];
+  $RequesterID=$_REQUEST["userID"];
+  $newStartDate=$_REQUEST["StartDate"];
+  $newEndDate=$_REQUEST["EndDate"];
+  
 
-  $sql = "SELECT apartments.AptID, apartments.country,apartments.city,apartments.street, apartments.title, apartments.description,apartments.guestNum, apartments.propertyType,apartments.propertyStyle ,apartments.amenities, apartments.accessibility ,apartments.rules, apt_photos.photoName FROM apartments
+  $sql = "SELECT apartments.AptID, apartments.country,apartments.city,apartments.street, apartments.title, apartments.description,apartments.guestNum, apartments.propertyType,apartments.propertyStyle ,apartments.amenities, apartments.accessibility ,apartments.rules,apartments.userID, apt_photos.photoName, users.Fname, users.Lname, users.email, users.phone, users.usersCountry, users.usersCity FROM apartments
   INNER JOIN apt_photos ON apartments.AptID=apt_photos.AptID
-  WHERE apartments.AptID='$id';
+  INNER JOIN users ON apartments.userID=users.userID
+  WHERE apartments.AptID='$AptID'
 ";
   
   $result=$conn->query($sql);
@@ -271,6 +401,15 @@
       $accessibility=$row['accessibility'];
       $amenities = $row['amenities'];
       $rules = $row['rules'];
+      $userID=$row['userID'];
+
+      $fname=$row['Fname'];
+      $lname=$row['Lname'];
+      $email=$row['email'];
+      $phone=$row['phone'];
+      $userCountry=$row['usersCountry'];
+      $userCity=$row['usersCity'];
+
 
 
 
@@ -278,6 +417,7 @@
  
 
   }
+
   $arrAptStyle= explode(',', $propertyStyle);
   foreach ($arrAptStyle as $key=>$styleItem) {
     if ($styleItem == 'urban'){
@@ -382,7 +522,7 @@
   // $photo3=$arrPhoto[2];
 
           echo "<div class='row'>";
-         echo  "<div class='col-lg-6 col-sm-12 portfolio-item'>";
+         echo  "<div class='col-lg-8 col-sm-12 portfolio-item'>";
         echo  "<div id='carouselExampleIndicators' class='carousel slide' data-ride='carousel'>";
         echo "<ol class='carousel-indicators'>";
          foreach ($arrPhoto as $key=>$item){
@@ -425,10 +565,11 @@
         // print_r($arrAptStyle);
 
 
-   
-
 
   ?>
+
+
+
 <form id='frmsbmt' method='post' action='#'>
         <input type=hidden id="id" name="id">
 
@@ -441,7 +582,7 @@
 <!--       <div class="row">-->          
 
 
-          <div class="col-lg-6 col-sm-12 portfolio-item">
+          <div class="col-lg-4 col-sm-12 portfolio-item">
             
 
             <!-- ******Google Maps API ********* -->
@@ -475,24 +616,41 @@
         <!-- /Row -->
 
       <div class="row">
-            <div class="col-lg-4 col-sm-12 portfolio-item">
+            <div class="col-lg-7 col-sm-12 portfolio-item">
                 <div class="card">
-                    <div class="bg-light text-dark">
+                    <div class="bg-light text-dark" style="height:350px; line-height: 1.7; padding:2%">
                       <h4><?php echo $title ?></h4>
                       <h5><?php echo $city?>, <?php echo $country ?></h5>
-                      <h6> <?php echo $description ?></h6>
+                       <h6><i class="fas fa-users">  </i> <?php echo $guestNum ?> Guests &nbsp;   
+                    <i class="fas fa-home">  </i>  <?php echo $propertyType ?> 
+                    &nbsp; <i class="far fa-calendar-alt"></i> <?php echo $newStartDate.'-'.$newEndDate.'' ?>
+                </h6>
+                      <p> <?php echo $description ?></p>
                     </div>
                   </div>          
             </div>
-          <div class="col-lg-4 col-sm-12 portfolio-item">
+ <!--          <div class="col-lg-4 col-sm-12 portfolio-item">
                 <div class="card">
                     <div class="bg-light text-dark">
-                    <h6><i class="fas fa-users"></i> <?php echo $guestNum ?> Guests </h6>
-                    <h6><i class="fas fa-home"></i> <?php echo $propertyType ?> </h6>
-                      <?php 
+                   
+
+                        
+
+
+
+                    </div>
+                </div>
+          </div> -->
+
+          <div class="col-lg-5 col-sm-12 portfolio-item">
+              <div class="card">
+
+                  <div class="bg-light text-dark" style="height:350px; line-height: 1.5; padding:2%">
+
+                    <?php 
                       if(!empty($arrAptStyle[0])){
 
-                        echo"<h6> <i class='fas fa-umbrella-beach'></i> ";
+                        echo"<p> <i class='fas fa-umbrella-beach'></i> ";
                       
                         foreach ($arrAptStyle as $style){
                           echo $style;
@@ -500,59 +658,60 @@
                           echo ', '; 
                         } 
                       }
-                      echo "</h6>";
+                      echo "</p>";
                     }
                       
                         ?>
                         
                      <?php 
                       if(!empty($arrAptRules[0])){
-                          echo "<h6> <i class='fas fa-ban></i> ";
+                          echo "<p> <i class='fas fa-ban'></i> ";
 
                       foreach ($arrAptRules as $ruleItem){
                         echo $ruleItem;
+
                         if (next($arrAptRules)!=null){
                         echo ', '; 
                       } 
                     }
                     
-                    echo "</h6>";
+                    echo "</p>";
                   }
                   ?>
 
+
                   <?php
                       if(!empty($arrAccess[0])){
-                    echo "<h6> <i class='fas fa-wheelchair'></i> " ;
+                    echo "<p> <i class='fas fa-wheelchair'></i> ";
+
                       foreach ($arrAccess as $accessItem){
                         echo $accessItem;
                         if (next($arrAccess)!=null){
                         echo ', '; 
                       } 
                       }
-                      echo "</h6>";
+                      echo "</p>";
                     }
                     ?>
-                        
+
+                    <br>
 
 
-
-                    </div>
-                </div>
-          </div>
-
-          <div class="col-lg-4 col-sm-12 portfolio-item">
-              <div class="card">
-                  <div class="bg-light text-dark"><h5>Amenities</h5>
+                    <h5>Amenities</h5>
                   <?php
+                     $counter=0;
+
                       if(!empty($arrAmenities[0])){
-                    // echo "<h6> <i class='fas fa-wheelchair'></i>" ;
+                        echo "<span>";
                       foreach ($arrAmenities as $ameniItem){
-                        echo $ameniItem;
-                        if (next($arrAmenities)!=null){
-                        echo '<br>'; 
+                        $counter++;
+                        echo "$ameniItem &nbsp;&nbsp;&nbsp;</span>";
+                        if ($counter==4){
+                        echo "<br>";
+                        $counter=0; 
                       } 
+                     
                       }
-                      echo "</h6>";
                     }
                     ?>
                   </div>
@@ -562,16 +721,34 @@
       </div>
       <!-- /Row -->  
         <div class="row">
-          <div class="col-lg-4 col-sm-12 portfolio-item">
+          <div class="col-lg-7 col-sm-12 portfolio-item">
               <div class="card">
 
-                  <div class="bg-light text-dark">
-                    <h4>Apartment Reviews</h4>
+                  <div class="bg-light text-dark" style="padding:2%; line-height: 1.7">
+                    <h2 align="center">Apartment Reviews</h2>
 
-                   <hr style="border:3px solid #f1f1f1">
-                    <div class="row">
-                      <div class="side">
-                        <div>Location</div>
+                    <div class="row" align="center" >
+<!--                         <div class="col-md-4">
+ -->                  <br>
+                  <div class="col-md-11" align="center" style="padding:10px; padding-left:60px;">
+                    <div class="progress" style="height:20px;" align="center">
+                      <div data-percentage="0%" style="width: 50%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100">Location</div>
+                    </div>
+                    <div class="progress" style="height:20px;">
+                      <div data-percentage="0%" style="width: 60%;" class="progress-bar progress-bar-info" role="progressbar" aria-valuemin="0" aria-valuemax="100">Cleanliness</div>
+                    </div>
+                    <div class="progress" style="height:20px;">
+                      <div data-percentage="0%" style="width: 40%;" class="progress-bar progress-bar-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100">Facilities</div>
+                    </div>
+                    <div class="progress" style="height:20px;">
+                      <div data-percentage="0%" style="width: 80%;" class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100">Value for money</div>
+                    </div>
+                  </div>
+<!--                 </div>
+ -->
+
+<!--                       <div class="side">
+                        <p>Location</p>
                       </div>
                       <div class="middle">
                         <div class="bar-container">
@@ -579,10 +756,10 @@
                         </div>
                       </div>
                       <div class="side right">
-                        <div>150</div>
+                        <p>150</p>
                       </div>
                       <div class="side">
-                        <div>Cleanliness</div>
+                        <p>Cleanliness</p>
                       </div>
                       <div class="middle">
                         <div class="bar-container">
@@ -590,10 +767,10 @@
                         </div>
                       </div>
                       <div class="side right">
-                        <div>63</div>
+                        <p>63</p>
                       </div>
                       <div class="side">
-                        <div>Facilities</div>
+                        <p>Facilities</p>
                       </div>
                       <div class="middle">
                         <div class="bar-container">
@@ -601,10 +778,10 @@
                         </div>
                       </div>
                       <div class="side right">
-                        <div>15</div>
+                        <p>15</p>
                       </div>
                       <div class="side">
-                        <div>Value for money</div>
+                        <p>Value</p>
                       </div>
                       <div class="middle">
                         <div class="bar-container">
@@ -612,10 +789,10 @@
                         </div>
                       </div>
                       <div class="side right">
-                        <div>6</div>
+                        <p>6</p>
                       </div>
                       <div class="side">
-                        <div>Comfort</div>
+                        <p>Comfort</p>
                       </div>
                       <div class="middle">
                         <div class="bar-container">
@@ -623,135 +800,111 @@
                         </div>
                       </div>
                       <div class="side right">
-                        <div>20</div>
-                      </div>
+                        <p>20</p>
+                      </div> -->
                     </div>
-                    <h6> John Lewis 
+                    <hr>
+                    <div align="center">
+                    <h6> John Lewis</h6>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span></h6>
-                    <h6>" description description description description description description description description description description description description description description description description description description description description description description description description " </h6><br>
-                    <h6> Maria Carey 
+                    <span class="fa fa-star checked"></span>
+                    <p><i>"Me and my wife visited at asaf's apartment. it was  a great experience and we had a wonderful time. much recommended!!" </i></p>
+                    <h6> Maria and Migel</h6>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span></h6>
-                    <h6>" description description description description description description description description description description description description description description description description description description description description description description description description " </h6><br>
-                    <h6> Leonard Cohen 
+                    <span class="fa fa-star checked"></span>
+                    <p><i>" My experience at asaf's place was awesome!! next to all of the bars and restaurants, but still a very quite neighborhood. i can't wait to swap with him again! :) " </i></p>
+                    <h6> Leonard Levi </h6>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star "></span></h6>
-                    <h6>" description description description description description description description description description description description description description description description description description description description description description description description description " </h6>
+                    <span class="fa fa-star "></span>
+                    <p><i>" the apartment is wonderful!! me and my husband stayed at the apartment for 4 days. the apartment was well equipped and comfortable, the neighborhood was quite and nice. it was a bit cold at nights and the air-condition was a bit week, but the overall stay was great! " </i></p>
+                  </div>
                   </div>
                 </div>          
           </div>
 
-          <div class="col-lg-4 col-sm-12 portfolio-item">
-              <div class="card">
-                  <div class="bg-light text-dark">
-                    <h2>Owner/Host details</h2>
-                    <div class="card" style="width:300px">
-                      <img class="card-img-top" src="css/pics/Owner.png" alt="Owner image" style="width:100%; height: 100%;">
-                      <div class="card-body">
-                        <h4 class="card-title">John Doe</h4>
-                        <p class="card-text">Some example text some example text. John Doe is an owner of apartment</p>
-                        <a href="#" class="btn btn-info">Chat Now!</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>          
-          </div>
+          <div class="col-lg-5 col-sm-12 portfolio-item" >
+              <div class="card" align="center">
+                  <div class="bg-light text-dark" style=" height:735px;">
+                    <h2>Host details</h2>
+                    <div align="center" style="height:40%; width:75%;">
+                      <img class="card-img-top" src="css/pics/Owner.png" alt="Owner image" style="width:100%; height: 100%;"><br><br>
+                      <!-- <div class="card-body" align="center"> -->
+                        <h4 class="card-title"><?php echo $lname.', '.$fname.''; ?></h4>
+                        <div class="card-text">
+                        <p>Email: <?php echo $email.''; ?><br>
+                        Phone: <?php echo $phone.''; ?></p>
+<!--                         <a href="#" class="btn btn-info">Chat Now!</a>
 
-          <div class="col-lg-4 col-sm-12 portfolio-item">
+ -->                    
+<!-- </div> -->
+
+
+                    
+<!--                   </div>
+                </div>          
+          </div> -->
+
+  <!--         <div class="col-lg-4 col-sm-12 portfolio-item">
               <div class="card">
-                  <div class="bg-light text-dark">
-                    <span class="heading">Owner Reviews</span>
+                  <div class="bg-light text-dark"> -->
+                    <span class="heading"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star"></span>
-                    <p>4.1 average based on 254 reviews.</p>
-                    <hr style="border:3px solid #f1f1f1">
-                    <div class="row">
-                      <div class="side">
-                        <div>Location</div>
-                      </div>
-                      <div class="middle">
-                        <div class="bar-container">
-                          <div class="bar-5"></div>
-                        </div>
-                      </div>
-                      <div class="side right">
-                        <div>150</div>
-                      </div>
-                      <div class="side">
-                        <div>Cleanliness</div>
-                      </div>
-                      <div class="middle">
-                        <div class="bar-container">
-                          <div class="bar-4"></div>
-                        </div>
-                      </div>
-                      <div class="side right">
-                        <div>63</div>
-                      </div>
-                      <div class="side">
-                        <div>Facilities</div>
-                      </div>
-                      <div class="middle">
-                        <div class="bar-container">
-                          <div class="bar-3"></div>
-                        </div>
-                      </div>
-                      <div class="side right">
-                        <div>15</div>
-                      </div>
-                      <div class="side">
-                        <div>Value for money</div>
-                      </div>
-                      <div class="middle">
-                        <div class="bar-container">
-                          <div class="bar-2"></div>
-                        </div>
-                      </div>
-                      <div class="side right">
-                        <div>6</div>
-                      </div>
-                      <div class="side">
-                        <div>Comfort</div>
-                      </div>
-                      <div class="middle">
-                        <div class="bar-container">
-                          <div class="bar-1"></div>
-                        </div>
-                      </div>
-                      <div class="side right">
-                        <div>20</div>
-                      </div>
+                    <p>4.1 average based on 254 reviews</p>
+                  </div>
+
+<!--                     <hr style="border:3px solid #f1f1f1">
+
+
+ -->   
+<!--  <a class="btn btn-primary" href="#">Hi</a>
+ -->                <div id="btns" style="width:100%">    
+                    <p><a href="javascript:document.location.href=getUrlFacebook();" class="btn btn-primary">Find on Facebook</a>
+
+                    <a href="javascript:document.location.href=getUrlGoogle();" class="btn btn-danger">Find on Google</a></p>
+
                     </div>
-                    <br><br>
-                    <button type="button" class="btn btn-outline-primary"> <a href="javascript:document.location.href=getUrlFacebook();">Find on Facebook</a></button>
 
-                    <button type="button" class="btn btn-outline-secondary"> <a href="javascript:document.location.href=getUrlGoogle();"><span class ="searchBtnGoogle">Find on Google</span></a></button><br><br>
+                    
 
-                    <button type="button" class="btn btn-outline-success btn-block">Send an Email</button>
+                    <p><a href="mailto: '<?php echo $email ?>'" class="btn btn-outline-secondary" style="width:92%" >Send me an Email</a></p>
+
+        </div>
                   </div>          
               </div>
       </div>
     </div>
     <!-- /Row --> 
-      <form>
-      <button type="submit" class="btn btn-success btn-block" id="sendRequestButton"><h3>Request To Book</h3></button>
-         <h5 class="text-center">*Note: final confirmation of the order will be received by e-mail after confirmation of the apartment owner </h5>   
+      <form align="center" action="sendPage3.php" id="myform" method="POST">
+
+      	<input type="text" name="userID" value="<?php echo $userID?>" hidden/>
+
+        <input type="text" name="RequesterID" value="<?php echo $RequesterID?>" hidden/>
+      	<input type="text" name="hostName" value="<?php echo $fname?>" hidden />
+      	<input type="text" name="hostEmail" value="<?php echo $email?>" hidden/>
+      	<input type="text" name="StartDate" value="<?php echo $newStartDate?>" hidden />
+      	<input type="text" name="EndDate" value="<?php echo $newEndDate?>" hidden/>
+      	<input type="text" name="AptID" value="<?php echo $AptID ?>" hidden/>
+
+      <button  type="submit"  class="btn btn-success" id="sendRequestButton"style="width:100%;" ><h3>Book Request</h3></button><br>
+         <h7 class="text-center"><b>*Note:</b> final confirmation of the order will be received by e-mail after confirmation of the apartment owner </h7>   
       </form>
     </div>
   </div>
+
+  <br><br><br>
       <!-- /.container -->
 
       <!-- Footer -->
@@ -782,6 +935,135 @@
 
       </script>
 
+
+         <script type="text/javascript">
+      function getUrlFacebook()
+      {
+      	var firstName= "<?php echo $fname ?>";
+      	var lastName="<?php echo $lname ?>";
+        var link ="https://www.facebook.com/search/str/";
+        // var firstName = "ziv"; //first name of user
+        // var lastName = "cohen" //last name of user
+        var newLink = link+firstName+"+"+lastName+"/keywords_search";
+        // alert (name);
+        return newLink;
+        // this code open in new link but the current page shows an error:
+        // window.open(newLink, '_blank'); 
+      }
+      function getUrlGoogle()
+      {
+        var link ="http://www.google.com/search?q=";
+        var firstName= "<?php echo $fname ?>";
+      	var lastName="<?php echo $lname ?>";
+        // var firstName = "ziv"; //first name of user
+        // var lastName = "cohen" //last name of user
+        var newLink = link+firstName+"+"+lastName;
+        return newLink;
+        // this code open in new link but the current page shows an error:
+        // window.open(newLink, '_blank'); 
+      }
+
+
+      // function checkAvailabilityFun(){
+      // 	var temp= '<?php  $checkDates ?>';
+
+
+      // 	 alert(temp);
+      	
+
+
+
+      // }
+
+  </script>
+
+  <?php
+
+   $servername="localhost";
+  $username="root";
+  $password="";
+  $dbname="database";
+
+  $conn=new mysqli($servername,$username,$password,$dbname);
+  if ($conn->connect_error)
+  {
+    die("connection failed: ".$conn->connect_error);
+  }
+
+
+ 	$checkDates="false";
+
+  $query="SELECT apartments.AptID, apartments.userID, apt_availability.StartDate , apt_availability.EndDate FROM apartments
+       INNER JOIN apt_availability ON apartments.AptID=apt_availability.AptID
+      	-- WHERE apartments.userID='$RequesterID'
+       ";
+
+
+  	$tempStartdate = str_replace('/', '-', $newStartDate);
+	$tempEnddate = str_replace('/', '-', $newEndDate);
+
+  $StartDate = date('Y-m-d', strtotime($tempStartdate));
+  $EndDate = date('Y-m-d', strtotime($tempEnddate));
+
+  $res=$conn->query($query);
+
+
+
+    if($res->num_rows>0){
+    while ($row=$res->fetch_assoc()){
+
+    	if ($row["userID"]==$RequesterID){
+    		if (($row["StartDate"]==$StartDate)and($row['EndDate']==$EndDate)){
+    				//$checkDates=true;
+    				$checkDates= "true";
+    			}
+ 	
+			}
+
+    }
+    }
+
+    // if (!($checkDates)){
+    // 	echo("hi");
+    // 	echo '<script>';
+    // 	echo 'document.myform.action="sendPage4.php?userID=$userID"';
+    // 	echo '</script>';
+    // 	//header("location:sendPage4.php?userID=$userID");
+    // }
+    // else{
+    // 	//heder("Location:sendPage3.php");
+    // 	echo("bye");
+    // }
+    ?>
+
+  <script>
+
+  	  $(document).ready(function() {
+  $("#myform").submit(function(event){
+  	//var bool = <?php $checkDates ?>;
+  	//alert(bool);
+
+  	if (('<?php echo $checkDates ?>'.localeCompare('false'))==0)
+  	{
+  		event.preventDefault();  
+       window.location='sendPage4.php?userID=<?php echo $RequesterID ?>';
+  	}
+  	// else{
+  	// 	alert ("djdjd");
+  	// }
+    // if (!()) { 
+    //    event.preventDefault();  
+    //    window.location="sendPage4.php?userID=$userID";
+    // }  
+  });
+});
+
+
+
+
+
+
+</script>
     </body>
 
   </html>

@@ -158,6 +158,8 @@ button{
 	$country="";
 	$city="";
 
+  $userID=$_REQUEST['userID'];
+
 	// $StartDate=$_POST['StartDate'];
 	// $EndtDate=$_POST['EndtDate'];
 	$qty_input=$_POST['qty_input'];
@@ -236,7 +238,7 @@ button{
 		die("connection failed: ".$conn->connect_error);
 	}
 	
-	$sql="SELECT DISTINCT apt_photos.photoName, apartments.title, apartments.description, apartments.AptID FROM apartments 
+	$sql="SELECT DISTINCT apt_availability.StartDate, apt_availability.EndDate, apt_photos.photoName, apartments.title, apartments.description, apartments.AptID FROM apartments 
 	INNER JOIN apt_availability ON apartments.AptID=apt_availability.AptID
   INNER JOIN apt_photos ON apartments.AptID=apt_photos.AptID
 	WHERE 
@@ -264,21 +266,24 @@ GROUP BY apartments.AptID
 			// echo "<h3>".$row["title"]."</h3>";
 			// echo "<tr><td>".$row["AptID"]."</td><td>".$row["country"]."</td><td>".$row["city"]."</td><td>".$row["title"]."</td></tr>";
 
-			
+			$newStartDate = date("d/m/Y", strtotime($row["StartDate"]));
+      $newEndDate = date("d/m/Y", strtotime($row["EndDate"]));
 		echo '<div class="row" style="padding:20px;">';
-        echo '<div class="col-md-4">';
+        echo '<div class="col-md-5">';
         $id=$row['AptID'];
-        echo "<a href='..\BookApartment.php?AptID=$id'>";
+        echo "<a href='..\BookApartment.php?AptID=$id&userID=$userID&StartDate=$newStartDate&EndDate=$newEndDate'>";
         $photo=$row['photoName'];
         echo "<img class='img-fluid rounded mb-3 mb-md-0' src='..\user_data/$photo'/>";
         echo '</a>';
         echo '</div>';
-        echo '<div class="col-md-4">';
+        echo '<div class="col-md-5">';
         echo '<h3>'.$row["title"].'</h3>';
         echo '<p>'.$row["description"].'</p>';
+
+        echo '<p style="font-size:14px; color:#007bff"><i class="far fa-calendar-alt"></i> '.$newStartDate.'-'. $newEndDate.'</p>';
         echo '</div>';
-        echo '<div class="col-md-4">';
-        echo "<a class='btn btn-primary' href='..\BookApartment.php?AptID=$id'>View Project
+        echo '<div class="col-md-2">';
+        echo "<a class='btn btn-primary' href='..\BookApartment.php?AptID=$id&userID=$userID&StartDate=$newStartDate&EndDate=$newEndDate'>View Project
           <span class='glyphicon glyphicon-chevron-right'>";
         echo '</span>';
         echo '</a>';

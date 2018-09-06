@@ -129,31 +129,21 @@
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">HomeSwap</a>
+       <a class="navbar-brand" href="index.php"><img src="css/pics/HomeSwapLogo.png" height=39px; width=39px;> &nbsp;HomeSwap</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
- <li class="nav-item">
-            <a class="nav-link" href="newApartment.html">New apartment</a>
-          </li>          
           <li class="nav-item">
-            <a class="nav-link" href="Search.html">search</a>
+            <a class="nav-link" href="Registration.html">Register</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="SearchResults.html">search Results</a>
+            <a class="nav-link" href="GoogleLogin/Login.php">Login</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="BookApartment.html">book Apartment</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="GoogleLogin/Logout.php">Logout</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+                      <li class="nav-item active">
+            <a href="#" class="nav-link" style="color:#B39CD0;">&nbsp;&nbsp;Welcome, Guest!</a>
+            </li>
 
   <!-- Page Content -->
   <div class="container">
@@ -218,13 +208,13 @@
      <div class="control-group form-group">
       <div class="controls">
         <label>* Title:</label>
-        <textarea class="form-control mandatory" id="title" name="title" rows="2" placeholder="Maximum 30 characters" required></textarea>
+        <textarea class="form-control mandatory" id="title" name="title" rows="2" placeholder="Maximum 100 characters" maxlength= "100" required></textarea>
       </div>
     </div>
     <div class="control-group form-group">
       <div class="controls">
         <label>Description:</label>
-        <textarea  class="form-control" id="description" name="description" rows="7" placeholder="Maximum 200 characters" required></textarea>
+        <textarea  class="form-control" id="description" name="description" rows="7" placeholder="Maximum 400 characters" maxlength= "400" required></textarea>
       </div>
     </div>
 
@@ -232,7 +222,7 @@
       <div class="controls">
         <h6>* Add apartment photos</h6> 
         <label class="custom-file-upload"> 
-         <input type="file" class="form-control-file mandatory" name="apartPhotos[]" multiple>
+         <input type="file" class="form-control-file mandatory" maxlength="400" name="apartPhotos[]" multiple>
        </label> 
      </div>
    </div>
