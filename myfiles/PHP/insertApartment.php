@@ -1,14 +1,21 @@
 
 <?php
-$country=$_POST['country'];
-$city=$_POST['city'];
-$street=$_POST['street'];
+$TempCountry=$_POST['country'];
+$TempCity=$_POST['city'];
+$TempStreet=$_POST['street'];
 $aptNum=$_POST['aptNum'];
 $zipCode=$_POST['zipCode'];
-$title=$_POST['title'];
-$description=$_POST['description'];
+$TempTitle=$_POST['title'];
+$TempDescription=$_POST['description'];
 $guestNum=$_POST['guestNum'];
 $propertyType=$_POST['propertyType'];
+
+
+$country=str_replace("'", "''", $TempCountry);
+$city=str_replace("'", "''", $TempCity);
+$street=str_replace("'", "''", $TempStreet);
+$title=str_replace("'", "''", $TempTitle);
+$description=str_replace("'", "''", $TempDescription);
 
 //checkbox
 $ameArr=$_POST['amenities']; //save in array variable
@@ -26,10 +33,10 @@ $aptStyle=implode(",",$styleArr);
 $userID=$_POST['userID'];
 
 //server details
-$servername="localhost";
-$username="root";
-$password="";
-$dbname="database";
+$servername="zebra";
+$username="shirba";
+$password="nD(-cmTvuivT";
+$dbname="shirba_database";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -129,67 +136,15 @@ if(isset($_FILES['apartPhotos'])){
         ($conn->query($query));
     }
 
-    // if(empty($error)){
-    //     //echo "Success";
-    //     //print_r($imageData);
-    //     //echo sizeof($imageData);
-    //     //for($i=0;$i<sizeof($imageData);$i++){
-    //     //  echo $imageData[$i];            
-    //     //}
-    //     $imgDt = implode("|", $imageData);
-    //     //$query="INSERT into apt_photos (`photoName`) VALUES('$imgDt'); ";
-    //     // mysql_query($query); 
-    //     $query="INSERT into apt_photos (photoName, AptID) VALUES('$file_name', '$aptID'); ";
-    // }
 }
 
 if ($bool){
-	header("Location:..\GoogleLogin/Login.php");
+	header("Location:https://shirba.mtacloud.co.il/GoogleLogin/Login.php");
 } else {
 	echo "Error: " . $sql . "<br>" . $conn->error;
 	echo "Error: " . $query . "<br>" . $conn->error;
 }
 
 
-///
-
-
-
-
-
-// if ($bool){
-//  header("Location:..\sendPage2.html");
-// }
-
-// if (($conn->query($sqlDate) === TRUE)OR($conn->query($sqlDate1))OR($conn->query($sqlDate2))OR($conn->query($sqlDate3))OR($conn->query($sqlDate4))) {
-// 	    header("Location:..\sendPage2.html");
-
-// } else {
-// 	echo "Error: " . $sqlDate . "<br>" . $conn->error;
-// 	echo "Error: " . $sqlDate1 . "<br>" . $conn->error;
-// 	echo "Error: " . $sqlDate2 . "<br>" . $conn->error;
-// 	echo "Error: " . $sqlDate3 . "<br>" . $conn->error;
-// 	echo "Error: " . $sqlDate4 . "<br>" . $conn->error;
-// }
-
-//upload photos
-
-
-
-// for($i=0; $i<count($_FILES["apartPhotos"]["name"]); $i++)
-// {
-// 	$filetmp = $_FILES["apartPhotos"]["tmp_name"][$i];
-// 	$filename = $_FILES["apartPhotos"]["name"][$i];	
-// 	$filename = $_FILES["apartPhotos"]["type"][$i];	
-// 	$filepath = "photo/".$filename;
-
-// 	move_uploaded_file($filetmp, $filepath);
-
-// 	$photoSql = "INSERT INTO apartment_photos (img_name, img_path, img_type) VALUES ('$filename', '$filepath', '$filetype')";
-// 	$result = mysql_query($photoSql);
-// }
-
-
-
-	$conn->close();
-	?>
+$conn->close();
+?>

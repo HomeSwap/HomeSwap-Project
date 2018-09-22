@@ -1,4 +1,31 @@
+<?php
 
+$userID=$_REQUEST['userID'];
+
+$servername="zebra";
+$username="shirba";
+$password="nD(-cmTvuivT";
+$dbname="shirba_database";
+
+$sql = "SELECT Fname from users where userID = '$userID'";  
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$result = mysqli_query($conn,$sql);
+$rows = mysqli_fetch_array($result);
+
+
+if ($rows){
+  $fname=$rows['Fname'];
+}
+
+$conn->close();
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,8 +47,9 @@
     <!-- Bootstrap core CSS -->
     <link href="..\css/bootstrap.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
     <link href="..\css/modern-business.css" rel="stylesheet">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 <style>
 
@@ -51,8 +79,7 @@
 #custom-search-input button {
     border: 0;
     background: none;
-/*    padding: 2px 5px;
-*/    margin-top: 2px;
+    margin-top: 2px;
     position: absolute;
     right:25px;
     top:8px;
@@ -62,7 +89,7 @@
     border-radius: 3px;
     cursor: unset;
     z-index: 2;
-        margin: 2px 0 0 0;
+    margin: 2px 0 0 0;
     background: none;
     box-shadow: none;
     border: 0;
@@ -77,81 +104,74 @@ button{
 .search-query:focus{
     z-index: 0; }
 
-    #dropdownMenuButton {
-      margin: 6px;
+#dropdownMenuButton {
+    margin: 6px;
     }
+
  .dropdown{
  	display: inline;
  }
 
  #amen { 
  	overflow: auto;
-    width: 110px;
-    height: 150px;
+  width: 110px;
+  height: 150px;
  }
 
 </style>
 </head>
 
   <body>
-    <!-- Navigation -->
- <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+
+  <!-- Navigation -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="indexUser.html">HomeSwap</a>
+      <a class="navbar-brand" href="..\indexUser.php?userID=<?php echo $userID ?>"><img src="..\css/pics/HomeSwapLogo.png" height=39px; width=39px;> &nbsp; HomeSwap</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="Registration.html">Register</a>
-          </li> -->
-          
+      
           <li class="nav-item">
-            <a class="nav-link" href="newApartment.html">New apartment</a>
-          </li>          
+            <a class="nav-link" href="..\Search.php?userID=<?php echo $userID ?>">Search For Apartment</a>
+          </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="Search.html">search</a>
+            <a class="nav-link" href='..\Orders.php?userID=<?php echo $userID?>'>My Orders</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="SearchResults.html">search Results</a>
+            <a class="nav-link" href="..\GoogleLogin/Logout.php">Logout</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="BookApartment.html">book Apartment</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Orders.html">My Orders</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="GoogleLogin/Logout.php">Logout</a>
-          </li>
+            <li class="nav-item active">
+            <a href="#" class="nav-link" style="color:#B39CD0;">&nbsp;&nbsp;Welcome, <?php echo $fname; ?> </a>
+            </li>
         </ul>
       </div>
     </div>
   </nav>
 
-<div class="container">
+<div class="container" style="min-height: 484px;">
 <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">Search Apartment</h1>
 
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="index.html">Home</a>
+          <a href='..\indexUser.php?userID=<?php echo $userID?>'>Home</a>
         </li>
-        <li class="breadcrumb-item"><a href="search.html">Search</a></li>
+        <li class="breadcrumb-item"><a href='..\Search.php?userID=<?php echo $userID?>'>Search</a></li>
          <li class="breadcrumb-item active">Search Results</li>
       </ol>
-
-
 
       <!-- /.row -->
       <hr>
 <?php
 	ini_set('display_errors',0);
-	$servername="localhost";
-	$username="root";
-	$password="";
-	$dbname="database";
+
+  $servername="zebra";
+  $username="shirba";
+  $password="nD(-cmTvuivT";
+  $dbname="shirba_database";
 
 	$title="";
 	$description="";
@@ -160,13 +180,10 @@ button{
 
   $userID=$_REQUEST['userID'];
 
-	// $StartDate=$_POST['StartDate'];
-	// $EndtDate=$_POST['EndtDate'];
 	$qty_input=$_POST['qty_input'];
 	$dest=$_POST['dest'];
 	$propertyType=$_POST['propertyType'];
 	$tripType=$_POST['propertyStyle'];
-	// $tripType=implode(",",$tripArr);
 	$amenities=$_POST['amenities'];
 	$accessibility=$_POST['accessibility'];
 	$rules=$_POST['rules'];
@@ -238,7 +255,7 @@ button{
 		die("connection failed: ".$conn->connect_error);
 	}
 	
-	$sql="SELECT DISTINCT apt_availability.StartDate, apt_availability.EndDate, apt_photos.photoName, apartments.title, apartments.description, apartments.AptID FROM apartments 
+	$sql="SELECT DISTINCT apt_availability.StartDate, apt_availability.EndDate, apt_photos.photoName,apartments.country,apartments.city, apartments.title, apartments.description, apartments.AptID FROM apartments 
 	INNER JOIN apt_availability ON apartments.AptID=apt_availability.AptID
   INNER JOIN apt_photos ON apartments.AptID=apt_photos.AptID
 	WHERE 
@@ -257,18 +274,15 @@ GROUP BY apartments.AptID
 	";
 
 
-
 	$result=$conn->query($sql);
 
 	if($result->num_rows>0){
 		while ($row=$result->fetch_assoc())
 		{
-			// echo "<h3>".$row["title"]."</h3>";
-			// echo "<tr><td>".$row["AptID"]."</td><td>".$row["country"]."</td><td>".$row["city"]."</td><td>".$row["title"]."</td></tr>";
 
 			$newStartDate = date("d/m/Y", strtotime($row["StartDate"]));
       $newEndDate = date("d/m/Y", strtotime($row["EndDate"]));
-		echo '<div class="row" style="padding:20px;">';
+		    echo '<div class="row" style="padding:20px;">';
         echo '<div class="col-md-5">';
         $id=$row['AptID'];
         echo "<a href='..\BookApartment.php?AptID=$id&userID=$userID&StartDate=$newStartDate&EndDate=$newEndDate'>";
@@ -278,12 +292,13 @@ GROUP BY apartments.AptID
         echo '</div>';
         echo '<div class="col-md-5">';
         echo '<h3>'.$row["title"].'</h3>';
+        echo '<h5>'.$row["city"].', '.$row["country"].'</h5>';
         echo '<p>'.$row["description"].'</p>';
 
-        echo '<p style="font-size:14px; color:#007bff"><i class="far fa-calendar-alt"></i> '.$newStartDate.'-'. $newEndDate.'</p>';
+        echo '<p style="font-size:14px; color:#845EC2"><i class="far fa-calendar-alt"></i> '.$newStartDate.'-'. $newEndDate.'</p>';
         echo '</div>';
         echo '<div class="col-md-2">';
-        echo "<a class='btn btn-primary' href='..\BookApartment.php?AptID=$id&userID=$userID&StartDate=$newStartDate&EndDate=$newEndDate'>View Project
+        echo "<a class='btn btn-info'style='background-color:#845EC2; border-color:#845EC2 ;' href='..\BookApartment.php?AptID=$id&userID=$userID&StartDate=$newStartDate&EndDate=$newEndDate'>View Apartment
           <span class='glyphicon glyphicon-chevron-right'>";
         echo '</span>';
         echo '</a>';
@@ -293,14 +308,15 @@ GROUP BY apartments.AptID
 		}
 
 	}
+	else {
+	    echo '<br><br>';
+	    echo '<h4 style="text-align:center"><i class="far fa-frown" style="color:#C34A36"></i> Unfortunately, no results have been found</h4>';
+	}
 
 
-	
 $conn->close();
 
 ?>
-
-
 
 </div>
     <!-- Footer -->

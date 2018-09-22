@@ -1,9 +1,9 @@
 <?php
 
-  $servername="localhost";
-  $username="root";
-  $password="";
-  $dbname="database";
+  $servername="zebra";
+  $username="shirba";
+  $password="nD(-cmTvuivT";
+  $dbname="shirba_database";
 
   $conn=new mysqli($servername,$username,$password,$dbname);
   if ($conn->connect_error)
@@ -11,19 +11,14 @@
     die("connection failed: ".$conn->connect_error);
   }
 
- 
-
-
     $RequesterID=$_POST['RequesterID'];
     $userID=$_POST['userID'];
     $AptID=$_POST['AptID'];
-    $to = $_POST['hostEmail']; // this is my Email address
-    $from = "info@HomeSwap.com"; // this is the sender's Email address
+    $to = $_POST['hostEmail']; 
+    $from = "info@HomeSwap.com"; 
     $first_name = $_POST['hostName'];
-    // $last_name = $_POST['last_name'];
     $StartDate=$_POST['StartDate'];
     $EndDate=$_POST['EndDate'];
-
 
      $sql="SELECT AptID from apartments WHERE userID=$RequesterID";
 
@@ -38,8 +33,6 @@
         $fname=$rows['Fname'];
       } 
 
-
-
      $result=$conn->query($sql);
     if($result->num_rows>0){
       while ($row=$result->fetch_assoc()){
@@ -48,20 +41,20 @@
 
     }
 
-    $subject = "New Request From HomeSwap";
-  $message = '<html><body>';
+  $subject = "New Request From HomeSwap";
+  $message = '<html><body style="text-align:center;">';
   $message .= '<h5>Hello, '.$first_name.'.<br> You have a new book request for your apartment </h5><br><br>';
-  $message .= "<button style='background-color:blue; height:60px;'><a style='text-decoration:none; color:#ffffff;' href='BookApartmentApproval.php?AptID=$AptID&RequesterAptID=$RequesterAptID&userID=$userID&RequesterID=$RequesterID&StartDate=$StartDate&EndDate=$EndDate'>Click to check the apartment</a></button>";
+  $message .= "<button style='background-color:#3b2d8c; height:40px;'><a style='text-decoration:none; color:#ffffff;' href='http://shirba.mtacloud.co.il/BookApartmentApproval.php?AptID=$AptID&RequesterAptID=$RequesterAptID&userID=$userID&RequesterID=$RequesterID&StartDate=$StartDate&EndDate=$EndDate'>Click to check the apartment</a></button><br><br>";
+  //$message .= '<div><img src="http://tinypic.com/r/r929v6/9" height=70px width=140px></div>';
+  $message .= '<h4 style="color:#3b2d8c;"><b>HomeSwap</b></h4>';
   $message .= "</body></html>";
-    $headers = "From:" . $from;
-    $headers = "MIME-Version: 1.0" . "\r\n";
+  $headers = "From:" . $from;
+  $headers = "MIME-Version: 1.0" . "\r\n";
   $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    mail($to,$subject,$message,$headers);
-    // header('Location: mailSendPage.html');
 
-    echo $message;
+  mail($to,$subject,$message,$headers);
 
-
+    //echo $message;
 
 ?>
 
@@ -81,7 +74,6 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
@@ -125,9 +117,6 @@ body{
   </nav>
 
 
-
-
-
 <div class="container center" style="padding:128px 16px">
   <h1><i class="fas fa-check-circle" style="color:green;"></i> Thank you for your request.</h1>
   <h4>We will inform you as soon as the host will response to your request</h4>
@@ -138,7 +127,6 @@ body{
 </div>
 
 <br><br>
-
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">
@@ -153,7 +141,7 @@ body{
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Contact form JavaScript -->
-    <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/contact_me.js"></script>
 

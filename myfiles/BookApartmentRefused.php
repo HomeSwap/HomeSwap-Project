@@ -2,11 +2,10 @@
 
 $userID=$_REQUEST['userID'];
 
-
-$servername="localhost";
-$username="root";
-$password="";
-$dbname="database";
+$servername="zebra";
+$username="shirba";
+$password="nD(-cmTvuivT";
+$dbname="shirba_database";
 
 $sql = "SELECT Fname from users where userID = '$userID'";  
 
@@ -15,12 +14,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-// $conn = mysqli_connect($servername, $username, $password);
-// if(!$conn){
-//  $error = "Error connecting database...";
-// }
-
-//mysqli_select_db($conn,$dbname);
 
 $result = mysqli_query($conn,$sql);
 $rows = mysqli_fetch_array($result);
@@ -60,9 +53,7 @@ $conn->close();
       <!-- Bootstrap core CSS -->
       <link href="css/bootstrap.css" rel="stylesheet">
 
-      <!-- Custom styles for this template -->
       <link href="css/modern-business.css" rel="stylesheet">
-
 
       <title>HomeSwap - Book Apartment</title>
 
@@ -97,211 +88,209 @@ $conn->close();
     }
     .checked {
       color: orange;
-  }
-  .heading {
-      font-size: 25px;
-      margin-right: 25px;
-  }
-  .fa {
-      font-size: 20px;
-  }
-  /* Three column layout */
-  .side {
-      float: left;
-      width: 15%;
-      margin-top:10px;
-      padding-left: 8px;
-  }
-  .middle {
-      margin-top:10px;
-      float: left;
-      width: 65%;
-  }
-  .right {
-      text-align: right;
-      padding-left:10%;
-  }
-  .row:after {
-      content: "";
-      display: table;
-      clear: both;
-  }
-  .bar-container {
-      width: 100%;
-      background-color: #f1f1f1;
-      text-align: center;
-      color: white;
-  }
-  #btnFacebook{
-    color:#ffffff !important;
-  }
+    }
+    .heading {
+        font-size: 25px;
+        margin-right: 25px;
+    }
+    .fa {
+        font-size: 20px;
+    }
+    /* Three column layout */
+    .side {
+        float: left;
+        width: 15%;
+        margin-top:10px;
+        padding-left: 8px;
+    }
+    .middle {
+        margin-top:10px;
+        float: left;
+        width: 65%;
+    }
+    .right {
+        text-align: right;
+        padding-left:10%;
+    }
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    .bar-container {
+        width: 100%;
+        background-color: #f1f1f1;
+        text-align: center;
+        color: white;
+    }
+    #btnFacebook{
+      color:#ffffff !important;
+    }
 
-  .bar-5 {width: 80%; height: 18px; background-color: #4CAF50;}
-  .bar-4 {width: 40%; height: 18px; background-color: #2196F3;}
-  .bar-3 {width: 15%; height: 18px; background-color: #00bcd4;}
-  .bar-2 {width: 7%; height: 18px; background-color: #ff9800;}
-  .bar-1 {width: 30%; height: 18px; background-color: #f44336;}
+    .bar-5 {width: 80%; height: 18px; background-color: #4CAF50;}
+    .bar-4 {width: 40%; height: 18px; background-color: #2196F3;}
+    .bar-3 {width: 15%; height: 18px; background-color: #00bcd4;}
+    .bar-2 {width: 7%; height: 18px; background-color: #ff9800;}
+    .bar-1 {width: 30%; height: 18px; background-color: #f44336;}
 
-        #map {
-          height: 100%;
-        }
+    #map {
+      height: 100%;
+    }
 
-        .controls {
-          background-color: #fff;
-          border-radius: 2px;
-          border: 1px solid transparent;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-          box-sizing: border-box;
-          font-family: Roboto;
-          font-size: 15px;
-          font-weight: 300;
-          height: 29px;
-          margin-left: 17px;
-          margin-top: 10px;
-          outline: none;
-          padding: 0 11px 0 13px;
-          text-overflow: ellipsis;
-          width: 400px;
-        }
+    .controls {
+      background-color: #fff;
+      border-radius: 2px;
+      border: 1px solid transparent;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      box-sizing: border-box;
+      font-family: Roboto;
+      font-size: 15px;
+      font-weight: 300;
+      height: 29px;
+      margin-left: 17px;
+      margin-top: 10px;
+      outline: none;
+      padding: 0 11px 0 13px;
+      text-overflow: ellipsis;
+      width: 400px;
+    }
 
-        .controls:focus {
-          border-color: #4d90fe;
-        }
-        .title {
-          font-weight: bold;
-        }
-        #infowindow-content {
-          display: none;
-        }
-        #map #infowindow-content {
-          display: inline;
-        }
+    .controls:focus {
+      border-color: #4d90fe;
+    }
+    .title {
+      font-weight: bold;
+    }
+    #infowindow-content {
+      display: none;
+    }
+    #map #infowindow-content {
+      display: inline;
+    }
 
-  @media (max-width: 300px) {
-      .side, .middle {
+    @media (max-width: 300px) {
+    .side, .middle {
           width: 100%;
-      }
+        }
       .right {
           display: none;
       }
-  }
-  a{
+    }
+    a{
     text-decoration: none;
-  }
+    }
 
-  .progress {
-height: 20px;
-margin-bottom: 20px;
-overflow: hidden;
-background-color: #f5f5f5;
-border-radius: 4px;
--webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-}
-.progress {
-background-image: -webkit-gradient(linear,left 0,left 100%,from(#ebebeb),to(#f5f5f5));
-background-image: -webkit-linear-gradient(top,#ebebeb 0,#f5f5f5 100%);
-background-image: -moz-linear-gradient(top,#ebebeb 0,#f5f5f5 100%);
-background-image: linear-gradient(to bottom,#ebebeb 0,#f5f5f5 100%);
-background-repeat: repeat-x;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffebebeb',endColorstr='#fff5f5f5',GradientType=0);
-}
-.progress {
-height: 12px;
-background-color: #ebeef1;
-background-image: none;
-box-shadow: none;
-}
-.progress-bar {
-float: left;
-width: 0;
-height: 100%;
-font-size: 12px;
-line-height: 20px;
-color: #fff;
-text-align: center;
-background-color: #428bca;
--webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
--webkit-transition: width .6s ease;
-transition: width .6s ease;
-}
-.progress-bar {
-background-image: -webkit-gradient(linear,left 0,left 100%,from(#428bca),to(#3071a9));
-background-image: -webkit-linear-gradient(top,#428bca 0,#3071a9 100%);
-background-image: -moz-linear-gradient(top,#428bca 0,#3071a9 100%);
-background-image: linear-gradient(to bottom,#428bca 0,#3071a9 100%);
-background-repeat: repeat-x;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca',endColorstr='#ff3071a9',GradientType=0);
-}
-.progress-bar {
-box-shadow: none;
-border-radius: 3px;
-background-color: #0090D9;
-background-image: none;
--webkit-transition: all 1000ms cubic-bezier(0.785, 0.135, 0.150, 0.860);
--moz-transition: all 1000ms cubic-bezier(0.785, 0.135, 0.150, 0.860);
--ms-transition: all 1000ms cubic-bezier(0.785, 0.135, 0.150, 0.860);
--o-transition: all 1000ms cubic-bezier(0.785, 0.135, 0.150, 0.860);
-transition: all 1000ms cubic-bezier(0.785, 0.135, 0.150, 0.860);
--webkit-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
--moz-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
--ms-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
--o-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
-}
-.progress-bar-success {
-background-image: -webkit-gradient(linear,left 0,left 100%,from(#5cb85c),to(#449d44));
-background-image: -webkit-linear-gradient(top,#5cb85c 0,#449d44 100%);
-background-image: -moz-linear-gradient(top,#5cb85c 0,#449d44 100%);
-background-image: linear-gradient(to bottom,#5cb85c 0,#449d44 100%);
-background-repeat: repeat-x;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c',endColorstr='#ff449d44',GradientType=0);
-}
-.progress-bar-success {
-background-color: #0AA699;
-background-image: none;
-}
-.progress-bar-info {
-background-image: -webkit-gradient(linear,left 0,left 100%,from(#5bc0de),to(#31b0d5));
-background-image: -webkit-linear-gradient(top,#5bc0de 0,#31b0d5 100%);
-background-image: -moz-linear-gradient(top,#5bc0de 0,#31b0d5 100%);
-background-image: linear-gradient(to bottom,#5bc0de 0,#31b0d5 100%);
-background-repeat: repeat-x;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de',endColorstr='#ff31b0d5',GradientType=0);
-}
-.progress-bar-info {
-background-color: #0090D9;
-background-image: none;
-}
-.progress-bar-warning {
-background-image: -webkit-gradient(linear,left 0,left 100%,from(#f0ad4e),to(#ec971f));
-background-image: -webkit-linear-gradient(top,#f0ad4e 0,#ec971f 100%);
-background-image: -moz-linear-gradient(top,#f0ad4e 0,#ec971f 100%);
-background-image: linear-gradient(to bottom,#f0ad4e 0,#ec971f 100%);
-background-repeat: repeat-x;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff0ad4e',endColorstr='#ffec971f',GradientType=0);
-}
-.progress-bar-warning {
-background-color: #FDD01C;
-background-image: none;
-}
-.progress-bar-danger {
-background-image: -webkit-gradient(linear,left 0,left 100%,from(#d9534f),to(#c9302c));
-background-image: -webkit-linear-gradient(top,#d9534f 0,#c9302c 100%);
-background-image: -moz-linear-gradient(top,#d9534f 0,#c9302c 100%);
-background-image: linear-gradient(to bottom,#d9534f 0,#c9302c 100%);
-background-repeat: repeat-x;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9534f',endColorstr='#ffc9302c',GradientType=0);
-}
-.progress-bar-danger {
-background-color: #F35958;
-background-image: none;
-}
+    .progress {
+      height: 20px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+    }
+    .progress {
+      background-image: -webkit-gradient(linear,left 0,left 100%,from(#ebebeb),to(#f5f5f5));
+      background-image: -webkit-linear-gradient(top,#ebebeb 0,#f5f5f5 100%);
+      background-image: -moz-linear-gradient(top,#ebebeb 0,#f5f5f5 100%);
+      background-image: linear-gradient(to bottom,#ebebeb 0,#f5f5f5 100%);
+      background-repeat: repeat-x;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffebebeb',endColorstr='#fff5f5f5',GradientType=0);
+    }
+    .progress {
+      height: 12px;
+      background-color: #ebeef1;
+      background-image: none;
+      box-shadow: none;
+    }
+   .progress-bar {
+      float: left;
+      width: 0;
+      height: 100%;
+      font-size: 12px;
+      line-height: 20px;
+      color: #fff;
+      text-align: center;
+      background-color: #428bca;
+      -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
+      box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
+      -webkit-transition: width .6s ease;
+      transition: width .6s ease;
+    }
+    .progress-bar {
+      background-image: -webkit-gradient(linear,left 0,left 100%,from(#428bca),to(#3071a9));
+      background-image: -webkit-linear-gradient(top,#428bca 0,#3071a9 100%);
+      background-image: -moz-linear-gradient(top,#428bca 0,#3071a9 100%);
+      background-image: linear-gradient(to bottom,#428bca 0,#3071a9 100%);
+      background-repeat: repeat-x;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca',endColorstr='#ff3071a9',GradientType=0);
+    }
+    .progress-bar {
+      box-shadow: none;
+      border-radius: 3px;
+      background-color: #0090D9;
+      background-image: none;
+      -webkit-transition: all 1000ms cubic-bezier(0.785, 0.135, 0.150, 0.860);
+      -moz-transition: all 1000ms cubic-bezier(0.785, 0.135, 0.150, 0.860);
+      -ms-transition: all 1000ms cubic-bezier(0.785, 0.135, 0.150, 0.860);
+      -o-transition: all 1000ms cubic-bezier(0.785, 0.135, 0.150, 0.860);
+      transition: all 1000ms cubic-bezier(0.785, 0.135, 0.150, 0.860);
+      -webkit-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+      -moz-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+      -ms-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+      -o-transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+      transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+    }
+    .progress-bar-success {
+      background-image: -webkit-gradient(linear,left 0,left 100%,from(#5cb85c),to(#449d44));
+      background-image: -webkit-linear-gradient(top,#5cb85c 0,#449d44 100%);
+      background-image: -moz-linear-gradient(top,#5cb85c 0,#449d44 100%);
+      background-image: linear-gradient(to bottom,#5cb85c 0,#449d44 100%);
+      background-repeat: repeat-x;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c',endColorstr='#ff449d44',GradientType=0);
+    }
+    .progress-bar-success {
+      background-color: #0AA699;
+      background-image: none;
+    }
+    .progress-bar-info {
+      background-image: -webkit-gradient(linear,left 0,left 100%,from(#5bc0de),to(#31b0d5));
+      background-image: -webkit-linear-gradient(top,#5bc0de 0,#31b0d5 100%);
+      background-image: -moz-linear-gradient(top,#5bc0de 0,#31b0d5 100%);
+      background-image: linear-gradient(to bottom,#5bc0de 0,#31b0d5 100%);
+      background-repeat: repeat-x;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de',endColorstr='#ff31b0d5',GradientType=0);
+    }
+    .progress-bar-info {
+      background-color: #0090D9;
+      background-image: none;
+    }
+    .progress-bar-warning {
+      background-image: -webkit-gradient(linear,left 0,left 100%,from(#f0ad4e),to(#ec971f));
+      background-image: -webkit-linear-gradient(top,#f0ad4e 0,#ec971f 100%);
+      background-image: -moz-linear-gradient(top,#f0ad4e 0,#ec971f 100%);
+      background-image: linear-gradient(to bottom,#f0ad4e 0,#ec971f 100%);
+      background-repeat: repeat-x;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff0ad4e',endColorstr='#ffec971f',GradientType=0);
+    }
+    .progress-bar-warning {
+      background-color: #FDD01C;
+      background-image: none;
+    }
+    .progress-bar-danger {
+      background-image: -webkit-gradient(linear,left 0,left 100%,from(#d9534f),to(#c9302c));
+      background-image: -webkit-linear-gradient(top,#d9534f 0,#c9302c 100%);
+      background-image: -moz-linear-gradient(top,#d9534f 0,#c9302c 100%);
+      background-image: linear-gradient(to bottom,#d9534f 0,#c9302c 100%);
+      background-repeat: repeat-x;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9534f',endColorstr='#ffc9302c',GradientType=0);
+    }
+    .progress-bar-danger {
+      background-color: #F35958;
+      background-image: none;
+    }
 
     </style>
-
-
 
     </head>
 
@@ -349,11 +338,11 @@ background-image: none;
         <hr>
 
   <?php
-    // ini_set('display_errors',0);
-  $servername="localhost";
-  $username="root";
-  $password="";
-  $dbname="database";
+
+  $servername="zebra";
+  $username="shirba";
+  $password="nD(-cmTvuivT";
+  $dbname="shirba_database";
 
   $conn=new mysqli($servername,$username,$password,$dbname);
   if ($conn->connect_error)
@@ -389,8 +378,6 @@ background-image: none;
       $i++;
 
 
-
-      // echo "<img class='img-fluid rounded mb-3 mb-md-0' src='user_data/$photo'/>";
       $title=($row['title']);
       $country=($row['country']);
       $city=($row['city']);
@@ -411,12 +398,8 @@ background-image: none;
       $userCountry=$row['usersCountry'];
       $userCity=$row['usersCity'];
 
-
-
-
     }
  
-
   }
 
   $arrAptStyle= explode(',', $propertyStyle);
@@ -515,26 +498,23 @@ background-image: none;
   }
 
 
-
   $address= $country.' '.$city.' '.$street.' ' ;
 
   $photo1=$arrPhoto[0];
-  // $photo2=$arrPhoto[1];
-  // $photo3=$arrPhoto[2];
 
           echo "<div class='row'>";
-         echo  "<div class='col-lg-8 col-sm-12 portfolio-item'>";
-        echo  "<div id='carouselExampleIndicators' class='carousel slide' data-ride='carousel'>";
-        echo "<ol class='carousel-indicators'>";
+          echo  "<div class='col-lg-8 col-sm-12 portfolio-item'>";
+          echo  "<div id='carouselExampleIndicators' class='carousel slide' data-ride='carousel'>";
+          echo "<ol class='carousel-indicators'>";
          foreach ($arrPhoto as $key=>$item){
           if ($key==0){
-        echo "<li data-target='#carouselExampleIndicators' data-slide-to='$key' class='active'>";
-        echo "</li>";
-      }
-      else{
-        echo "<li data-target='#carouselExampleIndicators' data-slide-to='$key'>";
-        echo "</li>";
-      }
+          echo "<li data-target='#carouselExampleIndicators' data-slide-to='$key' class='active'>";
+          echo "</li>";
+          }
+          else{
+          echo "<li data-target='#carouselExampleIndicators' data-slide-to='$key'>";
+          echo "</li>";
+          }
       }
         echo "</ol>";
         echo "<div class='carousel-inner'>";
@@ -542,47 +522,31 @@ background-image: none;
         foreach ($arrPhoto as $key=>$item){
           if ($key==0){
             echo "<div class='carousel-item active'>";
-        echo "<img class='d-block w-100' src='user_data/$item' alt='Picture 1'>";
-        echo "</div>";
+            echo "<img class='d-block w-100' src='user_data/$item' alt='Picture 1'>";
+            echo "</div>";
 
           }
           else{
             echo "<div class='carousel-item'>";
-        echo "<img class='d-block w-100' src='user_data/$item' alt='Picture 2'>";
-        echo "</div>";
+            echo "<img class='d-block w-100' src='user_data/$item' alt='Picture 2'>";
+            echo "</div>";
           }
         
       }
-        // echo "<div class='carousel-item'>";
-        //   echo "<img class='d-block w-100' src='user_data/$photo2' alt='Picture 3'>";
-        //   echo "</div>";
+
           echo "</div>";
-            echo "</div>";
-            echo "</div>";
-      // echo ($title);
-      // echo ($country);
-      // echo ($row['city']);
-
-        // print_r($arrAptStyle);
-
-
+          echo "</div>";
+          echo "</div>";
 
   ?>
 
 
 
-<form id='frmsbmt' method='post' action='#'>
-        <input type=hidden id="id" name="id">
+        <form id='frmsbmt' method='post' action='#'>
+                <input type=hidden id="id" name="id">
 
- </form>
- <!--         <div id="id"></div>
-
-
-
- -->        <!-- Content Row -->
-<!--       <div class="row">-->          
-
-
+         </form>
+  
           <div class="col-lg-4 col-sm-12 portfolio-item">
             
 
@@ -630,18 +594,6 @@ background-image: none;
                     </div>
                   </div>          
             </div>
- <!--          <div class="col-lg-4 col-sm-12 portfolio-item">
-                <div class="card">
-                    <div class="bg-light text-dark">
-                   
-
-                        
-
-
-
-                    </div>
-                </div>
-          </div> -->
 
           <div class="col-lg-5 col-sm-12 portfolio-item">
               <div class="card">
@@ -653,12 +605,14 @@ background-image: none;
 
                         echo"<p> <i class='fas fa-umbrella-beach'></i> ";
                       
-                        foreach ($arrAptStyle as $style){
-                          echo $style;
-                          if (next($arrAptStyle)!=null){
-                          echo ', '; 
-                        } 
-                      }
+                    //     foreach ($arrAptStyle as $style){
+                    //       echo $style;
+                    //       if (next($arrAptStyle)!=null){
+                    //       echo ', '; 
+                    //     } 
+                    //   }
+                    $arrAptStyleNew = array_filter($arrAptStyle);
+				    echo implode(', ', $arrAptStyleNew); 
                       echo "</p>";
                     }
                       
@@ -668,13 +622,16 @@ background-image: none;
                       if(!empty($arrAptRules[0])){
                           echo "<p> <i class='fas fa-ban'></i> ";
 
-                      foreach ($arrAptRules as $ruleItem){
-                        echo $ruleItem;
+                    //   foreach ($arrAptRules as $ruleItem){
+                    //     echo $ruleItem;
 
-                        if (next($arrAptRules)!=null){
-                        echo ', '; 
-                      } 
-                    }
+                    //     if (next($arrAptRules)!=null){
+                    //     echo ', '; 
+                    //   } 
+                    // }
+                    
+                    $arrAptRulesNew = array_filter($arrAptRules);
+				    echo implode(', ', $arrAptRulesNew); 
                     
                     echo "</p>";
                   }
@@ -685,12 +642,15 @@ background-image: none;
                       if(!empty($arrAccess[0])){
                     echo "<p> <i class='fas fa-wheelchair'></i> ";
 
-                      foreach ($arrAccess as $accessItem){
-                        echo $accessItem;
-                        if (next($arrAccess)!=null){
-                        echo ', '; 
-                      } 
-                      }
+                    //   foreach ($arrAccess as $accessItem){
+                    //     echo $accessItem;
+                    //     if (next($arrAccess)!=null){
+                    //     echo ', '; 
+                    //   } 
+                    //   }
+                    
+                      $arrAccessNew = array_filter($arrAccess);
+				    echo implode(', ', $arrAccessNew); 
                       echo "</p>";
                     }
                     ?>
@@ -723,14 +683,13 @@ background-image: none;
       <!-- /Row -->  
         <div class="row">
           <div class="col-lg-7 col-sm-12 portfolio-item">
-              <div class="card">
+              <div class="card"  style="height:757px" >
 
-                  <div class="bg-light text-dark" style="padding:2%; line-height: 1.7">
+                  <div class="bg-light text-dark" style="padding:2%; line-height: 1.7; height:757px">
                     <h2 align="center">Apartment Reviews</h2>
 
                     <div class="row" align="center" >
-<!--                         <div class="col-md-4">
- -->                  <br>
+                  <br>
                   <div class="col-md-11" align="center" style="padding:10px; padding-left:60px;">
                     <div class="progress" style="height:20px;" align="center">
                       <div data-percentage="0%" style="width: 50%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100">Location</div>
@@ -745,89 +704,129 @@ background-image: none;
                       <div data-percentage="0%" style="width: 80%;" class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100">Value for money</div>
                     </div>
                   </div>
-<!--                 </div>
- -->
 
-<!--                       <div class="side">
-                        <p>Location</p>
-                      </div>
-                      <div class="middle">
-                        <div class="bar-container">
-                          <div class="bar-5"></div>
-                        </div>
-                      </div>
-                      <div class="side right">
-                        <p>150</p>
-                      </div>
-                      <div class="side">
-                        <p>Cleanliness</p>
-                      </div>
-                      <div class="middle">
-                        <div class="bar-container">
-                          <div class="bar-4"></div>
-                        </div>
-                      </div>
-                      <div class="side right">
-                        <p>63</p>
-                      </div>
-                      <div class="side">
-                        <p>Facilities</p>
-                      </div>
-                      <div class="middle">
-                        <div class="bar-container">
-                          <div class="bar-3"></div>
-                        </div>
-                      </div>
-                      <div class="side right">
-                        <p>15</p>
-                      </div>
-                      <div class="side">
-                        <p>Value</p>
-                      </div>
-                      <div class="middle">
-                        <div class="bar-container">
-                          <div class="bar-2"></div>
-                        </div>
-                      </div>
-                      <div class="side right">
-                        <p>6</p>
-                      </div>
-                      <div class="side">
-                        <p>Comfort</p>
-                      </div>
-                      <div class="middle">
-                        <div class="bar-container">
-                          <div class="bar-1"></div>
-                        </div>
-                      </div>
-                      <div class="side right">
-                        <p>20</p>
-                      </div> -->
                     </div>
                     <hr>
-                    <div align="center">
-                    <h6> John Lewis</h6>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <p><i>"Me and my wife visited at asaf's apartment. it was  a great experience and we had a wonderful time. much recommended!!" </i></p>
-                    <h6> Maria and Migel</h6>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <p><i>" My experience at asaf's place was awesome!! next to all of the bars and restaurants, but still a very quite neighborhood. i can't wait to swap with him again! :) " </i></p>
-                    <h6> Leonard Levi </h6>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star "></span>
-                    <p><i>" the apartment is wonderful!! me and my husband stayed at the apartment for 4 days. the apartment was well equipped and comfortable, the neighborhood was quite and nice. it was a bit cold at nights and the air-condition was a bit week, but the overall stay was great! " </i></p>
-                  </div>
+                    
+                    
+<?php 
+
+    // ini_set('display_errors',0);
+$servername="zebra";
+$username="shirba";
+$password="nD(-cmTvuivT";
+$dbname="shirba_database";
+
+
+  $conn=new mysqli($servername,$username,$password,$dbname);
+  if ($conn->connect_error)
+  {
+    die("connection failed: ".$conn->connect_error);
+  }
+  
+
+  $sql = "SELECT reviews.review, reviews.rate, reviews.AptID, reviews.userID, users.Fname, users.Lname FROM reviews
+  INNER JOIN users ON reviews.userID=users.userID
+  WHERE reviews.AptID='$AptID';
+";
+  $result=$conn->query($sql);
+
+  $counter=0;
+
+  if($result->num_rows>0){
+    while ($row=$result->fetch_assoc())
+    {
+      if ($counter<3){
+      $reviewFname=$row['Fname'];
+      $reviewLname=$row['Lname'];
+      $rate=$row['rate'];
+      $review=$row['review'];
+
+
+      echo  '<div align="center" >';
+      echo '<h6> '.$reviewFname. ' '.$reviewLname.'</h6>';
+
+      $i=1;
+
+      while ($i<=$rate){
+        echo '<span class="fa fa-star checked"></span>';
+        $i++;
+      }
+      while ($i<=5){
+          echo '<span class="fa fa-star "></span>';
+          $i++; 
+      }
+
+          echo '<p><i>" '.$review.'" </i></p>'; 
+        
+      $counter++;
+
+      echo '</div>';
+
+    }
+    
+    }
+  }
+
+  else {
+              echo  '<div align="center">';
+          echo '<h6> John Lewis</h6>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<p><i>"Me and my wife visited at '.$fname.' apartment. it was  a great experience and we had a wonderful time. much recommended!!" </i></p>';
+          echo '<h6> Maria and Migel</h6>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<p><i>" My experience at '.$fname.' place was awesome!! next to all of the bars and restaurants, but still a very quite neighborhood. i cant wait to swap with him again! :) " </i></p>';
+          echo '<h6> Leonard Levi </h6>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+         echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star "></span>';
+          echo '<p><i>" the apartment is wonderful!! me and my husband stayed at the apartment for 4 days. the apartment was well equipped and comfortable, the neighborhood was quite and nice. it was a bit cold at nights and the air-condition was a bit week, but the overall stay was great! " </i></p>';
+        echo '</div>';
+
+
+  }
+
+
+
+
+?>
+                              
+                    
+                    
+                    
+                  <!--  <div align="center">-->
+                  <!--  <h6> John Lewis</h6>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <p><i>"Me and my wife visited at <?php echo $fname; ?>'s apartment. it was  a great experience and we had a wonderful time. much recommended!!" </i></p>-->
+                  <!--  <h6> Maria and Migel</h6>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <p><i>" My experience at <?php echo $fname; ?>'s place was awesome!! next to all of the bars and restaurants, but still a very quite neighborhood. i can't wait to swap with him again! :) " </i></p>-->
+                  <!--  <h6> Leonard Levi </h6>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star "></span>-->
+                  <!--  <p><i>" the apartment is wonderful!! me and my husband stayed at the apartment for 4 days. the apartment was well equipped and comfortable, the neighborhood was quite and nice. it was a bit cold at nights and the air-condition was a bit week, but the overall stay was great! " </i></p>-->
+                  <!--</div>-->
                   </div>
                 </div>          
           </div>
@@ -838,25 +837,11 @@ background-image: none;
                     <h2>Host details</h2>
                     <div align="center" style="height:40%; width:75%;">
                       <img class="card-img-top" src="css/pics/Owner.png" alt="Owner image" style="width:100%; height: 100%;"><br><br>
-                      <!-- <div class="card-body" align="center"> -->
                         <h4 class="card-title"><?php echo $lname.', '.$fname.''; ?></h4>
                         <div class="card-text">
                         <p>Email: <?php echo $email.''; ?><br>
                         Phone: <?php echo $phone.''; ?></p>
-<!--                         <a href="#" class="btn btn-info">Chat Now!</a>
 
- -->                    
-<!-- </div> -->
-
-
-                    
-<!--                   </div>
-                </div>          
-          </div> -->
-
-  <!--         <div class="col-lg-4 col-sm-12 portfolio-item">
-              <div class="card">
-                  <div class="bg-light text-dark"> -->
                     <span class="heading"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
@@ -866,26 +851,19 @@ background-image: none;
                     <p>4.1 average based on 254 reviews</p>
                   </div>
 
-<!--                     <hr style="border:3px solid #f1f1f1">
-
-
- -->   
-<!--  <a class="btn btn-primary" href="#">Hi</a>
- -->                <div id="btns" style="width:100%">    
+                <div id="btns" style="width:100%">    
                     <p><a href="javascript:document.location.href=getUrlFacebook();" class="btn btn-primary">Find on Facebook</a>
 
                     <a href="javascript:document.location.href=getUrlGoogle();" class="btn btn-danger">Find on Google</a></p>
 
                     </div>
 
-                    
-
                     <p><a href="mailto: '<?php echo $email ?>'" class="btn btn-outline-secondary" style="width:92%" >Send me an Email</a></p>
 
-        </div>
+                    </div>
                   </div>          
               </div>
-      </div>
+          </div>
     </div>
     <!-- /Row --> 
       <form align="center" id="myform" method="POST">
@@ -919,7 +897,7 @@ background-image: none;
       <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
       <!-- Contact form JavaScript -->
-      <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+
       <script src="js/jqBootstrapValidation.js"></script>
       <script src="js/contact_me.js"></script>
       <script type="text/javascript">
@@ -936,53 +914,32 @@ background-image: none;
       </script>
 
 
-         <script type="text/javascript">
-      function getUrlFacebook()
-      {
-      	var firstName= "<?php echo $fname ?>";
-      	var lastName="<?php echo $lname ?>";
-        var link ="https://www.facebook.com/search/str/";
-        // var firstName = "ziv"; //first name of user
-        // var lastName = "cohen" //last name of user
-        var newLink = link+firstName+"+"+lastName+"/keywords_search";
-        // alert (name);
-        return newLink;
-        // this code open in new link but the current page shows an error:
-        // window.open(newLink, '_blank'); 
-      }
-      function getUrlGoogle()
-      {
-        var link ="http://www.google.com/search?q=";
-        var firstName= "<?php echo $fname ?>";
-      	var lastName="<?php echo $lname ?>";
-        // var firstName = "ziv"; //first name of user
-        // var lastName = "cohen" //last name of user
-        var newLink = link+firstName+"+"+lastName;
-        return newLink;
-        // this code open in new link but the current page shows an error:
-        // window.open(newLink, '_blank'); 
-      }
+      <script type="text/javascript">
+        function getUrlFacebook()
+        {
+        	var firstName= "<?php echo $fname ?>";
+        	var lastName="<?php echo $lname ?>";
+          var link ="https://www.facebook.com/search/str/";
+          var newLink = link+firstName+"+"+lastName+"/keywords_search";
+          return newLink; 
+        }
+        function getUrlGoogle()
+        {
+          var link ="http://www.google.com/search?q=";
+          var firstName= "<?php echo $fname ?>";
+        	var lastName="<?php echo $lname ?>";
+          var newLink = link+firstName+"+"+lastName;
+          return newLink;
+        }
 
-
-      // function checkAvailabilityFun(){
-      // 	var temp= '<?php  $checkDates ?>';
-
-
-      // 	 alert(temp);
-      	
-
-
-
-      // }
-
-  </script>
+      </script>
 
   <?php
 
-   $servername="localhost";
-  $username="root";
-  $password="";
-  $dbname="database";
+  $servername="zebra";
+  $username="shirba";
+  $password="nD(-cmTvuivT";
+  $dbname="shirba_database";
 
   $conn=new mysqli($servername,$username,$password,$dbname);
   if ($conn->connect_error)
@@ -995,19 +952,15 @@ background-image: none;
 
   $query="SELECT apartments.AptID, apartments.userID, apt_availability.StartDate , apt_availability.EndDate FROM apartments
        INNER JOIN apt_availability ON apartments.AptID=apt_availability.AptID
-      	-- WHERE apartments.userID='$RequesterID'
        ";
 
-
-  	$tempStartdate = str_replace('/', '-', $newStartDate);
+  $tempStartdate = str_replace('/', '-', $newStartDate);
 	$tempEnddate = str_replace('/', '-', $newEndDate);
 
   $StartDate = date('Y-m-d', strtotime($tempStartdate));
   $EndDate = date('Y-m-d', strtotime($tempEnddate));
 
   $res=$conn->query($query);
-
-
 
     if($res->num_rows>0){
     while ($row=$res->fetch_assoc()){
@@ -1023,47 +976,23 @@ background-image: none;
     }
     }
 
-    // if (!($checkDates)){
-    // 	echo("hi");
-    // 	echo '<script>';
-    // 	echo 'document.myform.action="sendPage4.php?userID=$userID"';
-    // 	echo '</script>';
-    // 	//header("location:sendPage4.php?userID=$userID");
-    // }
-    // else{
-    // 	//heder("Location:sendPage3.php");
-    // 	echo("bye");
-    // }
     ?>
 
   <script>
 
   	  $(document).ready(function() {
   $("#myform").submit(function(event){
-  	//var bool = <?php $checkDates ?>;
-  	//alert(bool);
 
   	if (('<?php echo $checkDates ?>'.localeCompare('false'))==0)
   	{
   		event.preventDefault();  
        window.location='sendPage4.php?userID=<?php echo $RequesterID ?>';
   	}
-  	// else{
-  	// 	alert ("djdjd");
-  	// }
-    // if (!()) { 
-    //    event.preventDefault();  
-    //    window.location="sendPage4.php?userID=$userID";
-    // }  
+
   });
 });
 
-
-
-
-
-
-</script>
+  </script>
     </body>
 
   </html>

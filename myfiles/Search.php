@@ -2,10 +2,10 @@
 
 $userID=$_REQUEST['userID'];
 
-$servername="localhost";
-$username="root";
-$password="";
-$dbname="database";
+$servername="zebra";
+$username="shirba";
+$password="nD(-cmTvuivT";
+$dbname="shirba_database";
 
 $sqlUser = "SELECT Fname from users where userID = '$userID'";  
 
@@ -14,12 +14,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-// $conn = mysqli_connect($servername, $username, $password);
-// if(!$conn){
-//  $error = "Error connecting database...";
-// }
 
-//mysqli_select_db($conn,$dbname);
 
 $resultUser = mysqli_query($conn,$sqlUser);
 $rows = mysqli_fetch_array($resultUser);
@@ -53,7 +48,6 @@ $conn->close();
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
@@ -100,8 +94,7 @@ $conn->close();
 #custom-search-input button {
     border: 0;
     background: none;
-/*    padding: 2px 5px;
-*/    margin-top: 2px;
+    margin-top: 2px;
     position: absolute;
     right:25px;
     top:8px;
@@ -153,7 +146,7 @@ button{
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
       
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="Search.php?userID=<?php echo $userID ?>">Search For Apartment</a>
           </li>
 
@@ -298,14 +291,9 @@ button{
     </ul>
   </div>
 
- <!--  <div><button class="btn-default btn-lg">Search</button></div> -->
-
-
   <div>
     <button id="searchBtn" style=" font-size: 22px;"> <i class="fas fa-search"></i> Search</button>
   </div>
-
-
 
 		</div>
 <!-- /row -->
@@ -316,16 +304,13 @@ button{
       <br>
       <br>
 
-
-
-
       <h2>Explore available apartments</h2>
 <?php 
 
-$servername="localhost";
-$username="root";
-$password="";
-$dbname="database";
+$servername="zebra";
+$username="shirba";
+$password="nD(-cmTvuivT";
+$dbname="shirba_database";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -336,7 +321,7 @@ if ($conn->connect_error) {
   $counter=0;
 
 
-$sqlApart="SELECT apt_availability.StartDate, apt_availability.EndDate, apt_photos.photoName, apartments.title, apartments.description, apartments.AptID, apartments.guestNum FROM apartments 
+$sqlApart="SELECT apt_availability.StartDate, apt_availability.EndDate, apt_photos.photoName, apartments.country, apartments.city, apartments.title, apartments.description, apartments.AptID, apartments.guestNum FROM apartments 
   INNER JOIN apt_availability ON apartments.AptID=apt_availability.AptID
   INNER JOIN apt_photos ON apartments.AptID=apt_photos.AptID
   GROUP BY apartments.AptID
@@ -349,17 +334,17 @@ $result1=$conn->query($sqlApart);
     while ($row=$result1->fetch_assoc()) 
     {
       if ($counter<6){
-      // echo "<h3>".$row["title"]."</h3>";
-      // echo "<tr><td>".$row["AptID"]."</td><td>".$row["country"]."</td><td>".$row["city"]."</td><td>".$row["title"]."</td></tr>";
 
       $newStartDate = date("d/m/Y", strtotime($row["StartDate"]));
       $newEndDate = date("d/m/Y", strtotime($row["EndDate"]));
       $title=$row['title'];
+      $city=$row['city'];
+      $country=$row['country'];
       $description=$row['description'];
       $guestNum=$row['guestNum'];
 
         echo '<div class="col-lg-4 col-sm-6 portfolio-item">';
-          echo '<div class="card h-100">';
+          echo '<div class="card h-100" style="text-align:left;">';
           $id=$row['AptID'];
         echo "<a href='BookApartment.php?AptID=$id&userID=$userID&StartDate=$newStartDate&EndDate=$newEndDate'>";
           $photo=$row['photoName'];
@@ -368,6 +353,7 @@ $result1=$conn->query($sqlApart);
               echo '<h4 class="card-title">';
                 echo '<h4>'.$title.'</h4>';
               echo '</h4>';
+              echo '<h5>'.$city.', '.$country.'</h5>';
               echo '<p class="card-text">'.$description.'</p>';
               echo '<p style="font-size:14px; color:#845EC2" class="card-text"><i class="far fa-calendar-alt"></i> &nbsp;'.$newStartDate.' - ' .$newEndDate.'&nbsp;&nbsp;&nbsp; ';
               echo '<span style="font-size:14px; color:#845EC2" class="card-text"><i class="fas fa-users"></i> '.$guestNum.' Guests</span></p>';
@@ -398,8 +384,7 @@ $result1=$conn->query($sqlApart);
   </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 <script type="text/javascript">
   
 </script>
@@ -412,9 +397,6 @@ $result1=$conn->query($sqlApart);
     document.getElementById("qty_input1").style.color='#845EC2';
     document.getElementById("guest").innerHTML=qty_input + ' Guests';
   }
-
-
-
 
 $(document).ready(function(){
 
@@ -448,16 +430,10 @@ $(document).ready(function(){
 
     }
 
-
-
-
     var counter1=0;
     var counter2=0;
     var counter3=0;
     var counter4=0;
-
-
-
 
     var rules = document.getElementsByName('rules[]');
     for(var i = 0; i < rules.length; ++i)
@@ -525,16 +501,6 @@ $(document).ready(function(){
     });
 
 });
-
-
-
-
-
-
-
-  // alert(document.getElementById("qty_input").value);
- // alert(document.getElementById("sd").value);
-
 
 
 

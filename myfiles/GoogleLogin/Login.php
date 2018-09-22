@@ -1,13 +1,8 @@
 <?php
 
-// $userID=$_REQUEST['userID'];
 
     require_once "config.php";
 
-  if (isset($_SESSION['access_token'])) {
-    header('Location: ../indexUser.php');
-    exit();
-  }
 
   $loginURL = $gClient->createAuthUrl();
 
@@ -39,12 +34,12 @@
 
     <title>HomeSwap - Login</title>
 
-    <!-- Bootstrap core CSS -->
     <link href="..\css/bootstrap.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <style>
 /*---------------------------------------------*/
 h1,h2,h3,h4,h5,h6 {
@@ -118,14 +113,12 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
 .txt1 {
-  /*font-family: Poppins-Regular;*/
   font-size: 13px;
   line-height: 1.5;
   color: #999999;
 }
 
 .txt2 {
-  /*font-family: Poppins-Regular;*/
   font-size: 13px;
   line-height: 1.5;
   color: #666666;
@@ -142,7 +135,6 @@ iframe {
 
 .container-login100 {
   width: 100%;  
-  min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -151,12 +143,6 @@ iframe {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 15px;
-/*  background: #9053c7;
-*//*  background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: linear-gradient(-135deg, #c850c0, #4158d0);*/
 }
 
 .wrap-login100 {
@@ -164,7 +150,7 @@ iframe {
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
-
+border:1px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -172,7 +158,7 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 177px 130px 33px 95px;
+ padding: 130px 130px 42px 95px;/
 }
 
 /*------------------------------------------------------------------
@@ -193,7 +179,6 @@ iframe {
 }
 
 .login100-form-title {
-  /*font-family: Poppins-Bold;*/
   font-size: 24px;
   color: #333333;
   line-height: 1.2;
@@ -214,7 +199,6 @@ iframe {
 }
 
 .input100 {
-  /*font-family: Poppins-Medium;*/
   font-size: 15px;
   line-height: 1.5;
   color: #666666;
@@ -485,38 +469,117 @@ iframe {
   }
 }
 </style>
+
+                <script>
+                    window.fbAsyncInit = function() {
+                        FB.init({
+                            appId      : '2472422946108645',
+                            cookie     : true,
+                            xfbml      : true,
+                            version    : 'v3.1'
+                        });
+
+                        FB.AppEvents.logPageView();
+
+                    };
+
+                    (function(d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id;
+                        js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=245080309458212&autoLogAppEvents=1';
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+
+                    function statusChangeCallback(response){
+                        if(response.status === "connected")
+                        {
+                            console.log('Logged in and authenticated.');
+                            console.log(response);
+                            getDataApi();
+                        }
+                        else
+                        {
+                            console.log('Not authenticated.')
+                        }
+                    }
+
+                    function checkLoginState() {
+                        FB.getLoginStatus(function(response) {
+                            statusChangeCallback(response);
+                        });
+                    }
+                    //
+                    function getDataApi()
+                    {
+                        FB.api('/me?fields=id,' +
+                            '              first_name,' +
+                            '              last_name,' +
+                            '              picture,' +
+                            '              email,' +
+                            '              location,' +
+                            '              likes{' +
+                            '                       category_list,' +
+                            '                       genre,' +
+                            '                       name,' +
+                            '                       verification_status,' +
+                            '                       category,' +
+                            '                       id,' +
+                            '                       created_time},' +
+                            '              events{' +
+                            '                       admins{' +
+                            '                               name,' +
+                            '                               profile_type,' +
+                            '                               link,' +
+                            '                               id,' +
+                            '                               username},' +
+                            '                       cover,' +
+                            '                       ticket_uri,' +
+                            '                       start_time,' +
+                            '                       end_time,' +
+                            '                       rsvp_status,' +
+                            '                       description,' +
+                            '                       id,' +
+                            '                       name}'
+                            , function(response)
+                        {
+                            if (response && !response.error)
+                            {
+                                document.getElementById("fb_id").value = response.id;
+                                document.getElementById("fb_fname").value = response.first_name;
+                                document.getElementById("fb_email").value = response.email;
+                                document.getElementById("fb_response").value = JSON.stringify(response);
+                                document.getElementById("fb_form").submit();
+
+                            }
+                        })
+                    }
+                </script>
   </head>
 
   <body>
 
-    <!-- Navigation -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <!-- Navigation -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="..\indexUser.php?userID=<?php echo $userID?>"><img src="css/pics/HomeSwapLogo.png" height=39px; width=39px;> &nbsp; HomeSwap</a>
+       <a class="navbar-brand" href="..\index.php"><img src="..\css/pics/HomeSwapLogo.png" height=39px; width=39px;> &nbsp;HomeSwap</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="Registration.html">Register</a>
-          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="..\Registration.html">Register</a>
+          </li>
           <li class="nav-item active">
-            <a class="nav-link" href="Login.php">Login</a>
+            <a class="nav-link" href="https://shirba.mtacloud.co.il/GoogleLogin/Login.php">Login</a>
           </li>
-<!--           <li class="nav-item">
-            <a class="nav-link" href="newApartment.html">New apartment</a>
-          </li>   -->        
-          <li class="nav-item">
-            <a class="nav-link" href="Search.html">search</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="SearchResults.html">search Results</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="BookApartment.html">book Apartment</a>
-          </li>
-        </ul>
+                      <li class="nav-item active">
+            <a href="#" class="nav-link" style="color:#B39CD0;">&nbsp;&nbsp;Welcome, Guest!</a>
+            </li>
+
+
+       </ul>
       </div>
     </div>
   </nav>
@@ -531,7 +594,7 @@ iframe {
 
         <form class="login100-form validate-form" action="..\PHP/welcome.php" method="POST">
           <span class="login100-form-title">
-            <h2>Member Login</h2>
+            <h2>User Login</h2>
           </span>
 
           <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -552,44 +615,51 @@ iframe {
         
           <div class="container-login100-form-btn">
             <button class="login100-form-btn">
-              Login
+              Log in
             </button>
           </div>
 
-
-          <div class="text-center p-t-12">
-            <span class="txt1">
-              Forgot
-            </span>
-            <a class="txt2" href="#">
-              Username / Password?
-            </a>
-          </div>
-<br><br>
             <div class="or-text">
           <div class="or-text-row">
             <div class="or-text-line">
-              <button type="button" class="btn btn-default btn-circle" disabled="disabled">or</button>
+              <button type="button"  style = "border:1px solid; background-color: #ffffff;" class="btn btn-default btn-circle" disabled="disabled">or</button>
             </div>
           </div>
         </div>
-        <div class="row"> 
+        <div class="row" align="center"> 
           <div class="col-sm-6">
             <div class="btn-group">
-              <button type="button" class="btn btn-primary"><i class="fab fa-facebook" onclick="logIn()"></i> Login with Facebook</button>
+              <!--<a  class="btn btn-primary" ><i class="fab fa-facebook"></i> Login with Facebook</a>-->
+
+
+                <div
+                        class="fb-login-button"
+                        style="font-size:18px;"
+                        data-width="25"
+                        data-max-rows="1"
+                        data-size="medium"
+                        data-button-type="login_with"
+                        data-show-faces="false"
+                        data-auto-logout-link="false"
+                        data-use-continue-as="false"
+                        data-scope="public_profile,email"
+                        onlogin="checkLoginState();">
+                </div>
+                
+
             </div>
           </div>
           <div class="col-sm-6">
             <div class="btn-group">
-              <button type="button" class="btn btn-danger" onclick="window.location = '<?php echo $loginURL ?>';"><i class="fab fa-google"></i> Login with Google</button>
+              <button type="button" class="btn btn-danger" style="height:28px; font-size:13px; padding-bottom: 4px; padding-top:2px; width:180px" onclick="window.location = '<?php echo $loginURL ?>';"><i class="fab fa-google"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Log in With Google</button>
             </div>
           </div>
-        </div>  
+        </div>
+      
 
           <div class="text-center p-t-136">
-            <a class="txt2" href="Registration.html">
-              Create your Account
-              <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+            <a style="font-size:16px;" class="txt2" href="..\Registration.html">
+                Don't have an account yet?
             </a>
           </div>
         </form>
@@ -597,9 +667,15 @@ iframe {
     </div>
   </div>
   
+  
+      <form id ="fb_form" action="welcomeFacebook.php" method="post">
+        <input type=hidden id="fb_email"  name="fb_email" class="form-control">
+        <input type=hidden id="fb_fname"    name="fb_fname" class="form-control">
+        <input type=hidden id="fb_id"       name="fb_id" class="form-control">
+        <input type=hidden id="fb_response"    name="fb_response" class="form-control">
+    </form>
 
-
-
+  
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">
@@ -614,59 +690,17 @@ iframe {
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Contact form JavaScript -->
-    <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/contact_me.js"></script>
     <script
             src="http://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
-    <script>
-        var person = { userID: "", name: "", accessToken: "", picture: "", email: ""};
 
-        function logIn() {
-            FB.login(function (response) {
-                if (response.status == "connected") {
-                    person.userID = response.authResponse.userID;
-                    person.accessToken = response.authResponse.accessToken;
 
-                    FB.api('/me?fields=id,name,email,picture.type(large)', function (userData) {
-                        person.name = userData.name;
-                        person.email = userData.email;
-                        person.picture = userData.picture.data.url;
 
-                        $.ajax({
-                           url: "Login.php",
-                           method: "POST",
-                           data: person,
-                           dataType: 'text',
-                           success: function (serverResponse) {
-                               console.log(person);
-                              window.location = "welcomeFacebook.php";
-                           }
-                        });
-                    });
-                }
-            }, {scope: 'public_profile, email'})
-        }
+   
 
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId            : '2472422946108645',
-                autoLogAppEvents : true,
-                xfbml            : true,
-                version          : 'v2.11'
-            });
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
   </body>
 
 </html>

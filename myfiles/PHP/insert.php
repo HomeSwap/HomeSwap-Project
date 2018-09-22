@@ -1,13 +1,14 @@
 
 <?php
-	$id=$_POST['userID'];
-	$name=$_POST['Fname'];
-	$mail=$_POST['email'];
-	$servername="localhost";
-	$username="root";
-	$password="";
-	$dbname="database";
-	
+
+$id=$_POST['userID'];
+$name=$_POST['Fname'];
+$mail=$_POST['email'];
+
+$servername="zebra";
+$username="shirba";
+$password="nD(-cmTvuivT";
+$dbname="shirba_database";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection

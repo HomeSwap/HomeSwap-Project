@@ -2,10 +2,10 @@
 
 $userID=$_REQUEST["userID"];
 
-$servername="localhost";
-$username="root";
-$password="";
-$dbname="database";
+$servername="zebra";
+$username="shirba";
+$password="nD(-cmTvuivT";
+$dbname="shirba_database";
 
 $sql = "SELECT Fname from users where userID = '$userID'";  
 
@@ -14,12 +14,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-// $conn = mysqli_connect($servername, $username, $password);
-// if(!$conn){
-//  $error = "Error connecting database...";
-// }
-
-//mysqli_select_db($conn,$dbname);
 
 $result = mysqli_query($conn,$sql);
 $rows = mysqli_fetch_array($result);
@@ -48,7 +42,6 @@ $conn->close();
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
@@ -98,13 +91,12 @@ body{
 
 
 <div class="container center" style="padding:128px 16px">
-  <!-- <h1><i class="fas fa-check-circle"></i> Done!</h1> -->
   <h3><i class="far fa-frown" style="color:#C34A36"></i> Oh no!</h3>
   <br><br>
   <h5>Sorry, your apartment isn't available in these dates. We can not perform this swap.</h5>
   <h5>Go ahead and search for another apartment!</h5>
   
-  <a href='search.php?userID=<?php echo $userID ?>' class="btn btn-primary btn-lg">Start a new search</a>
+  <a href='Search.php?userID=<?php echo $userID ?>' class="btn btn-primary btn-lg">Start a new search</a>
 
   <p style="font-size:10px"></p>
 
@@ -126,7 +118,7 @@ body{
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Contact form JavaScript -->
-    <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/contact_me.js"></script>
 

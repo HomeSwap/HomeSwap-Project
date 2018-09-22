@@ -1,10 +1,40 @@
 <?php
-  session_start();
 
-  if (!isset($_SESSION['userID']) || !isset($_SESSION['email'])) {
-    header('Location: Login.php');
-    exit();
-  }
+//   session_start();
+
+//   if (!isset($_SESSION['access_token'])) {
+//     header('Location: Login.php');
+//     exit();
+//   }
+
+  
+$servername="zebra";
+$username="shirba";
+$password="nD(-cmTvuivT";
+$dbname="shirba_database";
+
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+$bool=false;
+
+
+$email= $_POST['fb_email'];
+
+$sql = "SELECT userID from users where email = '$email'"; 
+
+$result = mysqli_query($conn,$sql);
+$rows = mysqli_fetch_array($result);
+
+
+if ($rows){
+  $userID=$rows['userID'];
+  $bool=true;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +52,6 @@
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
     <link href="../css/modern-business.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <style>
@@ -98,14 +127,12 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
 .txt1 {
-  /*font-family: Poppins-Regular;*/
   font-size: 13px;
   line-height: 1.5;
   color: #999999;
 }
 
 .txt2 {
-  /*font-family: Poppins-Regular;*/
   font-size: 13px;
   line-height: 1.5;
   color: #666666;
@@ -122,7 +149,7 @@ iframe {
 
 .container-login100 {
   width: 100%;  
-  min-height: 100vh;
+  min-height: 75vh;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -132,11 +159,6 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-/*  background: #9053c7;
-*//*  background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: linear-gradient(-135deg, #c850c0, #4158d0);*/
 }
 
 .wrap-login100 {
@@ -152,7 +174,7 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 177px 130px 33px 95px;
+  padding: 100px 130px 30px 95px;
 }
 
 /*------------------------------------------------------------------
@@ -173,7 +195,6 @@ iframe {
 }
 
 .login100-form-title {
-  /*font-family: Poppins-Bold;*/
   font-size: 24px;
   color: #333333;
   line-height: 1.2;
@@ -194,7 +215,6 @@ iframe {
 }
 
 .input100 {
-  /*font-family: Poppins-Medium;*/
   font-size: 15px;
   line-height: 1.5;
   color: #666666;
@@ -464,39 +484,60 @@ iframe {
     opacity: 1;
   }
 }
+#searchBtn{
+     background-color: #845EC2; /* Green */
+      border: none;
+      color: white;
+      padding: 10px 30px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 20px;
+      margin:10px;
+     width: 200px;
+     }
+#homepage, #loginBtn{
+      background-color: #00C9A7; /* Green */
+      border: none;
+      color: white;
+      padding: 10px 30px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 20px;
+      margin:10px;
+     width: 200px;
+}
 </style>
   </head>
 
   <body>
 
-    <!-- Navigation -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+ <!-- Navigation -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="..\indexUser.html">HomeSwap</a>
+      <a class="navbar-brand" href="..\indexUser.php?userID=<?php echo $userID ?>"><img src="..\css/pics/HomeSwapLogo.png" height=39px; width=39px;> &nbsp; HomeSwap</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          
+      
           <li class="nav-item">
-            <a class="nav-link" href="newApartment.html">New apartment</a>
-          </li>          
-          <li class="nav-item">
-            <a class="nav-link" href="Search.html">search</a>
+            <a class="nav-link" href="..\Search.php?userID=<?php echo $userID ?>">Search For Apartment</a>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="SearchResults.html">search Results</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="BookApartment.html">book Apartment</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Orders.html">My Orders</a>
+            <a class="nav-link" href='..\Orders.php?userID=<?php echo $userID?>'>My Orders</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="Logout.php">Logout</a>
           </li>
+            <li class="nav-item active">
+            <a href="#" class="nav-link" style="color:#B39CD0;">&nbsp;&nbsp;Welcome, <?php echo $_POST["fb_fname"] ?> </a>
+            </li>
         </ul>
       </div>
     </div>
@@ -513,14 +554,40 @@ iframe {
 			<!-- validate login masseges -->
 
           <div>
-			     <h3>Welcome, <?php echo $_SESSION["name"] ?></h3>
+			     
+			     <?php
+
+if ($bool){
+      echo '<h3 style="text-align:center;">Welcome, '. $_POST["fb_fname"].'</h3>';
+              echo '<br><br>';
+
+          echo '<div>';
+          echo "<a class='button' id='searchBtn' href='..\Search.php?userID=$userID'> <i class='fas fa-search'></i> Explore! </a>";
+          echo "<a class='button' href='..\indexUser.php?userID=$userID' id='homepage'> <i class='fas fa-home'></i> Home page</a>";
+          echo '</div>';
+}
+else{
+  echo '<h3 style="text-align:center; line-height:2;"><i class="far fa-frown" style="color:#C34A36"></i> Sorry, '.  $_POST["fb_fname"].'</h3>';
+  echo '<h5>your email address does not match.</h5>';
+  echo '<h5 style="text-align:center; line-height:2;">Please login manually</h5>';
+  echo '<div align="center">';
+  echo "<a class='button' href='https://shirba.mtacloud.co.il/GoogleLogin/Login.php' id='loginBtn'> <i class='fas fa-arrow-right'></i> Login</a>";
+  echo '</div>';
+}
+
+          ?>
+
+
+			     
+			     
+			     
           </div>
-
-
 
       </div>
     </div>
   </div>
+  
+  
   
 
 
@@ -534,16 +601,6 @@ iframe {
       <!-- /.container -->
     </footer>
 
-    
-    <!-- Bootstrap core JavaScript -->
-<!--     <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-
-    <!-- Contact form JavaScript -->
-    <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-<!--     <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
-	 -->
   </body>
 
 </html>

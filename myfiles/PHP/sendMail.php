@@ -12,8 +12,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 if(isset($_POST['submit'])){
-    $to = "shirb27@gmail.com"; // this is my Email address
-    $from = "info@HomeSwap.com"; // this is the sender's Email address
+    $to = "shirb27@gmail.com"; 
+    $from = "info@HomeSwap.com"; 
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $subject = "New Request From HomeSwap";

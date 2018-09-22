@@ -1,9 +1,9 @@
 <?php
 
-  $servername="localhost";
-  $username="root";
-  $password="";
-  $dbname="database";
+$servername="zebra";
+$username="shirba";
+$password="nD(-cmTvuivT";
+$dbname="shirba_database";
 
   $conn=new mysqli($servername,$username,$password,$dbname);
   if ($conn->connect_error)
@@ -31,7 +31,6 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
@@ -59,23 +58,12 @@ body{
             <a class="nav-link" href="Registration.html">Register</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="GoogleLogin/Login.php">Login</a>
+            <a class="nav-link" href="https://shirba.mtacloud.co.il/GoogleLogin/Login.php">Login</a>
           </li>
                       <li class="nav-item active">
             <a href="#" class="nav-link" style="color:#B39CD0;">&nbsp;&nbsp;Welcome, Guest!</a>
             </li>
-<!--           <li class="nav-item">
-            <a class="nav-link" href="newApartment.html">New apartment</a>
-          </li>      -->     
-<!--           <li class="nav-item">
-            <a class="nav-link" href="Search.html">search</a>
-          </li> -->
-<!--           <li class="nav-item">
-            <a class="nav-link" href="SearchResults.html">search Results</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="BookApartment.html">book Apartment</a>
-          </li> -->
+
         </ul>
       </div>
     </div>
@@ -88,7 +76,6 @@ body{
   <br><br>
   <a href="newApartment.php?userID=<?php echo $userID ?>" class="btn btn-primary btn-lg">Click to add your apartment</a>
   
-
 </div>
 
 <br><br>
@@ -107,7 +94,7 @@ body{
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Contact form JavaScript -->
-    <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/contact_me.js"></script>
 

@@ -2,11 +2,10 @@
 
 $userID=$_REQUEST['userID'];
 
-
-$servername="localhost";
-$username="root";
-$password="";
-$dbname="database";
+$servername="zebra";
+$username="shirba";
+$password="nD(-cmTvuivT";
+$dbname="shirba_database";
 
 $sql = "SELECT Fname from users where userID = '$userID'";  
 
@@ -15,12 +14,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-// $conn = mysqli_connect($servername, $username, $password);
-// if(!$conn){
-//  $error = "Error connecting database...";
-// }
-
-//mysqli_select_db($conn,$dbname);
 
 $result = mysqli_query($conn,$sql);
 $rows = mysqli_fetch_array($result);
@@ -60,9 +53,7 @@ $conn->close();
       <!-- Bootstrap core CSS -->
       <link href="css/bootstrap.css" rel="stylesheet">
 
-      <!-- Custom styles for this template -->
       <link href="css/modern-business.css" rel="stylesheet">
-
 
       <title>HomeSwap - Book Apartment</title>
 
@@ -301,8 +292,6 @@ background-image: none;
 
     </style>
 
-
-
     </head>
 
     <body onload="processUser()">
@@ -341,7 +330,7 @@ background-image: none;
         <h1 class="mt-4 mb-3">Apartment Details</h1>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="index.html">Home</a>
+            <a href='indexUser.php?userID=<?php echo $userID ?>'>Home</a>
           </li>
           <li class="breadcrumb-item active">Apartment Details</li>
         </ol>
@@ -349,11 +338,10 @@ background-image: none;
         <hr>
 
   <?php
-    // ini_set('display_errors',0);
-  $servername="localhost";
-  $username="root";
-  $password="";
-  $dbname="database";
+  $servername="zebra";
+  $username="shirba";
+  $password="nD(-cmTvuivT";
+  $dbname="shirba_database";
 
   $conn=new mysqli($servername,$username,$password,$dbname);
   if ($conn->connect_error)
@@ -364,7 +352,6 @@ background-image: none;
   $AptID = $_REQUEST["AptID"];
   $newStartDate=$_REQUEST["StartDate"];
   $newEndDate=$_REQUEST["EndDate"];
-  // $userID=$_REQUEST["userID"];
   
 
   $sql = "SELECT apartments.AptID, apartments.country,apartments.city,apartments.street, apartments.title, apartments.description,apartments.guestNum, apartments.propertyType,apartments.propertyStyle ,apartments.amenities, apartments.accessibility ,apartments.rules,apartments.userID, apt_photos.photoName, users.Fname, users.Lname, users.email, users.phone, users.usersCountry, users.usersCity FROM apartments
@@ -387,9 +374,6 @@ background-image: none;
       $arrPhoto[$i]=$photo;
       $i++;
 
-
-
-      // echo "<img class='img-fluid rounded mb-3 mb-md-0' src='user_data/$photo'/>";
       $title=($row['title']);
       $country=($row['country']);
       $city=($row['city']);
@@ -401,7 +385,6 @@ background-image: none;
       $accessibility=$row['accessibility'];
       $amenities = $row['amenities'];
       $rules = $row['rules'];
-      // $userID=$row['userID'];
 
       $fname=$row['Fname'];
       $lname=$row['Lname'];
@@ -409,9 +392,6 @@ background-image: none;
       $phone=$row['phone'];
       $userCountry=$row['usersCountry'];
       $userCity=$row['usersCity'];
-
-
-
 
     }
  
@@ -513,16 +493,12 @@ background-image: none;
 
   }
 
-
-
   $address= $country.' '.$city.' '.$street.' ' ;
 
   $photo1=$arrPhoto[0];
-  // $photo2=$arrPhoto[1];
-  // $photo3=$arrPhoto[2];
 
-          echo "<div class='row'>";
-         echo  "<div class='col-lg-8 col-sm-12 portfolio-item'>";
+        echo "<div class='row'>";
+        echo  "<div class='col-lg-8 col-sm-12 portfolio-item'>";
         echo  "<div id='carouselExampleIndicators' class='carousel slide' data-ride='carousel'>";
         echo "<ol class='carousel-indicators'>";
          foreach ($arrPhoto as $key=>$item){
@@ -540,51 +516,32 @@ background-image: none;
         
         foreach ($arrPhoto as $key=>$item){
           if ($key==0){
-            echo "<div class='carousel-item active'>";
+        echo "<div class='carousel-item active'>";
         echo "<img class='d-block w-100' src='user_data/$item' alt='Picture 1'>";
         echo "</div>";
 
           }
           else{
-            echo "<div class='carousel-item'>";
+        echo "<div class='carousel-item'>";
         echo "<img class='d-block w-100' src='user_data/$item' alt='Picture 2'>";
         echo "</div>";
           }
         
       }
-        // echo "<div class='carousel-item'>";
-        //   echo "<img class='d-block w-100' src='user_data/$photo2' alt='Picture 3'>";
-        //   echo "</div>";
-          echo "</div>";
-            echo "</div>";
-            echo "</div>";
-      // echo ($title);
-      // echo ($country);
-      // echo ($row['city']);
 
-        // print_r($arrAptStyle);
-
-
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
 
   ?>
 
+          <form id='frmsbmt' method='post' action='#'>
+                  <input type=hidden id="id" name="id">
 
-
-<form id='frmsbmt' method='post' action='#'>
-        <input type=hidden id="id" name="id">
-
- </form>
- <!--         <div id="id"></div>
-
-
-
- -->        <!-- Content Row -->
-<!--       <div class="row">-->          
-
-
+           </form>
+      
           <div class="col-lg-4 col-sm-12 portfolio-item">
             
-
             <!-- ******Google Maps API ********* -->
             <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0fBrP7YMy80tJRSNNhESchun13NgFZ80&callback=initMap">
@@ -629,18 +586,6 @@ background-image: none;
                     </div>
                   </div>          
             </div>
- <!--          <div class="col-lg-4 col-sm-12 portfolio-item">
-                <div class="card">
-                    <div class="bg-light text-dark">
-                   
-
-                        
-
-
-
-                    </div>
-                </div>
-          </div> -->
 
           <div class="col-lg-5 col-sm-12 portfolio-item">
               <div class="card">
@@ -652,12 +597,15 @@ background-image: none;
 
                         echo"<p> <i class='fas fa-umbrella-beach'></i> ";
                       
-                        foreach ($arrAptStyle as $style){
-                          echo $style;
-                          if (next($arrAptStyle)!=null){
-                          echo ', '; 
-                        } 
-                      }
+                    //     foreach ($arrAptStyle as $style){
+                    //       echo $style;
+                    //       if (next($arrAptStyle)!=null){
+                    //       echo ', '; 
+                    //     } 
+                    //   }
+                    
+                   $arrAptStyleNew = array_filter($arrAptStyle);
+					echo implode(', ', $arrAptStyle);
                       echo "</p>";
                     }
                       
@@ -667,13 +615,16 @@ background-image: none;
                       if(!empty($arrAptRules[0])){
                           echo "<p> <i class='fas fa-ban'></i> ";
 
-                      foreach ($arrAptRules as $ruleItem){
-                        echo $ruleItem;
+                    //   foreach ($arrAptRules as $ruleItem){
+                    //     echo $ruleItem;
 
-                        if (next($arrAptRules)!=null){
-                        echo ', '; 
-                      } 
-                    }
+                    //     if (next($arrAptRules)!=null){
+                    //     echo ', '; 
+                    //   } 
+                    // }
+                    
+                     $arrAptRulesNew = array_filter($arrAptRules);
+					echo implode(', ', $arrAptRulesNew);
                     
                     echo "</p>";
                   }
@@ -684,12 +635,15 @@ background-image: none;
                       if(!empty($arrAccess[0])){
                     echo "<p> <i class='fas fa-wheelchair'></i> ";
 
-                      foreach ($arrAccess as $accessItem){
-                        echo $accessItem;
-                        if (next($arrAccess)!=null){
-                        echo ', '; 
-                      } 
-                      }
+                    //   foreach ($arrAccess as $accessItem){
+                    //     echo $accessItem;
+                    //     if (next($arrAccess)!=null){
+                    //     echo ', '; 
+                    //   } 
+                    //   }
+                    
+                    $arrAccessNew = array_filter($arrAccess);
+					echo implode(', ', $arrAccessNew);
                       echo "</p>";
                     }
                     ?>
@@ -722,14 +676,13 @@ background-image: none;
       <!-- /Row -->  
         <div class="row">
           <div class="col-lg-7 col-sm-12 portfolio-item">
-              <div class="card">
+              <div class="card" style="height:757px">
 
-                  <div class="bg-light text-dark" style="padding:2%; line-height: 1.7">
+                  <div class="bg-light text-dark" style="padding:2%; line-height: 1.7; height:757px">
                     <h2 align="center">Apartment Reviews</h2>
 
                     <div class="row" align="center" >
-<!--                         <div class="col-md-4">
- -->                  <br>
+                 <br>
                   <div class="col-md-11" align="center" style="padding:10px; padding-left:60px;">
                     <div class="progress" style="height:20px;" align="center">
                       <div data-percentage="0%" style="width: 50%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100">Location</div>
@@ -744,89 +697,128 @@ background-image: none;
                       <div data-percentage="0%" style="width: 80%;" class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100">Value for money</div>
                     </div>
                   </div>
-<!--                 </div>
- -->
 
-<!--                       <div class="side">
-                        <p>Location</p>
-                      </div>
-                      <div class="middle">
-                        <div class="bar-container">
-                          <div class="bar-5"></div>
-                        </div>
-                      </div>
-                      <div class="side right">
-                        <p>150</p>
-                      </div>
-                      <div class="side">
-                        <p>Cleanliness</p>
-                      </div>
-                      <div class="middle">
-                        <div class="bar-container">
-                          <div class="bar-4"></div>
-                        </div>
-                      </div>
-                      <div class="side right">
-                        <p>63</p>
-                      </div>
-                      <div class="side">
-                        <p>Facilities</p>
-                      </div>
-                      <div class="middle">
-                        <div class="bar-container">
-                          <div class="bar-3"></div>
-                        </div>
-                      </div>
-                      <div class="side right">
-                        <p>15</p>
-                      </div>
-                      <div class="side">
-                        <p>Value</p>
-                      </div>
-                      <div class="middle">
-                        <div class="bar-container">
-                          <div class="bar-2"></div>
-                        </div>
-                      </div>
-                      <div class="side right">
-                        <p>6</p>
-                      </div>
-                      <div class="side">
-                        <p>Comfort</p>
-                      </div>
-                      <div class="middle">
-                        <div class="bar-container">
-                          <div class="bar-1"></div>
-                        </div>
-                      </div>
-                      <div class="side right">
-                        <p>20</p>
-                      </div> -->
                     </div>
                     <hr>
-                    <div align="center">
-                    <h6> John Lewis</h6>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <p><i>"Me and my wife visited at asaf's apartment. it was  a great experience and we had a wonderful time. much recommended!!" </i></p>
-                    <h6> Maria and Migel</h6>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <p><i>" My experience at asaf's place was awesome!! next to all of the bars and restaurants, but still a very quite neighborhood. i can't wait to swap with him again! :) " </i></p>
-                    <h6> Leonard Levi </h6>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star "></span>
-                    <p><i>" the apartment is wonderful!! me and my husband stayed at the apartment for 4 days. the apartment was well equipped and comfortable, the neighborhood was quite and nice. it was a bit cold at nights and the air-condition was a bit week, but the overall stay was great! " </i></p>
-                  </div>
+                    
+                    
+<?php 
+
+    // ini_set('display_errors',0);
+$servername="zebra";
+$username="shirba";
+$password="nD(-cmTvuivT";
+$dbname="shirba_database";
+
+
+  $conn=new mysqli($servername,$username,$password,$dbname);
+  if ($conn->connect_error)
+  {
+    die("connection failed: ".$conn->connect_error);
+  }
+  
+
+  $sql = "SELECT reviews.review, reviews.rate, reviews.AptID, reviews.userID, users.Fname, users.Lname FROM reviews
+  INNER JOIN users ON reviews.userID=users.userID
+  WHERE reviews.AptID='$AptID';
+";
+  $result=$conn->query($sql);
+
+  $counter=0;
+
+  if($result->num_rows>0){
+    while ($row=$result->fetch_assoc())
+    {
+      if ($counter<3){
+      $reviewFname=$row['Fname'];
+      $reviewLname=$row['Lname'];
+      $rate=$row['rate'];
+      $review=$row['review'];
+
+
+      echo  '<div align="center" >';
+      echo '<h6> '.$reviewFname. ' '.$reviewLname.'</h6>';
+
+      $i=1;
+
+      while ($i<=$rate){
+        echo '<span class="fa fa-star checked"></span>';
+        $i++;
+      }
+      while ($i<=5){
+          echo '<span class="fa fa-star "></span>';
+          $i++; 
+      }
+
+          echo '<p><i>" '.$review.'" </i></p>'; 
+        
+      $counter++;
+
+      echo '</div>';
+
+    }
+    
+    }
+  }
+
+  else {
+              echo  '<div align="center">';
+          echo '<h6> John Lewis</h6>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<p><i>"Me and my wife visited at '.$fname.' apartment. it was  a great experience and we had a wonderful time. much recommended!!" </i></p>';
+          echo '<h6> Maria and Migel</h6>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<p><i>" My experience at '.$fname.' place was awesome!! next to all of the bars and restaurants, but still a very quite neighborhood. i cant wait to swap with him again! :) " </i></p>';
+          echo '<h6> Leonard Levi </h6>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+         echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star checked"></span>';
+          echo '<span class="fa fa-star "></span>';
+          echo '<p><i>" the apartment is wonderful!! me and my husband stayed at the apartment for 4 days. the apartment was well equipped and comfortable, the neighborhood was quite and nice. it was a bit cold at nights and the air-condition was a bit week, but the overall stay was great! " </i></p>';
+        echo '</div>';
+
+
+  }
+
+
+
+
+?>
+                    
+ 
+                    
+                  <!--  <div align="center">-->
+                  <!--  <h6> John Lewis</h6>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <p><i>"Me and my wife visited at <?php echo $fname; ?>'s apartment. it was  a great experience and we had a wonderful time. much recommended!!" </i></p>-->
+                  <!--  <h6> Maria and Migel</h6>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <p><i>" My experience at <?php echo $fname; ?>'s place was awesome!! next to all of the bars and restaurants, but still a very quite neighborhood. i can't wait to swap with him again! :) " </i></p>-->
+                  <!--  <h6> Leonard Levi </h6>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star checked"></span>-->
+                  <!--  <span class="fa fa-star "></span>-->
+                  <!--  <p><i>" the apartment is wonderful!! me and my husband stayed at the apartment for 4 days. the apartment was well equipped and comfortable, the neighborhood was quite and nice. it was a bit cold at nights and the air-condition was a bit week, but the overall stay was great! " </i></p>-->
+                  <!--</div>-->
                   </div>
                 </div>          
           </div>
@@ -837,25 +829,11 @@ background-image: none;
                     <h2>Host details</h2>
                     <div align="center" style="height:40%; width:75%;">
                       <img class="card-img-top" src="css/pics/Owner.png" alt="Owner image" style="width:100%; height: 100%;"><br><br>
-                      <!-- <div class="card-body" align="center"> -->
                         <h4 class="card-title"><?php echo $lname.', '.$fname.''; ?></h4>
                         <div class="card-text">
                         <p>Email: <?php echo $email.''; ?><br>
                         Phone: <?php echo $phone.''; ?></p>
-<!--                         <a href="#" class="btn btn-info">Chat Now!</a>
 
- -->                    
-<!-- </div> -->
-
-
-                    
-<!--                   </div>
-                </div>          
-          </div> -->
-
-  <!--         <div class="col-lg-4 col-sm-12 portfolio-item">
-              <div class="card">
-                  <div class="bg-light text-dark"> -->
                     <span class="heading"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
@@ -865,19 +843,12 @@ background-image: none;
                     <p>4.1 average based on 254 reviews</p>
                   </div>
 
-<!--                     <hr style="border:3px solid #f1f1f1">
-
-
- -->   
-<!--  <a class="btn btn-primary" href="#">Hi</a>
- -->                <div id="btns" style="width:100%">    
+                <div id="btns" style="width:100%">    
                     <p><a href="javascript:document.location.href=getUrlFacebook();" class="btn btn-primary">Find on Facebook</a>
 
                     <a href="javascript:document.location.href=getUrlGoogle();" class="btn btn-danger">Find on Google</a></p>
 
                     </div>
-
-                    
 
                     <p><a href="mailto: '<?php echo $email ?>'" class="btn btn-outline-secondary" style="width:92%" >Send me an Email</a></p>
 
@@ -897,7 +868,7 @@ background-image: none;
       	<input type="text" name="EndDate" value="<?php echo $newEndDate?>" hidden/>
       	<input type="text" name="AptID" value="<?php echo $AptID ?>" hidden/>
 
-      <a href='orders.php?userID=<?php echo $userID ?>' class="btn btn-success" id="sendRequestButton"style="width:100%;" ><h3>Go back to My Orders</h3></a><br>  
+      <a href='Orders.php?userID=<?php echo $userID ?>' class="btn btn-success" id="sendRequestButton"style="width:100%;" ><h3>Go back to My Orders</h3></a><br>  
       </form>
     </div>
   </div>
@@ -917,7 +888,7 @@ background-image: none;
       <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
       <!-- Contact form JavaScript -->
-      <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+
       <script src="js/jqBootstrapValidation.js"></script>
       <script src="js/contact_me.js"></script>
       <script type="text/javascript">
@@ -940,38 +911,17 @@ background-image: none;
       	var firstName= "<?php echo $fname ?>";
       	var lastName="<?php echo $lname ?>";
         var link ="https://www.facebook.com/search/str/";
-        // var firstName = "ziv"; //first name of user
-        // var lastName = "cohen" //last name of user
         var newLink = link+firstName+"+"+lastName+"/keywords_search";
-        // alert (name);
         return newLink;
-        // this code open in new link but the current page shows an error:
-        // window.open(newLink, '_blank'); 
       }
       function getUrlGoogle()
       {
         var link ="http://www.google.com/search?q=";
         var firstName= "<?php echo $fname ?>";
       	var lastName="<?php echo $lname ?>";
-        // var firstName = "ziv"; //first name of user
-        // var lastName = "cohen" //last name of user
         var newLink = link+firstName+"+"+lastName;
         return newLink;
-        // this code open in new link but the current page shows an error:
-        // window.open(newLink, '_blank'); 
       }
-
-
-      // function checkAvailabilityFun(){
-      // 	var temp= '<?php  $checkDates ?>';
-
-
-      // 	 alert(temp);
-      	
-
-
-
-      // }
 
   </script>
 

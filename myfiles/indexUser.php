@@ -3,10 +3,10 @@
 $userID=$_REQUEST['userID'];
 
 
-$servername="localhost";
-$username="root";
-$password="";
-$dbname="database";
+$servername="zebra";
+$username="shirba";
+$password="nD(-cmTvuivT";
+$dbname="shirba_database";
 
 $sql = "SELECT Fname from users where userID = '$userID'";  
 
@@ -15,12 +15,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-// $conn = mysqli_connect($servername, $username, $password);
-// if(!$conn){
-//  $error = "Error connecting database...";
-// }
-
-//mysqli_select_db($conn,$dbname);
 
 $result = mysqli_query($conn,$sql);
 $rows = mysqli_fetch_array($result);
@@ -49,7 +43,6 @@ $conn->close();
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -67,7 +60,6 @@ $conn->close();
     margin:0 auto;
 }
 
-/* Display the columns below each other instead of side by side on small screens */
 @media screen and (max-width: 650px) {
     .column {
         width: 100%;
@@ -75,12 +67,10 @@ $conn->close();
     }
 }
 
-/* Add some shadows to create a card effect */
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* Some left and right padding inside the container */
 .container {
     padding: 0 16px;
 }
@@ -118,6 +108,15 @@ a{
 a:hover{
   text-decoration: none;
   color:#ffffff;
+}
+#title, #title1{
+    color:black;
+}
+#title:hover{
+    color:#845EC2;
+}
+#title1:hover{
+    color:#845EC2;
 }
 
 /* Float four columns side by side */
@@ -190,47 +189,12 @@ a:hover{
 
   <header>
     <div  id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-<!--       <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      </ol> -->
+
       <div class="carousel-inner" role="listbox">
-        <!-- Slide One - Set the background image for this slide in the line below -->
         <div class="carousel-item active" id="mainPic" style="height:500px; background-image: url('css/pics/pic3.jpg'); background-attachment:fixed;">
           <div class="carousel-caption d-none d-md-block">
-<!--                   <form>
-                 <input type="text" id="search">
-                <label for="search">Search</label>
-              </form> -->
-<!--               <h3>First Slide</h3>
-              <p>This is a description for the first slide.</p>
-            </div> -->
           </div>
-          <!-- Slide Two - Set the background image for this slide in the line below -->
-<!--           <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
-            <div class="carousel-caption d-none d-md-block">
-              <h3>Second Slide</h3>
-              <p>This is a description for the second slide.</p>
-            </div>
-          </div> -->
-          <!-- Slide Three - Set the background image for this slide in the line below -->
-<!--           <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
-            <div class="carousel-caption d-none d-md-block">
-              <h3>Third Slide</h3>
-              <p>This is a description for the third slide.</p>
-            </div>
-          </div>
-        </div> -->
-<!--         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div> -->
+
     </div>
     </header>
 
@@ -238,58 +202,18 @@ a:hover{
     <div class="container">
 
       <h1 class="my-4">Welcome to HomeSwap</h1>
-      <h4>Join the hundreds of thousands people who are already swaping their homes.</h4>
-      <h4>More than 220,000 apartments to be swapped,
-      in more than 100 countries!</h4>
+      <h4>Join the thousands of people who are already swaping their homes.</h4>
+      <h4>More than 220,000 apartments are being swapped, in more than 100 countries!</h4>
 
-      <!-- Marketing Icons Section -->
-<!--       <div class="row">
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
-            <h4 class="card-header">Card Title</h4>
-            <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Learn More</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
-            <h4 class="card-header">Card Title</h4>
-            <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Learn More</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
-            <h4 class="card-header">Card Title</h4>
-            <div class="card-body">
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Learn More</a>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- /.row -->
-
-      <!-- Portfolio Section -->
       <br><br>
 
 
 <?php 
 
-$servername="localhost";
-$username="root";
-$password="";
-$dbname="database";
+$servername="zebra";
+$username="shirba";
+$password="nD(-cmTvuivT";
+$dbname="shirba_database";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -300,7 +224,7 @@ if ($conn->connect_error) {
   $counter=0;
 
 
-$sqlApart="SELECT apt_availability.StartDate, apt_availability.EndDate, apt_photos.photoName, apartments.title, apartments.description, apartments.AptID, apartments.guestNum FROM apartments 
+$sqlApart="SELECT apt_availability.StartDate, apt_availability.EndDate, apt_photos.photoName, apartments.country, apartments.city, apartments.title, apartments.description, apartments.AptID, apartments.guestNum FROM apartments 
   INNER JOIN apt_availability ON apartments.AptID=apt_availability.AptID
   INNER JOIN apt_photos ON apartments.AptID=apt_photos.AptID
   GROUP BY apartments.AptID
@@ -314,8 +238,6 @@ $result1=$conn->query($sqlApart);
     while ($row=$result1->fetch_assoc()) 
     {
       if ($counter<6){
-      // echo "<h3>".$row["title"]."</h3>";
-      // echo "<tr><td>".$row["AptID"]."</td><td>".$row["country"]."</td><td>".$row["city"]."</td><td>".$row["title"]."</td></tr>";
 
       $newStartDate = date("d/m/Y", strtotime($row["StartDate"]));
       $newEndDate = date("d/m/Y", strtotime($row["EndDate"]));
@@ -331,8 +253,10 @@ $result1=$conn->query($sqlApart);
           echo "<img class='card-img-top' src='user_data/$photo' height=300 width=700 alt=''></a>";
             echo '<div class="card-body">';
               echo '<h4 class="card-title">';
-                echo '<h4>'.$title.'</h4>';
+              echo "<a href='BookApartment.php?AptID=$id&userID=$userID&StartDate=$newStartDate&EndDate=$newEndDate'>";
+                echo '<h4 id="title">'.$title.'</h4></a>';
               echo '</h4>';
+              echo '<h5>'.$row["city"].', '.$row["country"].'</h5>';
               echo '<p class="card-text">'.$description.'</p>';
               echo '<p style="font-size:14px; color:#845EC2" class="card-text"><i class="far fa-calendar-alt"></i> &nbsp;'.$newStartDate.' - ' .$newEndDate.'&nbsp;&nbsp;&nbsp; ';
               echo '<span style="font-size:14px; color:#845EC2" class="card-text"><i class="fas fa-users"></i> '.$guestNum.' Guests</span></p>';
@@ -345,63 +269,6 @@ $result1=$conn->query($sqlApart);
       }
             echo '</div>';
     }
-        // <div class="col-lg-4 col-sm-6 portfolio-item">
-        //   <div class="card h-100">
-        //     <a href="#"><img class="card-img-top" src="css/pics/apt02.jpg" height=300 width=700 alt=""></a>
-        //     <div class="card-body">
-        //       <h4 class="card-title">
-        //         <a href="#">Project Two</a>
-        //       </h4>
-        //       <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-        //     </div>
-        //   </div>
-        // </div>
-        // <div class="col-lg-4 col-sm-6 portfolio-item">
-        //   <div class="card h-100">
-        //     <a href="#"><img class="card-img-top" src="css/pics/apt06.jpg" height=300 width=700 alt=""></a>
-        //     <div class="card-body">
-        //       <h4 class="card-title">
-        //         <a href="#">Project Three</a>
-        //       </h4>
-        //       <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-        //     </div>
-        //   </div>
-        // </div>
-        // <div class="col-lg-4 col-sm-6 portfolio-item">
-        //   <div class="card h-100">
-        //     <a href="#"><img class="card-img-top" src="css/pics/apt04.jpg" height=300 width=700 alt=""></a>
-        //     <div class="card-body">
-        //       <h4 class="card-title">
-        //         <a href="#">Project Four</a>
-        //       </h4>
-        //       <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-        //     </div>
-        //   </div>
-        // </div>
-        // <div class="col-lg-4 col-sm-6 portfolio-item">
-        //   <div class="card h-100">
-        //     <a href="#"><img class="card-img-top" src="css/pics/apt05.jpg" height=300 width=700 alt=""></a>
-        //     <div class="card-body">
-        //       <h4 class="card-title">
-        //         <a href="#">Project Five</a>
-        //       </h4>
-        //       <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-        //     </div>
-        //   </div>
-        // </div>
-        // <div class="col-lg-4 col-sm-6 portfolio-item">
-        //   <div class="card h-100">
-        //     <a href="#"><img class="card-img-top" src="css/pics/apt07.jpg" height=300 width=700 alt=""></a>
-        //     <div class="card-body">
-        //       <h4 class="card-title">
-        //         <a href="#">Project Six</a>
-        //       </h4>
-        //       <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-        //     </div>
-        //   </div>
-        // </div>
-
-
 
       $conn->close();
 
@@ -467,7 +334,7 @@ $result1=$conn->query($sqlApart);
         <p class="title">CEO &amp; Founder</p>
         <p>Inforamtion system student in The Academic College of Tel Aviv- Yaffo</p>
         <p><i class="far fa-envelope"></i> Noga.gorbar@gmail.com</p>
-        <p><a class="button" href="Noga.gorbar@gmail.com" style="text-decoration: none;">Contact</a></p>
+        <p><a class="button" href="mailto:Noga.gorbar@gmail.com" style="text-decoration: none;">Contact</a></p>
       </div>
     </div>
   </div>
@@ -498,26 +365,7 @@ $result1=$conn->query($sqlApart);
     </div>
   </div>
 </div>
-<!--       <div class="row">
-        <div class="col-lg-12">
-          <h2>About Us</h2>
-        </div>
-        <div class="col-lg-4">
-          <h5>Shir Balmas</h5>
-          <p>pic</p>
-          <p>description</p>
-        </div>
-        <div class="col-lg-4">
-          <h5>Ziv Cohen</h5>
-          <p>pic</p>
-          <p>description</p>
-        </div>
-        <div class="col-lg-4">
-          <h5>Noga Gordon Bar</h5>
-          <p>pic</p>
-          <p>description</p>
-        </div>
-      </div> -->
+
       <br><br>
       <hr>
       <!-- Contact Us Section -->
@@ -525,30 +373,25 @@ $result1=$conn->query($sqlApart);
       <div class="row">
         <div class="col-lg-6 mb-4">
           <h3>Contact Us</h3>
-          <form name="sentMessage" id="contactForm" action="mailto:info@homeSwap.com"novalidate>
+          <form name="sentMessage" id="contactForm" action="mailto:info@homeSwap.com" method="post" enctype="text/plain">
             <div class="control-group form-group">
               <div class="controls">
                 <label>Full Name:</label>
-                <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
+                <input type="text" class="form-control" id="name" name ="name" required data-validation-required-message="Please enter your name.">
                 <p class="help-block"></p>
               </div>
             </div>
-<!--             <div class="control-group form-group">
-              <div class="controls">
-                <label>Phone Number:</label>
-                <input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number.">
-              </div>
-            </div> -->
+
             <div class="control-group form-group">
               <div class="controls">
                 <label>Email Address:</label>
-                <input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
+                <input type="email" class="form-control" id="email" name="email" required data-validation-required-message="Please enter your email address.">
               </div>
             </div>
             <div class="control-group form-group">
               <div class="controls">
                 <label>Message:</label>
-                <textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+                <textarea rows="10" cols="100" class="form-control" id="message" name="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
               </div>
             </div>
             <div align="center"  id="success">
@@ -556,21 +399,20 @@ $result1=$conn->query($sqlApart);
             <button type="submit" style="width:100%; background-color: #4D8076; border:#4D8076" class="btn btn-info" id="sendMessageButton">Send Message</button></div>
           </form>
         </div>
+        <br><br>
+        <div class="col-lg-6 mb-4">
+            <div id="googleMap" style="width:100%;height:550px;"></div>
+            
 
-
-
-
+        </div>
 
       </div>
     </div>
     </div>
     <!-- /.container -->
 
-
   </div>
   <!-- /.row -->
-
-
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
@@ -583,8 +425,18 @@ $result1=$conn->query($sqlApart);
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
+  
+              <script>
+            function myMap() {
+            var mapProp= {
+                center:new google.maps.LatLng(32.0630759,34.7716202),
+                zoom:13,
+            };
+            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            }
+            </script>
+            
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0fBrP7YMy80tJRSNNhESchun13NgFZ80&callback=myMap"></script>
 
 </body>
 

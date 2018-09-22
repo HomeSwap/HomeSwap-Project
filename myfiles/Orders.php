@@ -1,9 +1,9 @@
   <?php
 
-  $servername="localhost";
-  $username="root";
-  $password="";
-  $dbname="database";
+  $servername="zebra";
+  $username="shirba";
+  $password="nD(-cmTvuivT";
+  $dbname="shirba_database";
   
   $userID=$_REQUEST['userID'];
 
@@ -36,9 +36,6 @@
     $fname=$rows['Fname'];
   }
 
-
-
-
     echo '<div class="container">';
     echo '<h1 class="mt-4 mb-3">Orders </h1>';
     echo '<ol class="breadcrumb">';
@@ -51,52 +48,35 @@
     echo '<div class="row">';
     echo '<div class="col-lg-12 col-sm-6">';
 
-       // <!-- Nav tabs -->
-    // echo '<ul class="nav nav-tabs">';
-    // echo '<li class="nav-item">';
-    // echo '<a class="nav-link active" href="#upcomingTrips">Upcoming Trips </a>';
-    // echo '</li>';
-    // echo '<li class="nav-item">';
-    // echo '<a class="nav-link" href="#myOrders">My Orders</a>'; 
-    // echo'</li>';
-    //   echo '</ul>';
-              // <!-- Tab panes -->
     echo '<br><h4>My Trips</h4>';
-     echo '<div>';
-     echo '<br>';
+    echo '<div>';
+    echo '<br>';
 
-      echo '<table id="myTable" class="table table-hover">';
+    echo '<table id="myTable" class="table table-hover">';
 
-      echo '<thead>';
+    echo '<thead>';
 
-          echo '<tr>';
-          echo '<div align="left">';
+    echo '<tr>';
+    echo '<div align="left">';
     echo'<th scope="col"><h5>Order Number</h5></th>';
     echo'<th scope="col"><h5>Status</h5></th>';
     echo'<th scope="col"><h5>Dates</h5></th>';
     echo'<th scope="col"><h5>Details</h5></th>';
     echo '<th></th>';
-     echo '<th></th>';
-      echo '</div>';
-      echo'</tr>';
-      echo'</thead>';
+    echo '<th></th>';
+    echo '</div>';
+    echo'</tr>';
+    echo'</thead>';
 
 
 
   if ($result->num_rows>0) 
   {
 
-
-      // echo '<div id="upcomingTrips" class="container tab-pane active"><br>';
-
-
-
-
-
     while ($row=$result->fetch_assoc()){
   
 
-    $AptID=$row['AptID'];
+  $AptID=$row['AptID'];
   $orderID= $row['orderID'];
   $StartDate= $row['StartDate'];
   $EndDate= $row['EndDate'];
@@ -118,9 +98,9 @@
   }
 
 
-  echo '<tbody>';
-  echo '<tr class="item">';
-   echo '<td> '.$orderID.'</td>';
+    echo '<tbody>';
+    echo '<tr class="item">';
+    echo '<td> '.$orderID.'</td>';
     echo '<td style="color:'.$color.'">'.$trip.'</td>';
     echo '<td>'.$StartDate.' - '.$EndDate.'</td>';
     echo '<td>'.$city.', '.$country.'</td>';
@@ -129,50 +109,38 @@
     echo '</td>';
     echo '<td>';
     if ($bool){
-   echo '<button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-outline-danger">Cancel</button>';
-  echo '<script type="text/javascript">';
-  echo 'function cancelOrder(){';
+    echo '<button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-outline-danger">Cancel</button>';
+    echo '<script type="text/javascript">';
+    echo 'function cancelOrder(){';
     echo "window.location='PHP/cancelOrder.php?userID=$userID&AptID=$AptID&StartDate=$StartDate&EndDate=$EndDate';";
     echo '}';
     echo '</script>';
  }
- echo '</td>';
-  echo '</tr>';
-echo '</tbody>';
+   else{
+ 	echo '<button data-toggle="modal" data-target="#exampleModalReview" type="button" class="btn btn-outline-success">Review</button>';
+ 	 	  echo '<script type="text/javascript">';
+  echo 'function review(){';
+    echo "window.location='PHP/addReview.php?userID=$userID&AptID=$AptID&';";
+    echo '}';
+    echo '</script>';
+ }
+    echo '</td>';
+    echo '</tr>';
+    echo '</tbody>';
 
 
   }
   
-  // echo'</table>';
-  // echo '<br><br>';
 }
 
 
 
   if ($result1->num_rows>0) 
   {
-    //   echo '<table id="myTable" class="table table-hover">';
-
-    //   echo '<thead>';
-
-    //       echo '<tr>';
-    //       echo '<div align="left">';
-    // echo'<th scope="col"><h5>Order Number</h5></th>';
-    // echo'<th scope="col"><h5>Status</h5></th>';
-    // echo'<th scope="col"><h5>Dates</h5></th>';
-    // echo'<th scope="col"><h5>Details</h5></th>';
-    // echo '<th></th>';
-    //  echo '<th></th>';
-    //   echo '</div>';
-    //   echo'</tr>';
-    //   echo'</thead>';
-
 
     while ($row=$result1->fetch_assoc()){
   
-
-
-    $AptID=$row['AptID'];
+  $AptID=$row['AptID'];
   $orderID= $row['orderID'];
   $StartDate= $row['StartDate'];
   $EndDate= $row['EndDate'];
@@ -194,10 +162,9 @@ echo '</tbody>';
 
   }
 
-
-  echo '<tbody>';
-  echo '<tr class="item">';
-   echo '<td> '.$orderID.'</td>';
+    echo '<tbody>';
+    echo '<tr class="item">';
+    echo '<td> '.$orderID.'</td>';
     echo '<td style="color:'.$color.'">'.$trip.'</td>';
     echo '<td>'.$StartDate.' - '.$EndDate.'</td>';
     echo '<td>'.$city.', '.$country.'</td>';
@@ -206,31 +173,36 @@ echo '</tbody>';
     echo '</td>';
     echo '<td>';
     if ($bool){
-   echo '<button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-outline-danger">Cancel</button>';
-  echo '<script type="text/javascript">';
-  echo 'function cancelOrder(){';
+    echo '<button data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-outline-danger">Cancel</button>';
+    echo '<script type="text/javascript">';
+    echo 'function cancelOrder(){';
     echo "window.location='PHP/cancelOrder.php?userID=$userID&AptID=$AptID&StartDate=$StartDate&EndDate=$EndDate';";
     echo '}';
     echo '</script>';
  }
- echo '</td>';
-  echo '</tr>';
-echo '</tbody>';
+   else{
+ 	echo '<button data-toggle="modal" data-target="#exampleModalReview" type="button" class="btn btn-outline-success">Review</button>';
+ 	 	  echo '<script type="text/javascript">';
+  echo 'function review(){';
+    echo "window.location='PHP/addReview.php?userID=$userID&AptID=$AptID&';";
+    echo '}';
+    echo '</script>';
+ }
+    echo '</td>';
+    echo '</tr>';
+    echo '</tbody>';
 
 
   }
-  
- 
-  // echo'</div>';
+   
 }
- echo'</table>';
-  echo '<br><br>';
+    echo'</table>';
+    echo '<br><br>';
 
-echo  '</div>';
-echo  '</div>';
-echo  '</div>';
-echo  '</div>';
-
+    echo  '</div>';
+    echo  '</div>';
+    echo  '</div>';
+    echo  '</div>';
 
   ?>
 
@@ -248,7 +220,6 @@ echo  '</div>';
       <!-- Bootstrap core CSS -->
       <link href="css/bootstrap.css" rel="stylesheet">
 
-      <!-- Custom styles for this template -->
       <link href="css/modern-business.css" rel="stylesheet">
 
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -256,15 +227,58 @@ echo  '</div>';
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
      <script src="https://www.w3schools.com/lib/w3.js"></script>
+     <sctript src="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" ></sctript>
 
      <style >
+     @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
        
        button{
        background-color: #ffffff;
-/*       margin-right: 100px;
-*/       margin-left:0px;
-/*       padding-left:0px;
-*/       }
+        margin-left:0px;
+       }
+       
+       
+fieldset, label { margin: 0; padding: 0; }
+/*body{ margin: 20px; }*/
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
 
      </style>
 
@@ -285,7 +299,7 @@ echo  '</div>';
             <a class="nav-link" href="Search.php?userID=<?php echo $userID ?>">Search For Apartment</a>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href='Orders.php?userID=<?php echo $userID?>'>My Orders</a>
           </li>
           <li class="nav-item">
@@ -323,86 +337,52 @@ echo  '</div>';
   </div>
 </div>
 
-      <!-- Page Content -->
+<div class="modal fade" id="exampleModalReview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Apartment Review</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="PHP/addReview.php?AptID=<?php echo $AptID?>&userID=<?php echo $userID ?>" method="POST">
+        	 <span>Rate:</span>
+          <div class="form-group">
+<!--            Rate: <label for="recipient-name" class="col-form-label"></label>
+ -->            <!-- <input type="text" class="form-control" id="recipient-name"> -->
 
-        <!-- Page Heading/Breadcrumbs -->
-<!--       <div class="container">
-        <h1 class="mt-4 mb-3">Orders </h1>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="index.html">Home</a>
-          </li>
-          <li class="breadcrumb-item active">Orders</li>
-        </ol>
+            <fieldset class="rating">
+            	
+    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+    <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+    <input type="radio" id="star3half" name="rating" value="3.5" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+    <input type="radio" id="star2half" name="rating" value="2.5" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+    <input type="radio" id="star1half" name="rating" value="1.5" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+    <input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+</fieldset>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label"></label>
+            <textarea class="form-control" maxlength="200" name="review" id="message-text" placeholder="Write your review"></textarea>
+          </div>
+ 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Send review</button>
+      </div>
+             </form>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <div class="row">
-          <div class="col-lg-12 col-sm-6">
-               Nav tabs -->
-<!--              <ul class="nav nav-tabs">
-                <li class="nav-item">
-                  <a class="nav-link active" href="#upcomingTrips">Upcoming Trips </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#myOrders">My Orders</a>
-                </li>
-              </ul>
-               Tab panes -->
-<!--               <div class="tab-content"> 
- --><!--                 <div id="upcomingTrips" class="container tab-pane active"><br>
-                    <table class="table">
-                    <thead>
-                      <tr>
-                    <th><button type="button" class="btn btn-default"><h6>Order Number</h6></button></th>
-                    <th><button type="button" class="btn btn-default"><h6>Status</h6></button></th>
-                    <th><button type="button" class="btn btn-default"><h6>Dates</h6></button></th>
-                    <th><button type="button" class="btn btn-default"><h6>Details</h6></button></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <tr >
-                      <td>12345678</td>
-                      <td>Approved</td>
-                      <td>12/08/18 - 20/08/18</td>
-                      <td>Berlin,Germany</td>
-                      <td>
-                        <a class='btn btn-primary' href='BookApartmentRefused.php?AptID=<?php  $AptID?> &userID=<?php  $userID?>&StartDate=<?php  $StartDate ?>&EndDate=<?php  $EndDate?>'>View</a>
-                      </td>
-                      <td><button type="button" class="btn btn-outline-danger">Cancel</button></td>
-                    </tr>
-                    </tbody>
-                  </table>
 
-                  </div> -->
-   <!--                <div id="myOrders" class="container tab-pane fade"><br>
-                    <table class="table">
-                    <thead>
-                      <tr>
-                    <th><button type="button" class="btn btn-default"><h6>Order Number</h6></button></th>
-                    <th><button type="button" class="btn btn-default"><h6>Status</h6></button></th>
-                    <th><button type="button" class="btn btn-default"><h6>Dates</h6></button></th>
-                    <th><button type="button" class="btn btn-default"><h6>Details</h6></button></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                      <td>12345678</td>
-                      <td>Approved</td>
-                      <td>12/08/18 - 20/08/18</td>
-                      <td>Berlin,Germany</td>
-                    </tr>
-                    <tr>
-                      <td>12345678</td>
-                      <td>Approved</td>
-                      <td>12/08/18 - 20/08/18</td>
-                      <td>Berlin,Germany</td>
-                    </tr>
-                    </tbody>
-                    </table>
-                  </div> -->
-   <!--              </div>
-              </div>
-            </div>
-      </div> -->
 
 </div>
       <!-- Footer -->
@@ -425,8 +405,6 @@ echo  '</div>';
       <script src="vendor/jquery/jquery.min.js"></script>
       <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-
-
 <script>
 
     function sortTable(){
@@ -434,11 +412,6 @@ echo  '</div>';
     }
 
 </script>
-
-
-
-
-
 
     </body>
 

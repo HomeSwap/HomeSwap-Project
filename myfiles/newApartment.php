@@ -18,7 +18,6 @@
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   <style>
@@ -44,13 +43,6 @@
   }
 
 
-/*#newApartForm input {
-  padding: 10px;
-  width: 100%;
-  font-size: 17px;
-  border: 1px solid #aaaaaa;
-  }*/
-
   /* Mark input boxes that gets an error on validation: */
   #newApartForm input.invalid {
     background-color: #ffdddd;
@@ -59,10 +51,6 @@
     #newApartForm textarea.invalid {
     background-color: #ffdddd;
   }
-
-/*  #newApartForm textarea.invalid {
-    background-color: #ffdddd;
-    }*/
 
     /* Hide all steps by default: */
     .tab {
@@ -117,10 +105,6 @@
 }
 
 
-/*input[type="file"] {
-    display: none;
-    }*/
-
   </style>
 </head>
 
@@ -139,11 +123,16 @@
             <a class="nav-link" href="Registration.html">Register</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="GoogleLogin/Login.php">Login</a>
+            <a class="nav-link" href="https://shirba.mtacloud.co.il/GoogleLogin/Login.php">Login</a>
           </li>
                       <li class="nav-item active">
             <a href="#" class="nav-link" style="color:#B39CD0;">&nbsp;&nbsp;Welcome, Guest!</a>
             </li>
+
+           </ul>
+      </div>
+    </div>
+  </nav>
 
   <!-- Page Content -->
   <div class="container">
@@ -155,7 +144,7 @@
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
+        <a href="index.php">Home</a>
       </li>
       <li class="breadcrumb-item active">New Apartment</li>
     </ol>
@@ -167,8 +156,7 @@
     </div>
 
     <form name="sentMessage" id="newApartForm" enctype="multipart/form-data" novalidate action="PHP/insertApartment.php" method="POST" >
-<!--       id="contactForm"  
---> <div class="tab">
+ <div class="tab">
   <div class="row">
     <div class="col-lg-6 mb-4 col-centered">
       <h6>Where's your apartment located?</h6>               
@@ -232,8 +220,7 @@
  <div id="success"></div>
  <!-- For success/fail messages -->
  <div class="row" id="btn">
-<!--               <div class="col-lg-6 mb-5">
-  <button type="submit" class="btn btn-primary btn-lg btn-block " id="sendMessageButton">Next Step</button></div> -->
+
 </div>
 
 </div>
@@ -249,7 +236,7 @@
     <div class="col-lg-6 mb-4 col-centered d-inline-block">
       <div class="control-group form-group">
         <div class="controls">
-         <h6 style="padding:5px;">Max guests:</h6>        
+         <h6 style="padding:5px;">* Max guests:</h6>        
          <input type="number" class="form-control mandatory" min="1" id="guestNum" name="guestNum">
        </div>
      </div>      
@@ -433,14 +420,16 @@
 
 
 <div class="tab">
-  <div class="row">
+  <div class="row" align="center">
     <div class="col-lg-8 mb-4 col-centered">
-      <h6>Update your apartment availibility:</h6> 
+      <h5>Update your apartment availibility</h5>
+      <p>Please enter a date range by choosing start and end date.<br>
+      If needed, press the <b>+</b> button to add more available dates.</p>
+      <br>
 
-  <!-- <div id="wrapper">  -->
       <div class="control-group form-group">
         <div class="controls">
-         <input id="fdateRange" style="width:50%; height:40px" name="fdateRange" type="text"
+         <input id="fdateRange" style="width:50%; height:40px" placeholder="mm/dd/yyyy - mm/dd/yyyy" name="fdateRange" type="text"
          data-range="true"
          data-multiple-dates-separator=" - "
          data-language="en"
@@ -448,25 +437,25 @@
 
          <input id="btnAdd" type="button" onclick="addAvailability()" value="+" />
          <div id=dp"></div>
-         <input id="box1" class="wrapper datepicker-here" type="text"
+         <input id="box1" placeholder="mm/dd/yyyy - mm/dd/yyyy" class="wrapper datepicker-here" type="text"
         data-range="true"
         data-multiple-dates-separator=" - "
         data-language="en"
         style="width:50%; height:40px"
         autocomplete="off"/>
-        <input id="box2" class="wrapper datepicker-here" type="text"
+        <input id="box2" placeholder="mm/dd/yyyy - mm/dd/yyyy" class="wrapper datepicker-here" type="text"
         data-range="true"
         data-multiple-dates-separator=" - "
         data-language="en"
         style="width:50%; height:40px"
         autocomplete="off"/>
-        <input id="box3"class="wrapper datepicker-here" type="text"
+        <input id="box3"placeholder="mm/dd/yyyy - mm/dd/yyyy" class="wrapper datepicker-here" type="text"
         data-range="true"
         data-multiple-dates-separator=" - "
         data-language="en"
         style="width:50%; height:40px"
         autocomplete="off"/>
-        <input id="box4" class="wrapper datepicker-here" type="text"
+        <input id="box4" placeholder="mm/dd/yyyy - mm/dd/yyyy" class="wrapper datepicker-here" type="text"
         data-range="true"
         data-multiple-dates-separator=" - "
         data-language="en"
@@ -474,9 +463,7 @@
         autocomplete="off"/>
          </div>    
        </div>
-     <!-- </div> -->
-         
-         <!-- <button style="width:30%; font-size:12px; margin:3px;" type="button" onclick="convertRangeToDates()">Insert date range</button> -->
+
 <?php 
       $userID=$_REQUEST['userID']; ?>
 
@@ -492,12 +479,7 @@
         <input id="ed4" name="ed4" hidden/> 
 
         <input id="userID" name="userID" value='<?php echo $userID ?>'hidden/>
-    
-      
   
-     <!-- <button type="button" onclick="addAvailability()"> Add date range:  </button>   -->
-
-
    </div>
 
 
@@ -528,13 +510,10 @@
 </footer>
 
 <!-- Bootstrap core JavaScript -->
-<!--     <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Contact form JavaScript -->
-  <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-<!--     <script src="js/jqBootstrapValidation.js"></script>
-  <script src="js/contact_me.js"></script> -->
 
   <script>
 
@@ -612,45 +591,6 @@ function fixStepIndicator(n) {
 }
 
 
-
- //upload photos and validate
-
-//  function convertRangeToDates() {
-//   var range = document.getElementById("fdateRange").value;
-//   //separate the range to two dates (string)
-//   var startDate = range.substring(0,10);
-//   var endDate = range.substring(13,23);
-
-// //var newSdate = startDate.split("/").reverse().join("-");
-// //var newEdate = endDate.split("/").reverse().join("-");
-
-// //convert the dates to the SQL format YYYY-MM-DD (string)
-// var newSdate = startDate.replace(/(..).(..).(....)/, "$3-$1-$2");
-// var newEdate = endDate.replace(/(..).(..).(....)/, "$3-$1-$2");
-
-//   //document.getElementById("sd").value = newSdate;
-//   //document.getElementById("ed").value = newEdate;
-
-// //convert to ISO date object
-//   //var sdformat = new Date(newSdate);
-//  // var edformat = new Date(newEdate);
-
-//  //insert the dates into input fieds in order to post them to db
-//   document.getElementById("sd").value = newSdate;
-//   document.getElementById("ed").value = newEdate;
-//  }
-
-
-//   var counter = 0;
-//  function add_fields() {
-//     counter++;
-//     document.getElementById('wrapper').innerHTML += '<div class="control-group form-group"><div class="controls"><input id="fdateRange"+counter style="width:50%; height:40px" name="fdateRange" type="text" data-range="true" data-multiple-dates-separator=" - " data-language="en" class="datepicker-here" autocomplete="off"/></div></div></div>';
-
-// }
-
-
-
-
   var counter = 0;
   var gId = '';
   var gName = '';
@@ -673,10 +613,6 @@ function addAvailability() {
 
   }
   var arr;
-
-
-
-
 
   $('.datepicker-here ').blur(function convertRangeToDates() {
   var range = document.getElementById("fdateRange").value;

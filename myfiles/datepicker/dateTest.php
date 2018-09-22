@@ -2,10 +2,10 @@
 <?php
 
 //server details
-$servername="localhost";
-$username="root";
-$password="";
-$dbname="database";
+$servername="zebra";
+$username="shirba";
+$password="nD(-cmTvuivT";
+$dbname="shirba_database";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection

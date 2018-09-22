@@ -1,9 +1,9 @@
 <?php
 
-  $servername="localhost";
-  $username="root";
-  $password="";
-  $dbname="database";
+  $servername="zebra";
+  $username="shirba";
+  $password="nD(-cmTvuivT";
+  $dbname="shirba_database";
 
   $conn=new mysqli($servername,$username,$password,$dbname);
   if ($conn->connect_error)
@@ -15,16 +15,6 @@
 
     $userID=$_REQUEST['userID'];
     $orderID=$_REQUEST['orderID'];
-    // $RequesterID=$_POST['RequesterID'];
-   
-    // $AptID=$_POST['AptID'];
-    // $to = $_POST['hostEmail']; // this is my Email address
-    // $from = "info@HomeSwap.com"; // this is the sender's Email address
-    // $first_name = $_POST['hostName'];
-    // // $last_name = $_POST['last_name'];
-    // $StartDate=$_POST['StartDate'];
-    // $EndDate=$_POST['EndDate'];
-
 
 $sql = "SELECT Fname from users where userID = '$userID'";  
 
@@ -33,12 +23,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-// $conn = mysqli_connect($servername, $username, $password);
-// if(!$conn){
-//  $error = "Error connecting database...";
-// }
-
-//mysqli_select_db($conn,$dbname);
 
 $result = mysqli_query($conn,$sql);
 $rows = mysqli_fetch_array($result);
@@ -69,7 +53,6 @@ $conn->close();
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
@@ -113,8 +96,6 @@ body{
   </nav>
 
 
-
-
 <div class="container center" style="padding:128px 16px">
   <h1><i class="fas fa-check-circle" style="color:green;"></i> Your Swap has been approved!</h1>
   <h4>Your order number is: <b>#<?php echo $orderID ?></b></h4>
@@ -125,7 +106,6 @@ body{
 </div>
 
 <br><br>
-
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">
@@ -140,7 +120,7 @@ body{
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Contact form JavaScript -->
-    <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/contact_me.js"></script>
 
